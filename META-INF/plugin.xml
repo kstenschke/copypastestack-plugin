@@ -15,7 +15,7 @@
 -->
 <idea-plugin version="2">
   <id>com.kstenschke.copypastestack</id>
-  <name>CopyPasteStack</name>
+  <name>Copy/Paste Stack</name>
   <version>1.0.0</version>
   <vendor email="info@stenschke.com" url="">Kay Stenschke</vendor>
 
