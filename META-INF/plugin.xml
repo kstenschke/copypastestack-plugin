@@ -1,0 +1,76 @@
+<!--
+~ Copyright 2014 Kay Stenschke
+~
+~ Licensed under the Apache License, Version 2.0 (the "License");
+~ you may not use this file except in compliance with the License.
+~ You may obtain a copy of the License at
+~
+~ http://www.apache.org/licenses/LICENSE-2.0
+~
+~ Unless required by applicable law or agreed to in writing, software
+~ distributed under the License is distributed on an "AS IS" BASIS,
+~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~ See the License for the specific language governing permissions and
+~ limitations under the License.
+-->
+<idea-plugin version="2">
+  <id>com.kstenschke.copypastestack</id>
+  <name>CopyPasteStack</name>
+  <version>1.0.0</version>
+  <vendor email="info@stenschke.com" url="">Kay Stenschke</vendor>
+
+  <description><![CDATA[
+      Adds a tool window of copy history items, similar to the standard copy history built-in,
+      but possible to be kept persistently open and with some additional features.<br />
+      Features:
+      <ul>
+        <li>The copy/paste stack provides a list of copied string items, from the current and recent sessions.
+            Copy/paste stack caches its content, allowing you to keep copied items for as long as needed
+            (instead of limiting their availability to the current editing session).
+        </li>
+        <li>One or multiple items can be inserted into the editor via ENTER key or double click.</li>
+        <li>Items are automatically trimmed from surrounding whitespace.</li>
+        <li>The list of copied items can be sorted alphabetically</li>
+        <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
+            and a delimiter when pasting multiple items at once.
+        </li>
+      </ul>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      1.0.0 Initial release
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Copy/Paste" anchor="right" factoryClass="com.kstenschke.copypastestack.ToolWindowFactory">
+        </toolWindow>
+    </extensions>
+
+    <depends>com.intellij.modules.lang</depends>
+</idea-plugin>
