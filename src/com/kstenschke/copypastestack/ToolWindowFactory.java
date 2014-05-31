@@ -33,7 +33,7 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
      */
     @Override
     public void createToolWindowContent(Project project, final com.intellij.openapi.wm.ToolWindow toolWindow) {
-        final com.kstenschke.copypastestack.ToolWindow newToolWindow = new com.kstenschke.copypastestack.ToolWindow(project);
+        final com.kstenschke.copypastestack.ToolWindow newToolWindow = new com.kstenschke.copypastestack.ToolWindow();
         Content content = ContentFactory.SERVICE.getInstance().createContent(newToolWindow, "", false);
 
         toolWindow.setAvailable(true, null);

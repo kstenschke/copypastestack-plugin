@@ -16,11 +16,7 @@
 package com.kstenschke.copypastestack;
 
 import com.intellij.openapi.ide.CopyPasteManager;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
-import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.ui.content.Content;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
@@ -35,18 +31,13 @@ import java.util.Arrays;
 
 public class ToolWindow extends SimpleToolWindowPanel {
 
-    public final Project project;
-    public final ToolWindowForm form;
+    private final ToolWindowForm form;
 
     /**
      * Constructor - initialize the tool window content
-     *
-     * @param   project    Idea project
      */
-    public ToolWindow(Project project) {
+    public ToolWindow() {
         super(false);
-
-        this.project = project;
 
         form    = new ToolWindowForm();
 
@@ -57,45 +48,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             // Add form into toolWindow
         add(form.getMainPanel(), BorderLayout.CENTER);
-    }
-
-    /**
-     * @param   project     Idea Project
-     * @return  Instance of AhnToolWindow
-     */
-    public static ToolWindow getInstance(Project project) {
-        com.intellij.openapi.wm.ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("CopyPasteStack");
-
-        if( toolWindow != null ) {
-            try {
-                Content content = toolWindow.getContentManager().getContent(0);
-                if( content != null ) {
-                    JComponent toolWindowComponent = content.getComponent();
-                    String canonicalName = toolWindowComponent.getClass().getCanonicalName();
-                    if(canonicalName.endsWith("com.kstenschke.copypastestack.ToolWindow")) {
-                        return (ToolWindow) toolWindowComponent;
-                    }
-                }
-            } catch(Exception exception) {
-                exception.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @return  ToolWindow
-     */
-    public static ToolWindow getInstance() {
-        Project[] openProjects = ProjectManager.getInstance().getOpenProjects();
-        if( openProjects.length == 0 ) {
-            return null;
-        }
-
-        Project project= openProjects[0];
-
-        return getInstance(project);
     }
 
     private void initToolbar() {

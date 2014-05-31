@@ -20,7 +20,7 @@ import com.intellij.ide.util.PropertiesComponent;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NonNls;
 
-public class Preferences {
+class Preferences {
 
     @NonNls
     private static final String PROPERTY_ITEMS = "PluginCopyPasteStack.Items";
