@@ -75,13 +75,8 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
                 } catch (InterruptedException ignore) {
 
                 } catch (java.util.concurrent.ExecutionException e) {
-                    String why = null;
                     Throwable cause = e.getCause();
-                    if (cause != null) {
-                        why = cause.getMessage();
-                    } else {
-                        why = e.getMessage();
-                    }
+                    String why = cause != null ? cause.getMessage() : e.getMessage();
                     System.err.println(StaticTexts.ERROR_RETRIEVING_FILE + ": " + why);
                 }
             }

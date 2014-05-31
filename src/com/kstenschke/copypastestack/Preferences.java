@@ -38,7 +38,7 @@ public class Preferences {
     /**
      * Store items
      *
-     * @param items Contents to be stored in dictionary preference
+     * @param items
      */
     public static void saveCopyItems(String[] items) {
         PropertiesComponent.getInstance().setValue( PROPERTY_ITEMS, StringUtils.join(items, StaticTexts.SEPARATOR_ITEMS_SPLIT) );

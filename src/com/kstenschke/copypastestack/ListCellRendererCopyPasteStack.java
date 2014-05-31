@@ -76,7 +76,6 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
         this.nonFocusBorder  = BorderFactory.createLineBorder(isDark ? colorDarkBgNoFocus : this.colorSelectionBackground);
         this.selectedBorder  = BorderFactory.createLineBorder(this.colorSelectionBackground.darker());
 
-        ToolWindow toolWindow = ToolWindow.getInstance();
         try {
             this.iconDefault = new ImageIcon(
                 ImageIO.read( getClass().getResource("resources/images/item.png")) );

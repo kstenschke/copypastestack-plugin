@@ -47,7 +47,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
     public ToolWindow(Project project) {
         super(false);
 
-        final ToolWindow toolWindow = this;
         this.project = project;
 
         form    = new ToolWindowForm();
