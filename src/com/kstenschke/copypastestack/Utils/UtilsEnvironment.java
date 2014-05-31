@@ -85,7 +85,7 @@ public class UtilsEnvironment {
      * @param   text
      */
     public static void insertInEditor(final Project project, final Editor editor, final String text, Boolean focusEditor) {
-        if( text != null && ! text.isEmpty() ) {
+        if( editor != null && text != null && ! text.isEmpty() ) {
             CaretModel caretModel       = editor.getCaretModel();
             final Integer currentOffset = caretModel.getOffset();
 

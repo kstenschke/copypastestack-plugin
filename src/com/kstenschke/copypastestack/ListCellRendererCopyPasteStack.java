@@ -44,8 +44,7 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
     private final Color colorForeground;
 
     private ImageIcon iconDefault;
-
-    private Boolean isMac;
+    private final Boolean isMac;
 
     /**
      * Constructor
