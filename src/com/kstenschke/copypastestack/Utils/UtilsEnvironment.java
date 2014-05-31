@@ -64,20 +64,6 @@ public class UtilsEnvironment {
     }
 
     /**
-     * @param   title           Dialog title text
-     * @param   message         Message text
-     * @param   messageType     JOptionPane.<CONSTANT>
-     * @return  0 = ok, 2 = cancel
-     */
-    public static int okCancelDialog(String title, String message, @MagicConstant int messageType) {
-        return JOptionPane.showConfirmDialog(null, message, title, messageType);
-    }
-
-    public static int okCancelDialog(String title, String message) {
-        return okCancelDialog(title, message, JOptionPane.OK_CANCEL_OPTION);
-    }
-
-    /**
      * @param   curProject
      * @return  Editor
      */
@@ -143,18 +129,6 @@ public class UtilsEnvironment {
         Editor editor  = getEditor(project);
 
         insertInEditor(project, editor, text, focusEditor);
-    }
-
-
-    /**
-     * @param   text
-     */
-    public static void copyToClipboard(String text) {
-        if( text != null && ! text.isEmpty() ) {
-            StringSelection strSel = new StringSelection(text);
-            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(strSel, null);
-        }
     }
 
     /**

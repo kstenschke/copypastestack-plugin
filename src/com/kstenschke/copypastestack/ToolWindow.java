@@ -15,7 +15,6 @@
  */
 package com.kstenschke.copypastestack;
 
-import com.intellij.ide.UiActivity;
 import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
@@ -37,7 +36,7 @@ import java.util.Arrays;
 public class ToolWindow extends SimpleToolWindowPanel {
 
     public final Project project;
-    public ToolWindowForm form;
+    public final ToolWindowForm form;
 
     /**
      * Constructor - initialize the tool window content

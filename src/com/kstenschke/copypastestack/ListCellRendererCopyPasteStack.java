@@ -106,7 +106,7 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
             setBorder(cellHasFocus ? selectedBorder : nonFocusBorder);
 
             if( this.isMac ) {
-                this.columnText.setForeground( hasFocus ? Color.WHITE : Color.BLACK );
+                this.columnText.setForeground( hasFocus ? JBColor.WHITE : JBColor.BLACK );
             }
         } else {
             setBorder(whiteBorder);

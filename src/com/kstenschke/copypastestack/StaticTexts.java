@@ -35,15 +35,6 @@ public class StaticTexts {
     @NonNls
     public static final String INFO_PASTE = "Paste selected / all items";
 
-    // =================================================================================================== Confirmations
-    @NonNls
-    public static final String TITLE_CONFIRM_DELETE = "Remove Items";
-    @NonNls
-    public static final String CONFIRM_DELETE_SELECTED = "Really remove the selected items?";
-    @NonNls
-    public static final String CONFIRM_DELETE_ALL = "Really remove all cached items?";
-
-
     // ========================================================================================================== Errors
     @NonNls
     public static final String ERROR_RETRIEVING_FILE = "Error retrieving file";
