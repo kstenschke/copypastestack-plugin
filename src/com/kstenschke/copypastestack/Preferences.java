@@ -36,7 +36,7 @@ public class Preferences {
     private static final String PROPERTY_WRAP_DELIMITER = "PluginCopyPasteStack.WrapDelimiter";
 
     /**
-     * Store dictionary
+     * Store items
      *
      * @param items Contents to be stored in dictionary preference
      */
@@ -80,7 +80,7 @@ public class Preferences {
     }
 
     /**
-     * Load dictionary
+     * Load items
      *
      * @return String
      */
