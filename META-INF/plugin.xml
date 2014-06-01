@@ -21,10 +21,9 @@
 
   <description><![CDATA[
       Adds a tool window of copy history items, similar to the standard copy history built-in,
-      but possible to be kept persistently open and with some additional features.<br />
-      Features:
+      but possible to be kept persistently open and with some additional features:<br />
       <ul>
-        <li>The copy/paste stack provides a list of copied string items, from the current and recent sessions.
+        <li>Copy/paste stack provides a list of copied string items, from the current and recent sessions.
             Copy/paste stack caches its content, allowing you to keep copied items for as long as needed
             (instead of limiting their availability to the current editing session).
         </li>
@@ -35,6 +34,7 @@
             and a delimiter when pasting multiple items at once.
         </li>
       </ul>
+       <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
   <change-notes><![CDATA[

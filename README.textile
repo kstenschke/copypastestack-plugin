@@ -8,14 +8,12 @@ PyCharm, PyCharm CE, AppCode and Android Studio.
 h2. Description
 
 Adds a tool window of copy history items, similar to the standard copy history built-in,
-but possible to be kept persistently open and with some additional features.
+but possible to be kept persistently open and with some additional features:
 
-Features:
-
-* The copy/paste stack provides a list of copied string items, from the current and recent sessions. Copy/paste stack caches its content, allowing you to keep copied items for as long as needed (instead of limiting their availability to the current editing session).
+* Copy/paste stack provides a list of copied string items, from the current and recent sessions. Copy/paste stack caches its content, allowing you to keep copied items for as long as needed (instead of limiting their availability to the current editing session).
 * One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click.
 * Items are automatically trimmed from surrounding whitespace.
-* The list of copied items can be sorted alphabetically</li>
+* The list of copied items can be sorted alphabetically
 * When pasting items back into the editor, they can be wrapped with a prefix and postfix string, and a delimiter when pasting multiple items at once.
 
 

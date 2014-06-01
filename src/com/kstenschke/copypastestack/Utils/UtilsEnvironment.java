@@ -32,11 +32,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.util.PsiUtilBase;
 import com.kstenschke.copypastestack.StaticTexts;
-import org.intellij.lang.annotations.MagicConstant;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
 
 public class UtilsEnvironment {
 

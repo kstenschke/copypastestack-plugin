@@ -20,7 +20,7 @@ import javax.swing.*;
 public class ToolWindowForm {
 
     public JToolBar toolBar;
-    public JPanel mainPanel;
+    private JPanel mainPanel;
     public JList clipItemsList;
 
     public JButton buttonSortAlphabetical;
