@@ -122,6 +122,7 @@ public class UtilsEnvironment {
 
     /**
      * @param   text
+     * @param   focusEditor
      */
     public static void insertInEditor(String text, Boolean focusEditor) {
         Project project= getOpenProject();

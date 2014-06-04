@@ -41,12 +41,14 @@
     <change-notes><![CDATA[
     <ul>
         <li>1.0.1<ul>
-            <li>Added: option to keep items sorted alphabetically</li>
-            <li>Added: option to auto-paste items upon select</li>
-            <li>Added: option to re-copy items to clipboard</li>
-            <li>Added: status label: items count</li>
-            <li>Added: item context menu</li>
-            <li>Bugfix: wrap-after string was wrap-before</li>
+                <li>Added: Option to keep items sorted alphabetically</li>
+                <li>Added: Option to auto-paste items upon select</li>
+                <li>Added: Option to re-copy items to clipboard</li>
+                <li>Added: Wrap parts can interpolate escaped whitespace sequences now</li>
+                <li>Added: Status label: items count</li>
+                <li>Added: Item context menu</li>
+                <li>Improved: UI</li>
+                <li>Bugfix: Wrap-after string was wrap-before</li>
             </ul>
         </li>
         <li>1.0.0 Initial release</li>

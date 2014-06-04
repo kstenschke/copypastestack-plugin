@@ -27,9 +27,11 @@ class Preferences {
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_WRAP = "PluginCopyPasteStack.IsActiveWrap";
     @NonNls
-    private static final String PROPERTY_IS_ACTIVE_FOCUS_EDITOR = "PluginCopyPasteStack.IsActiveFocusEditor";
+    private static final String PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE = "PluginCopyPasteStack.IsActiveFocusEditor";
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE = "PluginCopyPasteStack.IsActiveImmediatePaste";
+    @NonNls
+    private static final String PROPERTY_IS_ACTIVE_WRAP_EXTENDED = "PluginCopyPasteStack.IsActiveWrapExtended";
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_KEEP_SORTING = "PluginCopyPasteStack.IsActiveKeepSorting";
     @NonNls
@@ -58,8 +60,15 @@ class Preferences {
     /**
      * @param   isActive
      */
-    public static void saveIsActiveFocusEditor(Boolean isActive) {
-        PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_FOCUS_EDITOR, isActive ? "1":"0" );
+    public static void saveIsActiveWrapExtended(Boolean isActive) {
+        PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_WRAP_EXTENDED, isActive ? "1":"0" );
+    }
+
+    /**
+     * @param   isActive
+     */
+    public static void saveIsActiveFocusOnPaste(Boolean isActive) {
+        PropertiesComponent.getInstance().setValue(PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE, isActive ? "1":"0" );
     }
 
     /**
@@ -118,7 +127,7 @@ class Preferences {
     public static Boolean getIsActiveWrap() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_WRAP);
 
-        return value != null && (value.equals("1"));
+        return value != null && value.equals("1");
     }
 
     /**
@@ -127,16 +136,25 @@ class Preferences {
     public static Boolean getIsActiveKeepSorting() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_KEEP_SORTING);
 
-        return value != null && (value.equals("1"));
+        return value != null && value.equals("1");
     }
 
     /**
      * @return Boolean
      */
-    public static Boolean getIsActiveFocusEditor() {
-        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_FOCUS_EDITOR);
+    public static Boolean getIsActiveWrapExtended() {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_WRAP_EXTENDED);
 
-        return value != null && (value.equals("1"));
+        return value != null && value.equals("1");
+    }
+
+    /**
+     * @return Boolean
+     */
+    public static Boolean getIsActiveFocusOnPaste() {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE);
+
+        return value != null && value.equals("1");
     }
 
     /**
@@ -145,7 +163,7 @@ class Preferences {
     public static Boolean getIsActiveImmediatePaste() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE);
 
-        return value != null && (value.equals("1"));
+        return value != null && value.equals("1");
     }
 
     /**
