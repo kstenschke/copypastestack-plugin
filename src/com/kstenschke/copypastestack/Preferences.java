@@ -29,6 +29,10 @@ class Preferences {
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_FOCUS_EDITOR = "PluginCopyPasteStack.IsActiveFocusEditor";
     @NonNls
+    private static final String PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE = "PluginCopyPasteStack.IsActiveImmediatePaste";
+    @NonNls
+    private static final String PROPERTY_IS_ACTIVE_KEEP_SORTING = "PluginCopyPasteStack.IsActiveKeepSorting";
+    @NonNls
     private static final String PROPERTY_WRAP_BEFORE = "PluginCopyPasteStack.WrapBefore";
     @NonNls
     private static final String PROPERTY_WRAP_AFTER = "PluginCopyPasteStack.WrapAfter";
@@ -56,6 +60,20 @@ class Preferences {
      */
     public static void saveIsActiveFocusEditor(Boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_FOCUS_EDITOR, isActive ? "1":"0" );
+    }
+
+    /**
+     * @param   isActive
+     */
+    public static void saveIsActiveKeepSorting(Boolean isActive) {
+        PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_KEEP_SORTING, isActive ? "1":"0" );
+    }
+
+    /**
+     * @param   isActive
+     */
+    public static void saveIsActiveImmediatePaste(Boolean isActive) {
+        PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE, isActive ? "1":"0" );
     }
 
     /**
@@ -106,8 +124,26 @@ class Preferences {
     /**
      * @return Boolean
      */
+    public static Boolean getIsActiveKeepSorting() {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_KEEP_SORTING);
+
+        return value != null && (value.equals("1"));
+    }
+
+    /**
+     * @return Boolean
+     */
     public static Boolean getIsActiveFocusEditor() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_FOCUS_EDITOR);
+
+        return value != null && (value.equals("1"));
+    }
+
+    /**
+     * @return Boolean
+     */
+    public static Boolean getIsActiveImmediatePaste() {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE);
 
         return value != null && (value.equals("1"));
     }

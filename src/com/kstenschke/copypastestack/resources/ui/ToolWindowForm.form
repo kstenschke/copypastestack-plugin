@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.kstenschke.copypastestack.resources.ui.ToolWindowForm">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="4" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="538" height="400"/>
@@ -28,6 +28,12 @@
               <text value=""/>
             </properties>
           </component>
+          <component id="a06eb" class="javax.swing.JCheckBox" binding="checkboxKeepSorted">
+            <constraints/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
           <component id="d0bdd" class="javax.swing.JButton" binding="buttonSortAlphabetical">
             <constraints/>
             <properties>
@@ -35,6 +41,13 @@
               <text value=""/>
             </properties>
           </component>
+          <grid id="b2c64" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="8" bottom="0" right="0"/>
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
           <component id="d225a" class="javax.swing.JButton" binding="buttonPaste">
             <constraints/>
             <properties>
@@ -49,11 +62,18 @@
               <text value=""/>
             </properties>
           </component>
+          <component id="5f3c7" class="javax.swing.JButton" binding="buttonCopy">
+            <constraints/>
+            <properties>
+              <icon value="com/kstenschke/copypastestack/resources/images/copy.png"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </toolbar>
       <scrollpane id="b208d">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -66,7 +86,7 @@
       </scrollpane>
       <toolbar id="30337">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
@@ -78,7 +98,10 @@
           <component id="5be03" class="javax.swing.JCheckBox" binding="checkBoxFocusEditor">
             <constraints/>
             <properties>
+              <horizontalAlignment value="11"/>
+              <horizontalTextPosition value="4"/>
               <text value="&amp;Focus Editor on Paste"/>
+              <verticalAlignment value="0"/>
             </properties>
           </component>
           <component id="e399a" class="javax.swing.JLabel">
@@ -92,7 +115,7 @@
       </toolbar>
       <toolbar id="aedbc">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
@@ -122,7 +145,7 @@
       <grid id="fc84c" binding="panelWrap" layout-manager="GridLayoutManager" row-count="1" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -184,10 +207,40 @@
       </grid>
       <component id="3937" class="javax.swing.JSeparator">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
+      <component id="4da35" class="javax.swing.JLabel" binding="labelStatus">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <toolbar id="fc220">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+        <properties>
+          <floatable value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="342f1" class="javax.swing.JCheckBox" binding="checkBoxImmediatePaste">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="4"/>
+              <text value="&amp;Paste Item into Editor on Select"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
     </children>
   </grid>
 </form>

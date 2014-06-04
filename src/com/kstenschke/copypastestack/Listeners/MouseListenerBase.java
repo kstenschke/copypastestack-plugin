@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.kstenschke.copypastestack;
+package com.kstenschke.copypastestack.Listeners;
 
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import org.jetbrains.annotations.Nullable;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-class MouseListenerBase implements MouseListener {
+public class MouseListenerBase implements MouseListener {
 
         // Info text to be shown in status bar on hover
     private String description = null;

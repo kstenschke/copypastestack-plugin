@@ -27,6 +27,8 @@ public class StaticTexts {
 
     // ======================================================================================== Infos shown in statusbar
     @NonNls
+    public static final String INFO_LIST = null;
+    @NonNls
     public static final String INFO_REFRESH = "Refresh Items";
     @NonNls
     public static final String INFO_SORT = "Sort Items alphabetical";
@@ -34,6 +36,20 @@ public class StaticTexts {
     public static final String INFO_DELETE = "Remove selected Items from List / None selected: remove cached items";
     @NonNls
     public static final String INFO_PASTE = "Paste selected / all items";
+    @NonNls
+    public static final String INFO_RECOPY = "Re-copy selected items to Clipboard";
+    @NonNls
+    public static final String INFO_KEEP_SORTED_ALPHABETICAL = "Keep Items in alphabetical Order";
+
+    // ========================================================================================================== Errors
+    @NonNls
+    public static final String POPUP_ITEMS_RECOPY = "Re-copy selected items to Clipboard";
+    @NonNls
+    public static final String POPUP_ITEMS_PASTE = "Paste selected items";
+    @NonNls
+    public static final String POPUP_ITEMS_TOGGLE_FAVORITE = "Toggle Favorite";
+    @NonNls
+    public static final String POPUP_ITEMS_DELETE = "Remove selected Items";
 
     // ========================================================================================================== Errors
     @NonNls

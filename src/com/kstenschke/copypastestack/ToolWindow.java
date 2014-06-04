@@ -16,13 +16,22 @@
 package com.kstenschke.copypastestack;
 
 import com.intellij.openapi.ide.CopyPasteManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.ui.content.Content;
+import com.kstenschke.copypastestack.Listeners.MouseListenerBase;
+import com.kstenschke.copypastestack.Listeners.MouseListenerItemsList;
+import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
 import org.apache.commons.lang.ArrayUtils;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -32,6 +41,7 @@ import java.util.Arrays;
 public class ToolWindow extends SimpleToolWindowPanel {
 
     private final ToolWindowForm form;
+    private Boolean isMac;
 
     /**
      * Constructor - initialize the tool window content
@@ -39,15 +49,24 @@ public class ToolWindow extends SimpleToolWindowPanel {
     public ToolWindow() {
         super(false);
 
-        form    = new ToolWindowForm();
+        this.isMac  = UtilsEnvironment.isMac();
+        this.form    = new ToolWindowForm();
 
-        initItemsList();
+        int amountItems = initItemsList();
+        initStatusLabel(amountItems);
         initToolbar();
         initWrap();
         initAdditionalOptions();
 
             // Add form into toolWindow
         add(form.getMainPanel(), BorderLayout.CENTER);
+    }
+
+    /**
+     * @return  JList
+     */
+    public JList getJlistItems() {
+        return this.form.clipItemsList;
     }
 
     private void initToolbar() {
@@ -59,7 +78,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         });
         this.form.buttonRefresh.addMouseListener( new MouseListenerBase(StaticTexts.INFO_REFRESH));
 
-        this.form.buttonSortAlphabetical.addActionListener( new ActionListener() {
+        this.form.buttonSortAlphabetical.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sortClipboardListAlphabetical();
@@ -67,10 +86,25 @@ public class ToolWindow extends SimpleToolWindowPanel {
         });
         this.form.buttonSortAlphabetical.addMouseListener(new MouseListenerBase(StaticTexts.INFO_SORT));
 
+        this.form.checkboxKeepSorted.addMouseListener( new MouseListenerBase(StaticTexts.INFO_KEEP_SORTED_ALPHABETICAL));
+        this.form.checkboxKeepSorted.addChangeListener( new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                boolean isActive = form.checkboxKeepSorted.isSelected();
+                if( isActive ) {
+                    sortClipboardListAlphabetical();
+                } else {
+                    refreshClipboardList();
+                }
+
+                Preferences.saveIsActiveKeepSorting(isActive);
+            }
+        });
+
         this.form.buttonDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onClickButtonDelete();
+                removeSelectedItems();
             }
         });
         this.form.buttonDelete.addMouseListener(new MouseListenerBase(StaticTexts.INFO_DELETE));
@@ -78,13 +112,22 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.buttonPaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onClickButtonPaste();
+                pasteItems();
             }
         });
         this.form.buttonPaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_PASTE));
+
+        this.form.buttonCopy.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                copySelectedItems();
+            }
+        } );
+//        this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this) );
+        this.form.buttonCopy.addMouseListener(new MouseListenerBase(StaticTexts.INFO_RECOPY));
     }
 
-    private void onClickButtonDelete() {
+    public void removeSelectedItems() {
         Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         String[] items       = hasSelection ? getUnselectedItems() : new String[0];
 
@@ -117,22 +160,26 @@ public class ToolWindow extends SimpleToolWindowPanel {
         return unselectedItems;
     }
 
-    private void onClickButtonPaste() {
+    /**
+     * Paste all / selected items into editor
+     */
+    public void pasteItems() {
         Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         int amountSelected   = ! hasSelection ? 0 : this.form.clipItemsList.getSelectedValuesList().size();
         Boolean focusEditor = this.form.checkBoxFocusEditor.isSelected();
 
+        String wrapBefore = "";
+        String wrapAfter = "";
+        String wrapDelimiter= "";
+
+        if( this.form.checkBoxWrap.isSelected() ) {
+            wrapBefore      = this.form.textFieldWrapBefore.getText();
+            wrapAfter       = this.form.textFieldWrapAfter.getText();
+            wrapDelimiter   = this.form.textFieldWrapDelimiter.getText();
+        }
+
         if( !hasSelection || amountSelected > 1 ) {
                 // Insert multiple items
-            String wrapBefore   = "";
-            String wrapAfter    = "";
-            String wrapDelimiter= "";
-            if( this.form.checkBoxWrap.isSelected() ) {
-                wrapBefore      = this.form.textFieldWrapBefore.getText();
-                wrapAfter       = this.form.textFieldWrapBefore.getText();
-                wrapDelimiter   = this.form.textFieldWrapDelimiter.getText();
-            }
-
             ListModel<String> listModel                     = this.form.clipItemsList.getModel();
             javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
 
@@ -153,9 +200,29 @@ public class ToolWindow extends SimpleToolWindowPanel {
             if( itemValue != null ) {
                 String itemText = itemValue.toString();
                 if( this.form.checkBoxWrap.isSelected() ) {
-                    itemText    = this.form.textFieldWrapBefore.getText() + itemText + this.form.textFieldWrapBefore.getText();
+                    itemText    = wrapBefore + itemText + wrapAfter;
                 }
                 UtilsEnvironment.insertInEditor(itemText, focusEditor);
+            }
+        }
+    }
+
+    /**
+     * Copy selected items back into clipboard
+     */
+    public void copySelectedItems() {
+        Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        if( hasSelection ) {
+            ListModel<String> listModel                     = this.form.clipItemsList.getModel();
+            javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
+
+            int amountItems     = listModel.getSize();
+
+            for(int i=0; i< amountItems; i++ ) {
+                if( selectionModel.isSelectedIndex(i) ) {
+                    String currentItemText  = listModel.getElementAt(i);
+                    UtilsEnvironment.copyToClipboard(currentItemText);
+                }
             }
         }
     }
@@ -209,23 +276,39 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             if( itemsUnique.length > 0 ) {
                 this.updateItemsList(itemsUnique);
+
+                if( this.form.checkboxKeepSorted.isSelected() ) {
+                    this.sortClipboardListAlphabetical();
+                }
+
                 Preferences.saveCopyItems(itemsUnique);
             }
         }
     }
 
     /**
-     * @param items
+     * @param   items
      */
     private void updateItemsList(String[] items) {
         this.form.clipItemsList.setListData( items );
     }
 
-    private void initItemsList() {
-        Boolean isMac   = UtilsEnvironment.isMac();
-        this.form.clipItemsList.setCellRenderer( new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, isMac));
-        this.updateItemsList( Preferences.getItems() );
+    /**
+     * @param   amountItems
+     */
+    private void initStatusLabel(int amountItems) {
+        this.form.labelStatus.setText( String.valueOf(amountItems) + " Items in Stack");
+    }
 
+    /**
+     * @return  Amount of items
+     */
+    private int initItemsList() {
+        this.form.clipItemsList.setCellRenderer( new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac));
+        String[] items = Preferences.getItems();
+        this.updateItemsList( items );
+
+            // Add keylistener
         this.form.clipItemsList.addKeyListener( new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -238,7 +321,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 switch( keyCode ) {
                     case KeyEvent.VK_ENTER:
                     case KeyEvent.VK_SPACE:
-                    onClickButtonPaste();
+                    pasteItems();
                 }
             }
 
@@ -247,34 +330,12 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             }
         });
-        this.form.clipItemsList.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if( e.getClickCount() == 2) {
-                    onClickButtonPaste();
-                }
-            }
+        this.form.clipItemsList.addMouseListener(new MouseListenerItemsList(StaticTexts.INFO_LIST, this));
 
-            @Override
-            public void mousePressed(MouseEvent e) {
+            // add popup
+        this.form.clipItemsList.addMouseListener(new PopupItems(this).getPopupListener() );
 
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+        return items.length;
     }
 
     /**
@@ -335,6 +396,19 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void initAdditionalOptions() {
+            // Paste item upon select?
+        Boolean isActiveImmediatePaste = Preferences.getIsActiveImmediatePaste();
+        form.checkBoxImmediatePaste.setSelected(isActiveImmediatePaste);
+
+        this.form.checkBoxImmediatePaste.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Boolean isActive = form.checkBoxImmediatePaste.isSelected();
+                Preferences.saveIsActiveImmediatePaste(isActive);
+            }
+        });
+
+            // Focus editor on paste?
         Boolean isActiveFocusEditor = Preferences.getIsActiveFocusEditor();
         form.checkBoxFocusEditor.setSelected(isActiveFocusEditor);
 
@@ -345,6 +419,52 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 Preferences.saveIsActiveFocusEditor(isActive);
             }
         });
+    }
+
+    /**
+     * @return  Boolean
+     */
+    public Boolean isSelectedImmediatePaste() {
+        return this.form.checkBoxImmediatePaste.isSelected();
+    }
+
+    /**
+     * @param   project     Idea Project
+     * @return  Instance of AhnToolWindow
+     */
+    public static ToolWindow getInstance(Project project) {
+        com.intellij.openapi.wm.ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("Copy/Paste Stack");
+
+        if( toolWindow != null ) {
+            try {
+                Content content = toolWindow.getContentManager().getContent(0);
+                if( content != null ) {
+                    JComponent toolWindowComponent = content.getComponent();
+                    String canonicalName = toolWindowComponent.getClass().getCanonicalName();
+                    if(canonicalName.endsWith("com.kstenschke.copypastestack.ToolWindow")) {
+                        return (ToolWindow) toolWindowComponent;
+                    }
+                }
+            } catch(Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return  ToolWindow
+     */
+    public static ToolWindow getInstance() {
+        Project[] openProjects = ProjectManager.getInstance().getOpenProjects();
+        if( openProjects.length == 0 ) {
+            return null;
+        }
+
+        Project project= openProjects[0];
+
+        return getInstance(project);
     }
 
 }

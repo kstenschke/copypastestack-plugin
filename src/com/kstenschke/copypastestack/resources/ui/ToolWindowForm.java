@@ -20,21 +20,28 @@ import javax.swing.*;
 public class ToolWindowForm {
 
     public JToolBar toolBar;
+
     private JPanel mainPanel;
+    public JPanel panelWrap;
+
     public JList clipItemsList;
 
     public JButton buttonSortAlphabetical;
     public JButton buttonRefresh;
     public JButton buttonDelete;
     public JButton buttonPaste;
+    public JButton buttonCopy;
 
-    public JCheckBox checkBoxWrap;
-    public JPanel panelWrap;
     public JTextField textFieldWrapAfter;
     public JTextField textFieldWrapBefore;
     public JTextField textFieldWrapDelimiter;
 
     public JCheckBox checkBoxFocusEditor;
+    public JCheckBox checkBoxImmediatePaste;
+    public JCheckBox checkboxKeepSorted;
+    public JCheckBox checkBoxWrap;
+
+    public JLabel labelStatus;
 
     public JPanel getMainPanel() {
         return mainPanel;

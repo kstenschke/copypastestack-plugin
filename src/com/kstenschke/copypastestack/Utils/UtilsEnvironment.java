@@ -33,6 +33,10 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.util.PsiUtilBase;
 import com.kstenschke.copypastestack.StaticTexts;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 public class UtilsEnvironment {
 
     /**
@@ -139,6 +143,14 @@ public class UtilsEnvironment {
     public static boolean isMac() {
         return getOS().contains("mac");
 
+    }
+
+    /**
+     * @param   str
+     */
+    public static void copyToClipboard(String str) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(new StringSelection(str), null);
     }
 
 }

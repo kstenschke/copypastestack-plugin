@@ -25,7 +25,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * ListCellRenderer for snippets combo list
+ * ListCellRenderer for copy items
  *
  * @param   <String>
  */
