@@ -15,6 +15,7 @@
  */
 package com.kstenschke.copypastestack;
 
+import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
@@ -170,7 +171,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     public void pasteItems() {
         Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         int amountSelected   = ! hasSelection ? 0 : this.form.clipItemsList.getSelectedValuesList().size();
-        Boolean focusEditor = this.form.checkBoxFocusOnPaste.isSelected();
+        Boolean focusEditor = this.form.checkboxFocusOnPaste.isSelected();
 
         String wrapBefore   = "";
         String wrapAfter    = "";
@@ -181,7 +182,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
             wrapAfter       = this.form.textFieldWrapAfter.getText();
             wrapDelimiter   = this.form.textFieldWrapDelimiter.getText();
 
-            if( this.form.checkBoxWrapExtended.isSelected() ) {
+            if( this.form.checkboxWrapExtended.isSelected() ) {
                 wrapBefore      = UtilsString.convertWhitespace(wrapBefore);
                 wrapAfter       = UtilsString.convertWhitespace(wrapAfter);
                 wrapDelimiter   = UtilsString.convertWhitespace(wrapDelimiter);
@@ -406,40 +407,39 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void initAdditionalOptions() {
-        this.form.checkBoxImmediatePaste.addMouseListener( new MouseListenerBase(StaticTexts.INFO_IMMEDIATE_PASTE));
-        this.form.labelOptionImmediateInsert.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_IMMEDIATE_PASTE, this.form.checkBoxImmediatePaste));
+        this.form.checkboxImmediatePaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_IMMEDIATE_PASTE));
+        this.form.labelOptionImmediateInsert.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_IMMEDIATE_PASTE, this.form.checkboxImmediatePaste));
 
         Boolean isActiveImmediatePaste = Preferences.getIsActiveImmediatePaste();
-        form.checkBoxImmediatePaste.setSelected(isActiveImmediatePaste);
-
-        this.form.checkBoxImmediatePaste.addActionListener(new ActionListener() {
+        form.checkboxImmediatePaste.setSelected(isActiveImmediatePaste);
+        this.form.checkboxImmediatePaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkBoxImmediatePaste.isSelected();
+                Boolean isActive = form.checkboxImmediatePaste.isSelected();
                 Preferences.saveIsActiveImmediatePaste(isActive);
             }
         });
 
         Boolean isActiveFocusOnPaste = Preferences.getIsActiveFocusOnPaste();
-        this.form.checkBoxFocusOnPaste.setSelected(isActiveFocusOnPaste);
+        this.form.checkboxFocusOnPaste.setSelected(isActiveFocusOnPaste);
 
-        this.form.checkBoxFocusOnPaste.addActionListener(new ActionListener() {
+        this.form.checkboxFocusOnPaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkBoxFocusOnPaste.isSelected();
+                Boolean isActive = form.checkboxFocusOnPaste.isSelected();
                 Preferences.saveIsActiveFocusOnPaste( isActive );
             }
         });
 
-        this.form.checkBoxFocusOnPaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_FOCUS_ON_PASTE));
-        this.form.labelOptionFocusOnPaste.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_FOCUS_ON_PASTE, this.form.checkBoxFocusOnPaste));
+        this.form.checkboxFocusOnPaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_FOCUS_ON_PASTE));
+        this.form.labelOptionFocusOnPaste.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_FOCUS_ON_PASTE, this.form.checkboxFocusOnPaste));
 
-        this.form.checkBoxWrapExtended.setSelected( Preferences.getIsActiveWrapExtended() );
-        this.form.checkBoxWrapExtended.addMouseListener( new MouseListenerBase(StaticTexts.INFO_WRAP_EXTENDED));
-        this.form.checkBoxWrapExtended.addActionListener(new ActionListener() {
+        this.form.checkboxWrapExtended.setSelected(Preferences.getIsActiveWrapExtended());
+        this.form.checkboxWrapExtended.addMouseListener( new MouseListenerBase(StaticTexts.INFO_WRAP_EXTENDED));
+        this.form.checkboxWrapExtended.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Preferences.saveIsActiveWrapExtended(form.checkBoxWrapExtended.isSelected());
+                Preferences.saveIsActiveWrapExtended(form.checkboxWrapExtended.isSelected());
             }
         });
     }
@@ -448,7 +448,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  Boolean
      */
     public Boolean isSelectedImmediatePaste() {
-        return this.form.checkBoxImmediatePaste.isSelected();
+        return this.form.checkboxImmediatePaste.isSelected();
     }
 
     /**

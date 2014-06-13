@@ -37,12 +37,13 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.2 Changed UI: Moved inline settings to bottom of tool window</li>
         <li>1.0.1<ul>
                 <li>Added: Option to keep items sorted alphabetically</li>
-                <li>Added: Option to auto-paste items upon select</li>
+                <li>Added: Option to auto-paste copy-items from tool window upon select</li>
                 <li>Added: Option to re-copy items to clipboard</li>
                 <li>Added: Wrap parts can interpolate escaped whitespace sequences now</li>
                 <li>Added: Status label: items count</li>

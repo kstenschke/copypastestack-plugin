@@ -36,13 +36,14 @@ public class ToolWindowForm {
     public JTextField textFieldWrapBefore;
     public JTextField textFieldWrapDelimiter;
 
-    public JCheckBox checkBoxFocusOnPaste;
-    public JCheckBox checkBoxImmediatePaste;
+    public JCheckBox checkboxFocusOnPaste;
+    public JCheckBox checkboxImmediateCopy;
+    public JCheckBox checkboxImmediatePaste;
     public JCheckBox checkboxKeepSorted;
     public JCheckBox checkBoxWrap;
+    public JCheckBox checkboxWrapExtended;
 
     public JLabel labelStatus;
-    public JCheckBox checkBoxWrapExtended;
     public JLabel labelAfter;
     public JLabel labelOptionImmediateInsert;
     public JLabel labelOptionFocusOnPaste;
