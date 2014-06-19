@@ -26,6 +26,7 @@
             Copy/paste stack caches its content, allowing you to keep copied items for as long as needed
             (instead of limiting their availability to the current editing session).
         </li>
+        <li>The full text of selected copied items can optionally be previewed in an editable text pane.</li>
         <li>One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click.</li>
         <li>Items are automatically trimmed from surrounding whitespace.</li>
         <li>The list of copied items can be sorted chronologically and alphabetically</li>
