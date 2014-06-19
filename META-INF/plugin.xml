@@ -37,9 +37,10 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.3 Added: Editable preview pane</li>
         <li>1.0.2 Changed UI: Moved inline settings to bottom of tool window</li>
         <li>1.0.1<ul>
                 <li>Added: Option to keep items sorted alphabetically</li>

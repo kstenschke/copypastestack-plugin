@@ -15,13 +15,13 @@
  */
 package com.kstenschke.copypastestack;
 
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
+import com.kstenschke.copypastestack.Listeners.ListSelectionListenerItemsList;
 import com.kstenschke.copypastestack.Listeners.MouseListenerBase;
 import com.kstenschke.copypastestack.Listeners.MouseListenerCheckboxLabel;
 import com.kstenschke.copypastestack.Listeners.MouseListenerItemsList;
@@ -59,6 +59,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         initStatusLabel(amountItems);
         initToolbar();
         initWrap();
+        initPreview();
 
             // Add form into toolWindow
         add(form.getMainPanel(), BorderLayout.CENTER);
@@ -130,6 +131,15 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.buttonCopy.addMouseListener(new MouseListenerBase(StaticTexts.INFO_RECOPY));
 
         this.initAdditionalOptions();
+    }
+
+    /**
+     * @return  String
+     */
+    public String getSelectedItemText() {
+        Object selectedValue = this.form.clipItemsList.getSelectedValue();
+
+        return selectedValue != null ? selectedValue.toString() : "";
     }
 
     public void removeSelectedItems() {
@@ -362,6 +372,37 @@ public class ToolWindow extends SimpleToolWindowPanel {
         }
 
         return amount;
+    }
+
+    private void initPreview() {
+        Boolean isActivePreview = Preferences.getIsActivePreview();
+        this.form.checkboxPreview.setSelected( isActivePreview );
+        this.form.checkboxPreview.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Boolean isActive = form.checkboxPreview.isSelected();
+                form.panelPreview.setVisible( isActive );
+                Preferences.saveIsActivePreview(isActive);
+            }
+        });
+
+        this.form.panelPreview.setVisible( isActivePreview );
+
+        this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
+    }
+
+    /**
+     * @return  Boolean
+     */
+    public Boolean isActivePreview() {
+        return this.form.checkboxPreview.isSelected();
+    }
+
+    /**
+     * @param itemText
+     */
+    public void setPreviewText(String itemText) {
+        this.form.textPanePreview.setText(itemText);
     }
 
     private void initWrap() {
