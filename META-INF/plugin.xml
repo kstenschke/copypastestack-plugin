@@ -31,16 +31,17 @@
         <li>Items are automatically trimmed from surrounding whitespace.</li>
         <li>The list of copied items can be sorted chronologically and alphabetically</li>
         <li>Previously copied items can be re-copied to the regular clipboard again</li>
-        <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
+        <li>When pasting items back into thgit push origin --tagspushe editor, they can be wrapped with a prefix and postfix string,
             and a delimiter when pasting multiple items at once.
         </li>
       </ul>
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.4 Improved stability</li>
         <li>1.0.3 Added: Editable preview pane</li>
         <li>1.0.2 Changed UI: Moved inline settings to bottom of tool window</li>
         <li>1.0.1<ul>

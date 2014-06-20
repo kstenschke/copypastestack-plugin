@@ -25,17 +25,19 @@ public class UtilsArray {
     public static int getAmountUniqueItems(Object[] arr){
         int amount = 0;
         for(int i=0; i<arr.length; i++){
-            boolean isDistinct = true;
+            if( arr[i] != null ) {
+                boolean isDistinct = true;
 
-            for(int j=0; j<i; j++){
-                if(arr[i].equals(arr[j])){
-                    isDistinct = false;
-                    break;
+                for (int j = 0; j < i; j++) {
+                    if (arr[j] != null && arr[i].equals(arr[j])) {
+                        isDistinct = false;
+                        break;
+                    }
                 }
-            }
 
-            if(isDistinct){
-                amount++;
+                if (isDistinct) {
+                    amount++;
+                }
             }
         }
         return amount;
