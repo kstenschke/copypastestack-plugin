@@ -20,7 +20,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.ui.JBColor;
 import com.intellij.ui.content.Content;
 import com.kstenschke.copypastestack.Listeners.ListSelectionListenerItemsList;
 import com.kstenschke.copypastestack.Listeners.MouseListenerBase;
