@@ -44,8 +44,6 @@ public class KeyListenerItemsList implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        int menuShortcutKeyMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-
         if( ! this.isMac ) {
             if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_C) {
                 this.toolWindow.copySelectedItems();

@@ -48,9 +48,11 @@ public class ToolWindowForm {
     public JLabel labelOptionImmediateInsert;
     public JLabel labelOptionFocusOnPaste;
     public JLabel labelPreview;
+
     public JTextPane textPanePreview;
     public JPanel panelPreview;
     public JCheckBox checkboxPreview;
+    public JTextField textFieldFind;
 
     public JPanel getMainPanel() {
         return mainPanel;
