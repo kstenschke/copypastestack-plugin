@@ -26,6 +26,7 @@ import com.kstenschke.copypastestack.Listeners.MouseListenerBase;
 import com.kstenschke.copypastestack.Listeners.MouseListenerCheckboxLabel;
 import com.kstenschke.copypastestack.Listeners.MouseListenerItemsList;
 import com.kstenschke.copypastestack.Popups.PopupItems;
+import com.kstenschke.copypastestack.Popups.PopupPreview;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.Utils.UtilsString;
@@ -63,6 +64,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             // Add form into toolWindow
         add(form.getMainPanel(), BorderLayout.CENTER);
+    }
+
+    public ToolWindowForm getForm() {
+        return form;
     }
 
     /**
@@ -353,7 +358,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         });
         this.form.clipItemsList.addMouseListener(new MouseListenerItemsList(StaticTexts.INFO_LIST, this));
 
-            // add popup
+            // add popup listener
         this.form.clipItemsList.addMouseListener(new PopupItems(this).getPopupListener() );
 
         return items.length;
@@ -382,6 +387,9 @@ public class ToolWindow extends SimpleToolWindowPanel {
             public void actionPerformed(ActionEvent e) {
                 Boolean isActive = form.checkboxPreview.isSelected();
                 form.panelPreview.setVisible( isActive );
+                if( isActive ) {
+                    setPreviewText(getSelectedItemText());
+                }
                 Preferences.saveIsActivePreview(isActive);
             }
         });
@@ -389,6 +397,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.panelPreview.setVisible( isActivePreview );
 
         this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
+
+            // Add popup listener
+        this.form.textPanePreview.addMouseListener(new PopupPreview(this).getPopupListener() );
+
     }
 
     /**

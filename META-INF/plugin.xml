@@ -41,7 +41,11 @@
     <version>1.0.4</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.0.4 Improved stability</li>
+        <li>1.0.4<ul>
+                <li>Added context menu to preview pane</li>
+                <li>Improved UI and general stability</li>
+            </ul>
+        </li>
         <li>1.0.3 Added: Editable preview pane</li>
         <li>1.0.2 Changed UI: Moved inline settings to bottom of tool window</li>
         <li>1.0.1<ul>

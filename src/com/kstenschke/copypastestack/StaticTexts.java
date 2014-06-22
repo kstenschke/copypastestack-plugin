@@ -53,9 +53,9 @@ public class StaticTexts {
     @NonNls
     public static final String POPUP_ITEMS_PASTE = "Paste selected items";
     @NonNls
-    public static final String POPUP_ITEMS_TOGGLE_FAVORITE = "Toggle favorite";
-    @NonNls
     public static final String POPUP_ITEMS_DELETE = "Remove selected Items";
+    @NonNls
+    public static final String POPUP_PREVIEW_COPY_SELECTION = "Copy Selection";
 
     // ========================================================================================================== Errors
     @NonNls

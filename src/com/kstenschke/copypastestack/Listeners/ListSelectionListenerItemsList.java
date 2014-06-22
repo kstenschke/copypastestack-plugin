@@ -35,4 +35,5 @@ public class ListSelectionListenerItemsList implements ListSelectionListener {
             this.toolWindow.setPreviewText(itemText);
         }
     }
+
 }
