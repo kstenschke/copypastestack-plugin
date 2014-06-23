@@ -154,16 +154,5 @@ public class UtilsEnvironment {
         clipboard.setContents(new StringSelection(str), null);
     }
 
-    /**
-     * @param   color
-     * @return  Boolean     is color dark? (or light)
-     */
-    public static Boolean isDark(Color color) {
-        float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
-        float brightness = hsb[2];
-
-        return brightness < 0.5;
-    }
-
 }
 

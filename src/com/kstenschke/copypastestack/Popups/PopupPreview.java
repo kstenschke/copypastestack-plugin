@@ -41,7 +41,6 @@ public class PopupPreview extends PopupBase {
             }
         }, classToolWindow, "resources/images/copy.png");
         this.popup.add(menuItemCopySelection);
-
     }
 
     /**
@@ -91,13 +90,6 @@ public class PopupPreview extends PopupBase {
         Integer selEnd    = textPanePreview.getSelectionEnd();
 
         return ! selStart.equals( selEnd );
-    }
-
-    /**
-     * @return  Integer
-     */
-    Integer getIndexSelected() {
-        return jListItems.getSelectedIndex();
     }
 
 }
