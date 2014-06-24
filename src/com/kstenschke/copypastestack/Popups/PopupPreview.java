@@ -1,7 +1,7 @@
 package com.kstenschke.copypastestack.Popups;
 
 
-import com.kstenschke.copypastestack.StaticTexts;
+import com.kstenschke.copypastestack.Static.StaticTexts;
 import com.kstenschke.copypastestack.ToolWindow;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 
@@ -16,7 +16,6 @@ public class PopupPreview extends PopupBase {
     private ToolWindow toolWindow;
 
     final private JPopupMenu popup;
-    final private JList jListItems;
 
     JMenuItem menuItemCopySelection;
 
@@ -27,8 +26,6 @@ public class PopupPreview extends PopupBase {
         this.toolWindow = toolWindow;
 
         final Class classToolWindow   = getToolWindowClassInstance(toolWindow);
-
-        this.jListItems = toolWindow.getJlistItems();
 
         this.popup = new JPopupMenu();
 

@@ -27,6 +27,7 @@ import com.kstenschke.copypastestack.Listeners.MouseListenerCheckboxLabel;
 import com.kstenschke.copypastestack.Listeners.MouseListenerItemsList;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
+import com.kstenschke.copypastestack.Static.StaticTexts;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.Utils.UtilsString;

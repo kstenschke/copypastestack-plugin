@@ -17,6 +17,7 @@
 package com.kstenschke.copypastestack;
 
 import com.intellij.ide.util.PropertiesComponent;
+import com.kstenschke.copypastestack.Static.StaticTexts;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NonNls;
 

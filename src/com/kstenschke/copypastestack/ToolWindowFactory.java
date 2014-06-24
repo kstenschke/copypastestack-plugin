@@ -18,6 +18,7 @@ package com.kstenschke.copypastestack;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
+import com.kstenschke.copypastestack.Static.StaticTexts;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

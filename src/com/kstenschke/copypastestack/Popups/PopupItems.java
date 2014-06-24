@@ -1,7 +1,7 @@
 package com.kstenschke.copypastestack.Popups;
 
 
-import com.kstenschke.copypastestack.StaticTexts;
+import com.kstenschke.copypastestack.Static.StaticTexts;
 import com.kstenschke.copypastestack.ToolWindow;
 
 import javax.swing.*;
