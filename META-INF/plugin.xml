@@ -38,9 +38,10 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.5 Added: Color tags for copied items</li>
         <li>1.0.4<ul>
                 <li>Added context menu to preview pane</li>
                 <li>Improved UI and general stability</li>
