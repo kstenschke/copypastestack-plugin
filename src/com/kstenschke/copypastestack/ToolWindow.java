@@ -21,13 +21,11 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
-import com.kstenschke.copypastestack.Listeners.ListSelectionListenerItemsList;
-import com.kstenschke.copypastestack.Listeners.MouseListenerBase;
-import com.kstenschke.copypastestack.Listeners.MouseListenerCheckboxLabel;
-import com.kstenschke.copypastestack.Listeners.MouseListenerItemsList;
+import com.kstenschke.copypastestack.Listeners.*;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
 import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.kstenschke.copypastestack.Static.StaticValues;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.Utils.UtilsString;
@@ -136,6 +134,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
 //        this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this) );
         this.form.buttonCopy.addMouseListener(new MouseListenerBase(StaticTexts.INFO_RECOPY));
 
+        this.initTagOptions();
         this.initAdditionalOptions();
     }
 
@@ -496,6 +495,18 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 Preferences.saveIsActiveWrapExtended(form.checkboxWrapExtended.isSelected());
             }
         });
+    }
+
+    private void initTagOptions() {
+        this.form.buttonTagYellow.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_YELLOW));
+        this.form.buttonTagGreen.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_GREEN));
+        this.form.buttonTagRed.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_RED));
+        this.form.buttonTagWhite.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_REMOVE));
+
+        this.form.buttonTagWhite.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_NONE));
+        this.form.buttonTagYellow.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_YELLOW));
+        this.form.buttonTagRed.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_RED));
+        this.form.buttonTagGreen.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_GREEN));
     }
 
     /**

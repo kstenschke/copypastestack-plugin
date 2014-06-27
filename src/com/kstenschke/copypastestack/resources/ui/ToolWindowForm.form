@@ -76,28 +76,28 @@
             <border type="none"/>
             <children/>
           </grid>
-          <component id="3dfc1" class="javax.swing.JButton" binding="buttonTag3">
-            <constraints/>
-            <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-red.png"/>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="61f4c" class="javax.swing.JButton" binding="buttonTag2">
-            <constraints/>
-            <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-green.png"/>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="e16c" class="javax.swing.JButton" binding="buttonTag1">
+          <component id="3d2a3" class="javax.swing.JButton" binding="buttonTagYellow">
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/images/tag-label-yellow.png"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="b7f74" class="javax.swing.JButton" binding="buttonTag5">
+          <component id="61f4c" class="javax.swing.JButton" binding="buttonTagGreen">
+            <constraints/>
+            <properties>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-green.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="71fba" class="javax.swing.JButton" binding="buttonTagRed">
+            <constraints/>
+            <properties>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-red.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="b7f74" class="javax.swing.JButton" binding="buttonTagWhite">
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/images/tag.png"/>

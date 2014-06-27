@@ -52,11 +52,11 @@ public class ToolWindowForm {
     public JTextPane textPanePreview;
     public JPanel panelPreview;
     public JCheckBox checkboxPreview;
-    private JButton buttonTag1;
-    private JButton buttonTag2;
-    private JButton buttonTag3;
-    private JButton buttonTag5;
-    public JTextField textFieldFind;
+
+    public JButton buttonTagYellow;
+    public JButton buttonTagGreen;
+    public JButton buttonTagRed;
+    public JButton buttonTagWhite;
 
     public JPanel getMainPanel() {
         return mainPanel;

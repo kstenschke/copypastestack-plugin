@@ -2,14 +2,19 @@ package com.kstenschke.copypastestack.Static;
 
 public final class StaticValues {
 
-        /**
-         * Constructor
-         */
-        private StaticValues() {
-            // Restrict instantiation
-        }
+    public static final int ID_COLOR_NONE   = 0;
+    public static final int ID_COLOR_YELLOW = 1;
+    public static final int ID_COLOR_GREEN  = 2;
+    public static final int ID_COLOR_RED    = 3;
 
-        // General values
-        public static final char NULL_CHAR = '\u0000';
+    /**
+     * Constructor
+     */
+    private StaticValues() {
+        // Restrict instantiation
+    }
+
+    // General values
+    public static final char NULL_CHAR = '\u0000';
 
 }

@@ -37,6 +37,14 @@ public class StaticTexts {
     @NonNls
     public static final String INFO_PASTE = "Paste selected / all items";
     @NonNls
+    public static final String INFO_TAG_YELLOW = "Tag selected / all items yellow";
+    @NonNls
+    public static final String INFO_TAG_RED = "Tag selected / all items red";
+    @NonNls
+    public static final String INFO_TAG_GREEN = "Tag selected / all items green";
+    @NonNls
+    public static final String INFO_TAG_REMOVE = "Un-tag selected / all items";
+    @NonNls
     public static final String INFO_RECOPY = "Re-copy selected items to clipboard";
     @NonNls
     public static final String INFO_KEEP_SORTED_ALPHABETICAL = "Keep items in alphabetical order";

@@ -65,6 +65,43 @@ public class PopupItems extends PopupBase {
             }
         }, classToolWindow, "resources/images/delete.png");
         this.popup.add(menuItemDelete);
+
+        this.popup.addSeparator();
+
+            // Color tags
+        JMenuItem menuItemTagYellow = getJMenuItem(StaticTexts.INFO_TAG_YELLOW, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //...
+            }
+        }, classToolWindow, "resources/images/tag-label-yellow.png");
+        this.popup.add(menuItemTagYellow);
+
+        JMenuItem menuItemTagGreen = getJMenuItem(StaticTexts.INFO_TAG_GREEN, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //...
+            }
+        }, classToolWindow, "resources/images/tag-label-green.png");
+        this.popup.add(menuItemTagGreen);
+
+        JMenuItem menuItemTagRed = getJMenuItem(StaticTexts.INFO_TAG_RED, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //...
+            }
+        }, classToolWindow, "resources/images/tag-label-red.png");
+        this.popup.add(menuItemTagRed);
+
+        JMenuItem menuItemTagRemove = getJMenuItem(StaticTexts.INFO_TAG_REMOVE, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //...
+            }
+        }, classToolWindow, "resources/images/tag.png");
+        this.popup.add(menuItemTagRemove);
+
+
     }
 
     /**

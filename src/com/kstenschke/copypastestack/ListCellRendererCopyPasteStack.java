@@ -99,6 +99,8 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
 
         Boolean hasFocus    = list.hasFocus();
 
+
+
         if (isSelected) {
             setBackground( hasFocus ? this.colorSelectionBackground : colorSelectionBackgroundNoFocus );
             setForeground( this.colorSelectionForeground );

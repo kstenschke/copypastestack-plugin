@@ -31,7 +31,7 @@
         <li>Items are automatically trimmed from surrounding whitespace.</li>
         <li>The list of copied items can be sorted chronologically and alphabetically</li>
         <li>Previously copied items can be re-copied to the regular clipboard again</li>
-        <li>When pasting items back into thgit push origin --tagspushe editor, they can be wrapped with a prefix and postfix string,
+        <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
             and a delimiter when pasting multiple items at once.
         </li>
       </ul>
