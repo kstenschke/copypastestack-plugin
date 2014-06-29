@@ -21,7 +21,7 @@ import com.kstenschke.copypastestack.Static.StaticTexts;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NonNls;
 
-class Preferences {
+public class Preferences {
 
     @NonNls
     private static final String PROPERTY_ITEMS = "PluginCopyPasteStack.Items";
@@ -43,6 +43,8 @@ class Preferences {
     private static final String PROPERTY_WRAP_AFTER = "PluginCopyPasteStack.WrapAfter";
     @NonNls
     private static final String PROPERTY_WRAP_DELIMITER = "PluginCopyPasteStack.WrapDelimiter";
+    @NonNls
+    private static final String PROPERTY_TAG = "PluginCopyPasteStack.HashTag";
 
     /**
      * Store items
@@ -210,6 +212,27 @@ class Preferences {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_WRAP_DELIMITER);
 
         return value == null ? "" : value;
+    }
+
+    public static void saveHashTag(String hashCode, int idColor) {
+        PropertiesComponent.getInstance().setValue( PROPERTY_TAG + hashCode, String.valueOf(idColor));
+    }
+
+    public static void deleteHashTag(String hashCode) {
+        PropertiesComponent.getInstance().unsetValue(PROPERTY_TAG + hashCode);
+    }
+
+    /**
+     * @return String
+     */
+    public static Integer getIdColorByHashTag(String hashCode) {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_TAG + hashCode);
+
+        return value == null ? 0 : Integer.valueOf( value );
+    }
+
+    public static Integer getIdColorByHashTag(int hashCode) {
+        return getIdColorByHashTag( String.valueOf(hashCode) );
     }
 
 }

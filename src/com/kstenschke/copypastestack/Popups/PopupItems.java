@@ -25,18 +25,6 @@ public class PopupItems extends PopupBase {
 
         this.popup = new JPopupMenu();
 
-//            // Toggle favorite
-//        JMenuItem menuItemFavorite = getJMenuItem(StaticTexts.POPUP_ITEMS_TOGGLE_FAVORITE, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        }, classToolWindow, "resources/images/favorite.png", null, null, null, 'R');
-//        this.popup.add(menuItemFavorite);
-//
-//
-//        this.popup.addSeparator();
-
             // Paste
         JMenuItem menuItemPaste = getJMenuItem(StaticTexts.POPUP_ITEMS_PASTE, new ActionListener() {
             @Override

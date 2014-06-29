@@ -31,6 +31,7 @@
         <li>Items are automatically trimmed from surrounding whitespace.</li>
         <li>The list of copied items can be sorted chronologically and alphabetically</li>
         <li>Previously copied items can be re-copied to the regular clipboard again</li>
+        <li>Items in the copy stack can be color tagged with a yellow, green or red background</li>
         <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
             and a delimiter when pasting multiple items at once.
         </li>
@@ -41,7 +42,7 @@
     <version>1.0.5</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.0.5 Added: Color tags for copied items</li>
+        <li>1.0.5 Added: Color tagging (yellow / red / green) of copy-items</li>
         <li>1.0.4<ul>
                 <li>Added context menu to preview pane</li>
                 <li>Improved UI and general stability</li>

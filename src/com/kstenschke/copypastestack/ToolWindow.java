@@ -334,7 +334,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         String[] items = Preferences.getItems();
         this.updateItemsList( items );
 
-            // Add keylistener
+            // Add keyListener
         this.form.clipItemsList.addKeyListener( new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
