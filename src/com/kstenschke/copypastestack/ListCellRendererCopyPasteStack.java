@@ -29,7 +29,7 @@ import java.awt.*;
  *
  * @param   <String>
  */
-class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellRenderer<String> {
+public class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellRenderer<String> {
 
     private final Border selectedBorder;
     private final Border borderWhite;
@@ -48,6 +48,11 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
 
     private ImageIcon iconDefault;
     private final Boolean isMac;
+
+    public final static int idColorNone   = 0;
+    public final static int idColorYellow = 1;
+    public final static int idColorGreen  = 2;
+    public final static int idColorRed    = 3;
 
     private Color colorYellow = new Color(255, 238, 169);
     private Color colorGreen = new Color(202, 233, 190);
@@ -147,13 +152,13 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
      */
     private Color getColorByIndex(int index) {
         switch(index) {
-            case 1:
+            case idColorYellow:
                 return this.colorYellow;
 
-            case 2:
+            case idColorGreen:
                 return this.colorGreen;
 
-            case 3:
+            case idColorRed:
                 return this.colorRed;
         }
 
@@ -166,13 +171,13 @@ class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellR
      */
     private Border getBorderByIndex(int index) {
         switch(index) {
-            case 1:
+            case idColorYellow:
                 return this.borderYellow;
 
-            case 2:
+            case idColorGreen:
                 return this.borderGreen;
 
-            case 3:
+            case idColorRed:
                 return this.borderRed;
         }
 

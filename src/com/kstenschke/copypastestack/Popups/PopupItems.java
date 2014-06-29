@@ -1,7 +1,9 @@
 package com.kstenschke.copypastestack.Popups;
 
 
+import com.kstenschke.copypastestack.ListCellRendererCopyPasteStack;
 import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.kstenschke.copypastestack.TagManager;
 import com.kstenschke.copypastestack.ToolWindow;
 
 import javax.swing.*;
@@ -60,7 +62,7 @@ public class PopupItems extends PopupBase {
         JMenuItem menuItemTagYellow = getJMenuItem(StaticTexts.INFO_TAG_YELLOW, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //...
+                TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorYellow);
             }
         }, classToolWindow, "resources/images/tag-label-yellow.png");
         this.popup.add(menuItemTagYellow);
@@ -68,7 +70,7 @@ public class PopupItems extends PopupBase {
         JMenuItem menuItemTagGreen = getJMenuItem(StaticTexts.INFO_TAG_GREEN, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //...
+                TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorGreen);
             }
         }, classToolWindow, "resources/images/tag-label-green.png");
         this.popup.add(menuItemTagGreen);
@@ -76,7 +78,7 @@ public class PopupItems extends PopupBase {
         JMenuItem menuItemTagRed = getJMenuItem(StaticTexts.INFO_TAG_RED, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //...
+                TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorRed);
             }
         }, classToolWindow, "resources/images/tag-label-red.png");
         this.popup.add(menuItemTagRed);
@@ -84,7 +86,7 @@ public class PopupItems extends PopupBase {
         JMenuItem menuItemTagRemove = getJMenuItem(StaticTexts.INFO_TAG_REMOVE, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //...
+                TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorNone);
             }
         }, classToolWindow, "resources/images/tag.png");
         this.popup.add(menuItemTagRemove);
