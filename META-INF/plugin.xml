@@ -42,7 +42,11 @@
     <version>1.0.5</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.0.5 Added: Color tagging (yellow / red / green) of copy-items</li>
+        <li>1.0.5<ul>
+                <li>Added: Color tagging (yellow / green / red) of copy-items</li>
+                <li>Added: "Select all" option to items popup menu</li>
+            </ul>
+        </li>
         <li>1.0.4<ul>
                 <li>Added context menu to preview pane</li>
                 <li>Improved UI and general stability</li>

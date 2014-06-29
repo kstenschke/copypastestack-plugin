@@ -76,31 +76,38 @@
             <border type="none"/>
             <children/>
           </grid>
+          <component id="31e74" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag.png"/>
+              <text value=""/>
+            </properties>
+          </component>
           <component id="3d2a3" class="javax.swing.JButton" binding="buttonTagYellow">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-yellow.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-yellow.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="61f4c" class="javax.swing.JButton" binding="buttonTagGreen">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-green.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-green.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="71fba" class="javax.swing.JButton" binding="buttonTagRed">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-label-red.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-red.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="b7f74" class="javax.swing.JButton" binding="buttonTagWhite">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/images/tag-delete.png"/>
               <text value=""/>
             </properties>
           </component>

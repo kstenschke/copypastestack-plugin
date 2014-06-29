@@ -64,6 +64,8 @@ public class StaticTexts {
     public static final String POPUP_ITEMS_DELETE = "Remove selected Items";
     @NonNls
     public static final String POPUP_PREVIEW_COPY_SELECTION = "Copy Selection";
+    @NonNls
+    public static final String POPUP_SELECT_ALL = "Select all";
 
     // ========================================================================================================== Errors
     @NonNls

@@ -64,7 +64,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorYellow);
             }
-        }, classToolWindow, "resources/images/tag-label-yellow.png");
+        }, classToolWindow, "resources/images/tag-yellow.png");
         this.popup.add(menuItemTagYellow);
 
         JMenuItem menuItemTagGreen = getJMenuItem(StaticTexts.INFO_TAG_GREEN, new ActionListener() {
@@ -72,7 +72,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorGreen);
             }
-        }, classToolWindow, "resources/images/tag-label-green.png");
+        }, classToolWindow, "resources/images/tag-green.png");
         this.popup.add(menuItemTagGreen);
 
         JMenuItem menuItemTagRed = getJMenuItem(StaticTexts.INFO_TAG_RED, new ActionListener() {
@@ -80,7 +80,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorRed);
             }
-        }, classToolWindow, "resources/images/tag-label-red.png");
+        }, classToolWindow, "resources/images/tag-red.png");
         this.popup.add(menuItemTagRed);
 
         JMenuItem menuItemTagRemove = getJMenuItem(StaticTexts.INFO_TAG_REMOVE, new ActionListener() {
@@ -88,8 +88,22 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorNone);
             }
-        }, classToolWindow, "resources/images/tag.png");
+        }, classToolWindow, "resources/images/tag-delete.png");
         this.popup.add(menuItemTagRemove);
+
+        this.popup.addSeparator();
+
+        JMenuItem menuItemSelectAll = getJMenuItem(StaticTexts.POPUP_SELECT_ALL, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JList list = toolWindow.getForm().clipItemsList;
+                int end = list.getModel().getSize() - 1;
+                if (end >= 0) {
+                    list.setSelectionInterval(0, end);
+                }
+            }
+        }, classToolWindow, null);
+        this.popup.add(menuItemSelectAll);
 
 
     }
