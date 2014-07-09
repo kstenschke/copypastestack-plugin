@@ -15,7 +15,6 @@
  */
 package com.kstenschke.copypastestack;
 
-import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBLabel;
@@ -25,8 +24,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
 
 /**
  * ListCellRenderer for copy items

@@ -18,8 +18,6 @@ package com.kstenschke.copypastestack.Listeners;
 import com.kstenschke.copypastestack.ToolWindow;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
