@@ -39,9 +39,14 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.6<ul>
+                <li>Added shortcut: [Del] or [Backspace] = remove item(s)</li>
+                <li>Added shortcut: [CTRL]+c = copy item(s)</li>
+            </ul>
+        </li>
         <li>1.0.5<ul>
                 <li>Added: Color tagging (yellow / green / red) of copy-items</li>
                 <li>Added: "Select all" option to items popup menu</li>

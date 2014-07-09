@@ -330,32 +330,14 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  Amount of items
      */
     private int initItemsList() {
-        this.form.clipItemsList.setCellRenderer( new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac));
+        this.form.clipItemsList.setCellRenderer(
+                new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac)
+        );
         String[] items = Preferences.getItems();
         this.updateItemsList( items );
 
             // Add keyListener
-        this.form.clipItemsList.addKeyListener( new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                Integer keyCode = e.getKeyCode();
-                switch( keyCode ) {
-                    case KeyEvent.VK_ENTER:
-                    case KeyEvent.VK_SPACE:
-                    pasteItems();
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
+        this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this));
         this.form.clipItemsList.addMouseListener(new MouseListenerItemsList(StaticTexts.INFO_LIST, this));
 
             // add popup listener

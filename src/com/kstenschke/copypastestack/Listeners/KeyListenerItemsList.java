@@ -18,6 +18,7 @@ package com.kstenschke.copypastestack.Listeners;
 import com.kstenschke.copypastestack.ToolWindow;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -39,17 +40,33 @@ public class KeyListenerItemsList implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Integer keyCode = e.getKeyCode();
+        switch( keyCode ) {
+            case KeyEvent.VK_ENTER:
+            case KeyEvent.VK_SPACE:
+                toolWindow.pasteItems();
+                break;
 
+            case KeyEvent.VK_DELETE:
+            case KeyEvent.VK_BACK_SPACE:
+                this.toolWindow.removeSelectedItems();
+                break;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if( ! this.isMac ) {
-            if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_C) {
-                this.toolWindow.copySelectedItems();
+        boolean isControlDown  = e.isControlDown();
+        boolean isMetaDown     = e.isMetaDown();
+        int keyCode = e.getKeyCode();
+
+        if ( (!this.isMac && isControlDown) || (isMac && isMetaDown) ) {
+            switch (keyCode) {
+                case KeyEvent.VK_C:
+                    this.toolWindow.copySelectedItems();
+                    break;
             }
-        } else {
-            //..
         }
+
     }
 }
