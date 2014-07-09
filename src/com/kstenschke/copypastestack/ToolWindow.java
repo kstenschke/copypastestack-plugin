@@ -27,6 +27,7 @@ import com.kstenschke.copypastestack.Popups.PopupPreview;
 import com.kstenschke.copypastestack.Static.StaticTexts;
 import com.kstenschke.copypastestack.Static.StaticValues;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
+import com.kstenschke.copypastestack.Utils.UtilsClipboard;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 import com.kstenschke.copypastestack.Utils.UtilsString;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
@@ -280,7 +281,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     private void refreshClipboardList() {
         Transferable[] copiedItems = CopyPasteManager.getInstance().getAllContents();
 
-        int amountItems     = getAmountStringItemsInTransferables(copiedItems);
+        int amountItems     = UtilsClipboard.getAmountStringItemsInTransferables(copiedItems);
         if( amountItems > 0 ) {
             String[] copyItemsList   = new String[amountItems];
             int index           = 0;
@@ -344,21 +345,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.clipItemsList.addMouseListener(new PopupItems(this).getPopupListener() );
 
         return items.length;
-    }
-
-    /**
-     * @param   transferables
-     * @return  int
-     */
-    private int getAmountStringItemsInTransferables(Transferable[] transferables) {
-        int amount = 0;
-        for( Transferable currentItem : transferables) {
-            if( currentItem.isDataFlavorSupported( DataFlavor.stringFlavor ) )  {
-                amount++;
-            }
-        }
-
-        return amount;
     }
 
     private void initPreview() {

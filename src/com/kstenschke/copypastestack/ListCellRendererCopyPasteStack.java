@@ -15,14 +15,18 @@
  */
 package com.kstenschke.copypastestack;
 
+import com.intellij.openapi.ide.CopyPasteManager;
 import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBLabel;
+import com.kstenschke.copypastestack.Utils.UtilsClipboard;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 
 /**
  * ListCellRenderer for copy items
@@ -47,6 +51,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     private final Color colorForeground;
 
     private ImageIcon iconDefault;
+    private ImageIcon iconHistoric;
     private final Boolean isMac;
 
     public final static int idColorNone   = 0;
@@ -54,9 +59,9 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     public final static int idColorGreen  = 2;
     public final static int idColorRed    = 3;
 
-    private Color colorYellow = new Color(255, 238, 169);
-    private Color colorGreen = new Color(202, 233, 190);
-    private Color colorRed  = new Color(238, 207, 207);
+    private Color colorYellow   = new Color(255, 238, 169);
+    private Color colorGreen    = new Color(202, 233, 190);
+    private Color colorRed      = new Color(238, 207, 207);
 
     /**
      * Constructor
@@ -83,16 +88,20 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
         this.colorBackground = list.getBackground();
         this.colorForeground = list.getForeground();
 
-        this.borderWhite = BorderFactory.createLineBorder(this.colorBackground);
-        this.borderYellow = BorderFactory.createLineBorder(this.colorYellow);
-        this.borderGreen = BorderFactory.createLineBorder(this.colorGreen);
-        this.borderRed = BorderFactory.createLineBorder(this.colorRed);
-        this.nonFocusBorder  = BorderFactory.createLineBorder(isDark ? colorDarkBgNoFocus : this.colorSelectionBackground);
-        this.selectedBorder  = BorderFactory.createLineBorder(this.colorSelectionBackground.darker());
+        this.borderWhite    = BorderFactory.createLineBorder(this.colorBackground);
+        this.borderYellow   = BorderFactory.createLineBorder(this.colorYellow);
+        this.borderGreen    = BorderFactory.createLineBorder(this.colorGreen);
+        this.borderRed      = BorderFactory.createLineBorder(this.colorRed);
+        this.nonFocusBorder = BorderFactory.createLineBorder(isDark ? colorDarkBgNoFocus : this.colorSelectionBackground);
+        this.selectedBorder = BorderFactory.createLineBorder(this.colorSelectionBackground.darker());
 
+        initIcons();
+    }
+
+    public void initIcons() {
         try {
-            this.iconDefault = new ImageIcon(
-                ImageIO.read( getClass().getResource("resources/images/item.png")) );
+            this.iconDefault = new ImageIcon( ImageIO.read(getClass().getResource("resources/images/item.png")) );
+            this.iconHistoric= new ImageIcon( ImageIO.read( getClass().getResource("resources/images/item-historic.png")) );
         } catch(Exception ide ) {
             ide.printStackTrace();
         }
@@ -109,7 +118,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         java.lang.String itemText = value != null ? value.toString() : "";
 
-        columnText.setIcon(iconDefault);
+        columnText.setIcon( UtilsClipboard.isInClipboard(itemText) ? this.iconDefault : this.iconHistoric);
         columnText.setText(itemText);
 
         Boolean hasFocus    = list.hasFocus();
