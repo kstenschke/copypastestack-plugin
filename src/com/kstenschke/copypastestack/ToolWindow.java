@@ -265,7 +265,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 items[index] = listModel.getElementAt(i);
                 index++;
             }
-            if( items.length > 0 ) {
+            if( items.length > 1 ) {
                 Arrays.sort(items, String.CASE_INSENSITIVE_ORDER);
             }
 
@@ -354,7 +354,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Boolean isActive = form.checkboxPreview.isSelected();
-                form.panelPreview.setVisible( isActive );
+                setPreviewComponentsVisible(isActive);
                 if( isActive ) {
                     setPreviewText(getSelectedItemText());
                 }
@@ -362,13 +362,17 @@ public class ToolWindow extends SimpleToolWindowPanel {
             }
         });
 
-        this.form.panelPreview.setVisible( isActivePreview );
-
+        setPreviewComponentsVisible(isActivePreview);
         this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
 
             // Add popup listener
         this.form.textPanePreview.addMouseListener(new PopupPreview(this).getPopupListener() );
 
+    }
+
+    public void setPreviewComponentsVisible(Boolean isActive) {
+        form.panelPreview.setVisible( isActive );
+        form.separatorPreview.setVisible( !isActive );
     }
 
     /**

@@ -39,9 +39,13 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.7<ul>
+                <li>Improved UI</li>
+            </ul>
+        </li>
         <li>1.0.6<ul>
                 <li>Added: historic clipboard items which are not available in the regular copy history are marked with a lighter icon</li>
                 <li>Added shortcut: [Del] or [Backspace] = remove item(s)</li>
