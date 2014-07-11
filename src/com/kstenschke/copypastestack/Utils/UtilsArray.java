@@ -57,19 +57,19 @@ public class UtilsArray {
             boolean isDistinct = true;
 
             for(int j=0; j<i; j++){
-                if(arr[i].equals(arr[j])){
+                if( arr[i] != null && arr[j] != null && arr[i].equals(arr[j]) ){
                     isDistinct = false;
                     break;
                 }
             }
 
-            String item = arr[i].toString();
+            String item = arr[i] != null ? arr[i].toString() : "";
 
-            if( ! item.isEmpty() && trim ) {
+            if( item != null && !item.isEmpty() && trim ) {
                 item    = item.trim();
             }
 
-            if(isDistinct && (! removeEmpty || !item.isEmpty()) ) {
+            if(isDistinct && item != null && (! removeEmpty || !item.isEmpty() ) ) {
                 distinct[index] = item;
                 index++;
             }

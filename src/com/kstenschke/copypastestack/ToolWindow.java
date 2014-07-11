@@ -266,14 +266,14 @@ public class ToolWindow extends SimpleToolWindowPanel {
             String[] items   = new String[amountItems];
             int index = 0;
             for (int i = 0; i < amountItems; i++) {
-                items[index] = listModel.getElementAt(i);
-                index++;
+                String item = listModel.getElementAt(i);
+                if( item != null && ! item.trim().isEmpty() ) {
+                    items[index] = item;
+                    index++;
+                }
             }
             if( items.length > 1 ) {
-                Arrays.sort(
-                        items,
-                        String.CASE_INSENSITIVE_ORDER
-                );
+                Arrays.sort(items, String.CASE_INSENSITIVE_ORDER);
             }
 
             this.updateItemsList(items);
@@ -307,9 +307,9 @@ public class ToolWindow extends SimpleToolWindowPanel {
             }
 
             String[] copyItemsPref = Preferences.getItems();
-            Object[] allItems       = ArrayUtils.addAll(copyItemsList, copyItemsPref);
-            String[] itemsUnique    = UtilsArray.tidy(allItems, true, true);
 
+            Object[] allItems   = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
+            String[] itemsUnique    = UtilsArray.tidy(allItems, true, true);
             if( itemsUnique.length > 0 ) {
                 this.updateItemsList(itemsUnique);
 
@@ -325,8 +325,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
     /**
      * @param   items
      */
-    private void updateItemsList(String[] items) {
-        this.form.clipItemsList.setListData( items );
+    private void updateItemsList(Object[] items) {
+        this.form.clipItemsList.setListData( UtilsArray.tidy(items, true, true) );
     }
 
     /**

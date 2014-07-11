@@ -42,10 +42,7 @@
     <version>1.0.7</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.0.7<ul>
-                <li>Improved UI</li>
-            </ul>
-        </li>
+        <li>1.0.7 Bugfix: fixed possible null pointer exception when wiping all items</li>
         <li>1.0.6<ul>
                 <li>Added: historic clipboard items which are not available in the regular copy history are marked with a lighter icon</li>
                 <li>Added shortcut: [Del] or [Backspace] = remove item(s)</li>

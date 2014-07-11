@@ -1,6 +1,5 @@
 package com.kstenschke.copypastestack.Listeners;
 
-import com.kstenschke.copypastestack.ToolWindow;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
