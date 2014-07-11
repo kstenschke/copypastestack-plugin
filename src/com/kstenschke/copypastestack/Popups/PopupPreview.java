@@ -47,8 +47,6 @@ public class PopupPreview extends PopupBase {
         return new PopupListener();
     }
 
-
-
     /**
      * PopupListener
      */

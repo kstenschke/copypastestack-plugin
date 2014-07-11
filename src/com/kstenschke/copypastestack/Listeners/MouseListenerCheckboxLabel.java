@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 public class MouseListenerCheckboxLabel extends MouseListenerBase {
 
-    private ToolWindow toolWindow;
     private JCheckBox checkbox;
 
     public MouseListenerCheckboxLabel(@Nullable String description, JCheckBox checkbox) {

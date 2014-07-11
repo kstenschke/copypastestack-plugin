@@ -41,10 +41,6 @@ class PopupBase {
         }
     }
 
-    JMenuItem getJMenuItem(String label, ActionListener actionListener) {
-        return getJMenuItem(label, actionListener, StaticValues.NULL_CHAR);
-    }
-
     /**
      * @param   label
      * @param   actionListener
