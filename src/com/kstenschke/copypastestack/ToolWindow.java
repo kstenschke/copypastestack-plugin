@@ -170,11 +170,15 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         int amountItems             = listModel.getSize();
         String[] unselectedItems    = new String[ amountItems - selectedIndices.length ];
+
         int index = 0;
         for(int i=0; i< amountItems; i++ ) {
             if( !selectionModel.isSelectedIndex(i) ) {
-                unselectedItems[ index ]    = listModel.getElementAt(i);
-                index++;
+                String item = listModel.getElementAt(i);
+                if( !item.trim().isEmpty() ) {
+                    unselectedItems[index] = item;
+                    index++;
+                }
             }
         }
 
@@ -266,7 +270,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 index++;
             }
             if( items.length > 1 ) {
-                Arrays.sort(items, String.CASE_INSENSITIVE_ORDER);
+                Arrays.sort(
+                        items,
+                        String.CASE_INSENSITIVE_ORDER
+                );
             }
 
             this.updateItemsList(items);
@@ -289,8 +296,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 if( currentItem.isDataFlavorSupported( DataFlavor.stringFlavor ) )  {
                     try {
                         String itemStr  = currentItem.getTransferData( DataFlavor.stringFlavor ).toString();
-                        copyItemsList[index] = itemStr;
-                        index++;
+                        if( !itemStr.trim().isEmpty() ) {
+                            copyItemsList[index] = itemStr;
+                            index++;
+                        }
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
