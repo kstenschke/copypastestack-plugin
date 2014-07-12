@@ -24,7 +24,7 @@
           <component id="c96e5" class="javax.swing.JButton" binding="buttonRefresh">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/refresh.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/refresh.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -37,7 +37,7 @@
           <component id="d0bdd" class="javax.swing.JButton" binding="buttonSortAlphabetical">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/sort-alphabetical.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/sort-alphabetical.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -51,21 +51,21 @@
           <component id="d225a" class="javax.swing.JButton" binding="buttonPaste">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/paste.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/paste.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="5d3e3" class="javax.swing.JButton" binding="buttonCopy">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/copy.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/copy.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="6dd91" class="javax.swing.JButton" binding="buttonDelete">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/delete.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/delete.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -79,35 +79,35 @@
           <component id="31e74" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/tag.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="3d2a3" class="javax.swing.JButton" binding="buttonTagYellow">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-yellow.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/tag-yellow.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="61f4c" class="javax.swing.JButton" binding="buttonTagGreen">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-green.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/tag-green.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="71fba" class="javax.swing.JButton" binding="buttonTagRed">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-red.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/tag-red.png"/>
               <text value=""/>
             </properties>
           </component>
           <component id="b7f74" class="javax.swing.JButton" binding="buttonTagWhite">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/tag-delete.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/tag-delete.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -140,7 +140,7 @@
           <component id="bf662" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/wrap.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/wrap.png"/>
               <text value="   "/>
             </properties>
           </component>
@@ -261,7 +261,7 @@
           <component id="f3f02" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/settings.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/settings.png"/>
               <text value="   "/>
             </properties>
           </component>
@@ -277,7 +277,7 @@
           <component id="5b039" class="javax.swing.JLabel" binding="labelOptionFocusOnPaste">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/focus.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/focus.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -293,7 +293,7 @@
           <component id="1f776" class="javax.swing.JLabel" binding="labelOptionImmediateInsert">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/paste-click.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/paste-click.png"/>
               <text value=""/>
             </properties>
           </component>
@@ -321,7 +321,7 @@
           <component id="1641b" class="javax.swing.JLabel" binding="labelPreview">
             <constraints/>
             <properties>
-              <icon value="com/kstenschke/copypastestack/resources/images/eye.png"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/eye.png"/>
               <text value="   "/>
             </properties>
           </component>

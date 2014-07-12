@@ -18,7 +18,7 @@ package com.kstenschke.copypastestack;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
-import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.kstenschke.copypastestack.resources.StaticTexts;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -60,7 +60,7 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
             @Override
             public Image doInBackground() {
                 try {
-                    return ImageIO.read(getClass().getResource( "resources/images/logo-13.png" ));
+                    return ImageIO.read(getClass().getResource( "resources/icons/logo13.png" ));
                 } catch(Exception exception) {
                     exception.printStackTrace();
                 }

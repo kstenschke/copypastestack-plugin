@@ -1,7 +1,8 @@
 package com.kstenschke.copypastestack.Popups;
 
 
-import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.intellij.util.Icons;
+import com.kstenschke.copypastestack.resources.StaticTexts;
 import com.kstenschke.copypastestack.ToolWindow;
 import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 
@@ -36,7 +37,7 @@ public class PopupPreview extends PopupBase {
            String selectedText = toolWindow.getForm().textPanePreview.getSelectedText();
            UtilsEnvironment.copyToClipboard( selectedText );
             }
-        }, classToolWindow, "resources/images/copy.png");
+        }, com.kstenschke.copypastestack.resources.Icons.ICON_COPY);
         this.popup.add(menuItemCopySelection);
     }
 

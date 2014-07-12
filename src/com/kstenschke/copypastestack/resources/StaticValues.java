@@ -1,4 +1,4 @@
-package com.kstenschke.copypastestack.Static;
+package com.kstenschke.copypastestack.resources;
 
 public final class StaticValues {
 

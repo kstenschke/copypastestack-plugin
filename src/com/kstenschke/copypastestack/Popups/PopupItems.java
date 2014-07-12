@@ -2,7 +2,8 @@ package com.kstenschke.copypastestack.Popups;
 
 
 import com.kstenschke.copypastestack.ListCellRendererCopyPasteStack;
-import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.kstenschke.copypastestack.resources.Icons;
+import com.kstenschke.copypastestack.resources.StaticTexts;
 import com.kstenschke.copypastestack.TagManager;
 import com.kstenschke.copypastestack.ToolWindow;
 
@@ -33,7 +34,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 toolWindow.pasteItems();
             }
-        }, classToolWindow, "resources/images/paste.png");
+        }, Icons.ICON_PASTE);
         this.popup.add(menuItemPaste);
 
             // Re-copy
@@ -42,7 +43,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 toolWindow.copySelectedItems();
             }
-        }, classToolWindow, "resources/images/copy.png");
+        }, Icons.ICON_COPY);
         this.popup.add(menuItemRecopy);
 
         this.popup.addSeparator();
@@ -53,7 +54,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 toolWindow.removeSelectedItems();
             }
-        }, classToolWindow, "resources/images/delete.png");
+        }, Icons.ICON_DELETE);
         this.popup.add(menuItemDelete);
 
         this.popup.addSeparator();
@@ -64,7 +65,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorYellow);
             }
-        }, classToolWindow, "resources/images/tag-yellow.png");
+        }, Icons.ICON_TAG_YELLOW);
         this.popup.add(menuItemTagYellow);
 
         JMenuItem menuItemTagGreen = getJMenuItem(StaticTexts.INFO_TAG_GREEN, new ActionListener() {
@@ -72,7 +73,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorGreen);
             }
-        }, classToolWindow, "resources/images/tag-green.png");
+        }, Icons.ICON_TAG_GREEN);
         this.popup.add(menuItemTagGreen);
 
         JMenuItem menuItemTagRed = getJMenuItem(StaticTexts.INFO_TAG_RED, new ActionListener() {
@@ -80,7 +81,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorRed);
             }
-        }, classToolWindow, "resources/images/tag-red.png");
+        }, Icons.ICON_TAG_RED);
         this.popup.add(menuItemTagRed);
 
         JMenuItem menuItemTagRemove = getJMenuItem(StaticTexts.INFO_TAG_REMOVE, new ActionListener() {
@@ -88,7 +89,7 @@ public class PopupItems extends PopupBase {
             public void actionPerformed(ActionEvent e) {
                 TagManager.tagSelected(toolWindow.getForm(), ListCellRendererCopyPasteStack.idColorNone);
             }
-        }, classToolWindow, "resources/images/tag-delete.png");
+        }, Icons.ICON_TAG_DELETE);
         this.popup.add(menuItemTagRemove);
 
         this.popup.addSeparator();
@@ -104,8 +105,6 @@ public class PopupItems extends PopupBase {
             }
         }, classToolWindow, null);
         this.popup.add(menuItemSelectAll);
-
-
     }
 
     /**

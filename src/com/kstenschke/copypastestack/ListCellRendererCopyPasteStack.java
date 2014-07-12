@@ -19,6 +19,7 @@ import com.intellij.ui.Gray;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBLabel;
 import com.kstenschke.copypastestack.Utils.UtilsClipboard;
+import com.kstenschke.copypastestack.resources.Icons;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -47,8 +48,8 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     private final Color colorBackground;
     private final Color colorForeground;
 
-    private ImageIcon iconDefault;
-    private ImageIcon iconHistoric;
+    private Icon iconDefault;
+    private Icon iconHistoric;
     private final Boolean isMac;
 
     public final static int idColorNone   = 0;
@@ -96,12 +97,8 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     }
 
     public void initIcons() {
-        try {
-            this.iconDefault = new ImageIcon( ImageIO.read(getClass().getResource("resources/images/item.png")) );
-            this.iconHistoric= new ImageIcon( ImageIO.read( getClass().getResource("resources/images/item-historic.png")) );
-        } catch(Exception ide ) {
-            ide.printStackTrace();
-        }
+        this.iconDefault    = Icons.ICON_ITEM;
+        this.iconDefault    = Icons.ICON_ITEM_HISTORIC;
     }
 
     /**

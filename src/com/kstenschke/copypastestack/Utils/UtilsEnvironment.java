@@ -31,7 +31,7 @@ import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.util.PsiUtilBase;
-import com.kstenschke.copypastestack.Static.StaticTexts;
+import com.kstenschke.copypastestack.resources.StaticTexts;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;

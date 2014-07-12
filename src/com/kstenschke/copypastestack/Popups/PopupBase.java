@@ -1,10 +1,11 @@
 package com.kstenschke.copypastestack.Popups;
 
-import com.kstenschke.copypastestack.Static.StaticValues;
+import com.intellij.openapi.util.IconLoader;
+import com.kstenschke.copypastestack.resources.Icons;
+import com.kstenschke.copypastestack.resources.StaticValues;
 import com.kstenschke.copypastestack.ToolWindow;
 import org.jetbrains.annotations.Nullable;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -89,13 +90,44 @@ class PopupBase {
     /**
      * @param   label
      * @param   actionListener
-     * @param   classToolWindow
-     * @param   pathImage
      * @return  JMenuItem
      */
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon, @Nullable Color foreground, @Nullable Color background, @Nullable KeyStroke acceleratorKeyStroke, char mnemoric) {
+        JMenuItem item = getJMenuItem(label, actionListener, mnemoric);
+        setJMenuItemIcon(item, icon);
+
+        if( foreground != null && background != null ) {
+            item.setBackground(background);
+            item.setForeground(foreground);
+
+        }
+
+        if( acceleratorKeyStroke != null ) {
+            item.setAccelerator(acceleratorKeyStroke);
+        }
+
+        return item;
+    }
+
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon, @Nullable Color foreground, @Nullable Color background) {
+        return getJMenuItem(label, actionListener, icon, foreground, background, null, ' ');
+    }
+
+        /**
+         * @param   label
+         * @param   actionListener
+         * @param   classToolWindow
+         * @param   pathImage
+         * @return  JMenuItem
+         */
     JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage) {
 
         return getJMenuItem(label, actionListener, classToolWindow, pathImage, null, null);
+    }
+
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon) {
+
+        return getJMenuItem(label, actionListener, icon, null, null);
     }
 
     /**
@@ -104,21 +136,22 @@ class PopupBase {
      * @param   pathImage
      */
     void setJMenuItemIcon(JMenuItem jMenuItem, Class classToolWindow, @Nullable String pathImage) {
+        Icon icon;
+
         if( pathImage == null ) {
-            pathImage = "resources/images/blank16x16.png";
+            icon = Icons.ICON_BLANK;
+        } else {
+            icon = IconLoader.getIcon( pathImage );
         }
 
-        if( classToolWindow == null ) {
-            classToolWindow = ToolWindow.getInstance().getClass();
-        }
+        jMenuItem.setIcon(icon);
+    }
 
-        try {
-            Image image    = ImageIO.read( classToolWindow.getResource(pathImage) );
-            ImageIcon icon = new ImageIcon(image);
-            jMenuItem.setIcon(icon);
-        } catch(Exception exception) {
-            exception.printStackTrace();
-        }
+    /**
+     * @param   jMenuItem
+     */
+    void setJMenuItemIcon(JMenuItem jMenuItem, Icon icon) {
+        jMenuItem.setIcon(icon);
     }
 
 }
