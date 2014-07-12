@@ -98,7 +98,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
 
     public void initIcons() {
         this.iconDefault    = Icons.ICON_ITEM;
-        this.iconDefault    = Icons.ICON_ITEM_HISTORIC;
+        this.iconHistoric   = Icons.ICON_ITEM_HISTORIC;
     }
 
     /**
