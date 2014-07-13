@@ -29,6 +29,8 @@ public class StaticTexts {
     @NonNls
     public static final String INFO_LIST = null;
     @NonNls
+    public static final String INFO_PLUGIN_ABOUT = "Plugin Informatiom / Rating";
+    @NonNls
     public static final String INFO_REFRESH = "Refresh items";
     @NonNls
     public static final String INFO_SORT = "Sort items alphabetical";

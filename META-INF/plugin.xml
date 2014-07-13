@@ -42,7 +42,11 @@
     <version>1.0.8</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.0.8 Added: Retina icons</li>
+        <li>1.0.5<ul>
+                <li>Added: Retina Icons</li>
+                <li>Added: Link to plugin info / rating page</li>
+            </ul>
+        </li>
         <li>1.0.7 Bugfix: Fixed possible null pointer exception when wiping all items</li>
         <li>1.0.6<ul>
                 <li>Added: Historic clipboard items which are not available in the regular copy history are marked with a lighter icon</li>
@@ -87,21 +91,13 @@
   <depends>com.intellij.modules.lang</depends>
   -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+  <extensions defaultExtensionNs="com.intellij" />
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+  <application-components />
 
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
+  <project-components />
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+  <actions />
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="Copy/Paste" anchor="right" factoryClass="com.kstenschke.copypastestack.ToolWindowFactory">

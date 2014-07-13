@@ -24,6 +24,7 @@ import com.intellij.ui.content.Content;
 import com.kstenschke.copypastestack.Listeners.*;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
+import com.kstenschke.copypastestack.resources.Icons;
 import com.kstenschke.copypastestack.resources.StaticTexts;
 import com.kstenschke.copypastestack.resources.StaticValues;
 import com.kstenschke.copypastestack.Utils.UtilsArray;
@@ -40,6 +41,7 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class ToolWindow extends SimpleToolWindowPanel {
@@ -56,6 +58,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.isMac  = UtilsEnvironment.isMac();
         this.form    = new ToolWindowForm();
 
+        initIcons();
         int amountItems = initItemsList();
         initStatusLabel(amountItems);
         initToolbar();
@@ -70,6 +73,17 @@ public class ToolWindow extends SimpleToolWindowPanel {
         return form;
     }
 
+    private void initIcons() {
+        this.form.labelPreview.setIcon( Icons.ICON_EYE );
+        this.form.labelTag.setIcon( Icons.ICON_TAG );
+        this.form.labelSettings.setIcon( Icons.ICON_SETTINGS );
+        this.form.buttonRefresh.setIcon( Icons.ICON_REFRESH );
+        this.form.buttonTagWhite.setIcon( Icons.ICON_TAG_DELETE );
+        this.form.buttonCopy.setIcon( Icons.ICON_COPY );
+        this.form.buttonPaste.setIcon( Icons.ICON_PASTE );
+        this.form.buttonDelete.setIcon( Icons.ICON_DELETE );
+        this.form.buttonInfo.setIcon( Icons.ICON_QUESTIONMARK );
+    }
     /**
      * @return  JList
      */
@@ -474,6 +488,18 @@ public class ToolWindow extends SimpleToolWindowPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Preferences.saveIsActiveWrapExtended(form.checkboxWrapExtended.isSelected());
+            }
+        });
+
+        this.form.buttonInfo.addMouseListener(new MouseListenerBase(StaticTexts.INFO_PLUGIN_ABOUT));
+        this.form.buttonInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UtilsEnvironment.openUrl("http://plugins.jetbrains.com/plugin/7478");
+                } catch(Exception ignored) {
+
+                }
             }
         });
     }

@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="4" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="538" height="457"/>
+      <xy x="20" y="20" width="538" height="458"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -76,7 +76,7 @@
             <border type="none"/>
             <children/>
           </grid>
-          <component id="31e74" class="javax.swing.JLabel">
+          <component id="31e74" class="javax.swing.JLabel" binding="labelTag">
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/icons/tag.png"/>
@@ -258,7 +258,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="f3f02" class="javax.swing.JLabel">
+          <component id="f3f02" class="javax.swing.JLabel" binding="labelSettings">
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/icons/settings.png"/>
@@ -294,6 +294,14 @@
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/icons/paste-click.png"/>
+              <text value="     "/>
+            </properties>
+          </component>
+          <component id="e8e21" class="javax.swing.JButton" binding="buttonInfo">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="4"/>
+              <icon value="com/kstenschke/copypastestack/resources/icons/questionmark.png"/>
               <text value=""/>
             </properties>
           </component>

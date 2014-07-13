@@ -58,6 +58,9 @@ public class ToolWindowForm {
     public JButton buttonTagRed;
     public JButton buttonTagWhite;
     public JSeparator separatorPreview;
+    public JLabel labelTag;
+    public JLabel labelSettings;
+    public JButton buttonInfo;
     private JToolBar toolbarWrap;
 
     public JPanel getMainPanel() {

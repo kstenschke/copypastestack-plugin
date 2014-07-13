@@ -36,6 +36,8 @@ import com.kstenschke.copypastestack.resources.StaticTexts;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class UtilsEnvironment {
 
@@ -152,6 +154,22 @@ public class UtilsEnvironment {
     public static void copyToClipboard(String str) {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(new StringSelection(str), null);
+    }
+
+    /**
+     * @param   url
+     * @throws  IOException
+     * @throws  URISyntaxException
+     */
+    public static void openUrl(String url) throws IOException, URISyntaxException {
+        if(java.awt.Desktop.isDesktopSupported() ) {
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE) ) {
+                java.net.URI uri = new java.net.URI(url);
+                desktop.browse(uri);
+            }
+        }
     }
 
 }
