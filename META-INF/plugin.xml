@@ -45,6 +45,7 @@
         <li>1.0.8<ul>
                 <li>Added: Retina Icons</li>
                 <li>Added: Link to plugin info / rating page</li>
+                <li>Bugfix: Refresh didn't update items count</li>
             </ul>
         </li>
         <li>1.0.7 Bugfix: Fixed possible null pointer exception when wiping all items</li>

@@ -303,6 +303,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
         Transferable[] copiedItems = CopyPasteManager.getInstance().getAllContents();
 
         int amountItems     = UtilsClipboard.getAmountStringItemsInTransferables(copiedItems);
+        String[] itemsUnique= null;
+
         if( amountItems > 0 ) {
             String[] copyItemsList   = new String[amountItems];
             int index           = 0;
@@ -323,7 +325,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
             String[] copyItemsPref = Preferences.getItems();
 
             Object[] allItems   = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
-            String[] itemsUnique    = UtilsArray.tidy(allItems, true, true);
+            itemsUnique         = UtilsArray.tidy(allItems, true, true);
             if( itemsUnique.length > 0 ) {
                 this.updateItemsList(itemsUnique);
 
@@ -334,6 +336,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 Preferences.saveCopyItems(itemsUnique);
             }
         }
+
+        initStatusLabel( itemsUnique == null ? 0 : itemsUnique.length );
     }
 
     /**
@@ -346,7 +350,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     /**
      * @param   amountItems
      */
-    private void initStatusLabel(int amountItems) {
+    public void initStatusLabel(int amountItems) {
         this.form.labelStatus.setText( String.valueOf(amountItems) + " " + StaticTexts.LABEL_ITEMS);
     }
 
