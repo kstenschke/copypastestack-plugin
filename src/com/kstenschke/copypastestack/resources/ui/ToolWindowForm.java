@@ -61,6 +61,9 @@ public class ToolWindowForm {
     public JLabel labelTag;
     public JLabel labelSettings;
     public JButton buttonInfo;
+    private JPanel panelAroundPreview;
+    private JScrollPane jscrollpaneItemsList;
+    private JPanel panelAroundWrap;
     private JToolBar toolbarWrap;
 
     public JPanel getMainPanel() {
