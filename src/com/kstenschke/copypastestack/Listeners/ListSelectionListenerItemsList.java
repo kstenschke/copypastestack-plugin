@@ -19,6 +19,7 @@ import com.kstenschke.copypastestack.ToolWindow;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 
 public class ListSelectionListenerItemsList implements ListSelectionListener {
 
@@ -33,6 +34,7 @@ public class ListSelectionListenerItemsList implements ListSelectionListener {
         if( this.toolWindow.isActivePreview() ) {
             String itemText = this.toolWindow.getSelectedItemText();
             this.toolWindow.setPreviewText(itemText);
+            this.toolWindow.getForm().textPanePreview.setCaretPosition(0);
         }
     }
 
