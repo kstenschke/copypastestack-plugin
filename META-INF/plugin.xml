@@ -42,6 +42,10 @@
     <version>1.0.9</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.9<ul>
+                <li>Added: Made Preview panel resizable</li>
+            </ul>
+        </li>
         <li>1.0.8<ul>
                 <li>Added: Retina Icons</li>
                 <li>Added: Link to plugin info / rating page</li>

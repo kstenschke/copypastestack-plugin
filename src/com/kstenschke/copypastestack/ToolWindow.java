@@ -59,7 +59,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form    = new ToolWindowForm();
 
         initIcons();
-        int amountItems = initItemsList();
+         int amountItems = initItemsList();
         initStatusLabel(amountItems);
         initToolbar();
         initWrap();
@@ -385,6 +385,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 if( isActive ) {
                     setPreviewText(getSelectedItemText());
                 }
+
+                 form.splitpaneToolContent.setResizeWeight(  0.0 );
+                 form.splitpaneToolContent.resetToPreferredSizes();
+
                 Preferences.saveIsActivePreview(isActive);
             }
         });
@@ -399,7 +403,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
     public void setPreviewComponentsVisible(Boolean isActive) {
         form.panelPreview.setVisible( isActive );
-        form.separatorPreview.setVisible( !isActive );
+        //form.separatorPreview.setVisible( !isActive );
     }
 
     /**
