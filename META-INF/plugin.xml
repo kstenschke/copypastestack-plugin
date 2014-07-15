@@ -43,7 +43,11 @@
     <change-notes><![CDATA[
     <ul>
         <li>1.0.9<ul>
-                <li>Added: Made Preview panel resizable</li>
+                <li>Usability: Made preview panel always shown and resizable.</li>
+                <li>Usability: Added context menu to untag button</li>
+                <li>Usability: Added "Paste" and "Select all" options to preview context menu</li>
+                <li>Bugfix: Activated alphabetical sort was not applied initially</li>
+                <li>UI: Tag icons were 1px too small</li>
             </ul>
         </li>
         <li>1.0.8<ul>

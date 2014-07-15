@@ -67,7 +67,11 @@ public class StaticTexts {
     @NonNls
     public static final String POPUP_PREVIEW_COPY_SELECTION = "Copy Selection";
     @NonNls
+    public static final String POPUP_PASTE = "Paste";
+    @NonNls
     public static final String POPUP_SELECT_ALL = "Select all";
+    @NonNls
+    public static final String POPUP_UNTAG_UNTAG_ALL = "Remove all Color Tags";
 
     // ========================================================================================================== Errors
     @NonNls

@@ -25,7 +25,6 @@ public class Icons {
     public static Icon ICON_REFRESH         = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/refresh.png");
     public static Icon ICON_SETTINGS        = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/settings.png");
     public static Icon ICON_WRAP            = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/wrap.png");
-    public static Icon ICON_EYE             = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/eye.png");
     public static Icon ICON_QUESTIONMARK    = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/questionmark.png");
 
 }

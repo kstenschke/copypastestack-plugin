@@ -104,7 +104,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="b7f74" class="javax.swing.JButton" binding="buttonTagWhite">
+          <component id="b7f74" class="javax.swing.JButton" binding="buttonTagUnset">
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/icons/tag-delete.png"/>
@@ -336,7 +336,7 @@
               </component>
             </children>
           </scrollpane>
-          <grid id="75552" binding="panelAroundPreview" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="75552" binding="panelAroundPreview" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <splitpane position="right"/>
@@ -344,36 +344,10 @@
             <properties/>
             <border type="none"/>
             <children>
-              <toolbar id="bf2d6">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="20"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <floatable value="false"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="1641b" class="javax.swing.JLabel" binding="labelPreview">
-                    <constraints/>
-                    <properties>
-                      <icon value="com/kstenschke/copypastestack/resources/icons/eye.png"/>
-                      <text value="   "/>
-                    </properties>
-                  </component>
-                  <component id="3a0f8" class="javax.swing.JCheckBox" binding="checkboxPreview">
-                    <constraints/>
-                    <properties>
-                      <text value="&amp;Preview"/>
-                    </properties>
-                  </component>
-                </children>
-              </toolbar>
               <grid id="28460" binding="panelPreview" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>

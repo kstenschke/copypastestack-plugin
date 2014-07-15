@@ -47,16 +47,14 @@ public class ToolWindowForm {
     public JLabel labelAfter;
     public JLabel labelOptionImmediateInsert;
     public JLabel labelOptionFocusOnPaste;
-    public JLabel labelPreview;
 
     public JTextPane textPanePreview;
     public JPanel panelPreview;
-    public JCheckBox checkboxPreview;
 
     public JButton buttonTagYellow;
     public JButton buttonTagGreen;
     public JButton buttonTagRed;
-    public JButton buttonTagWhite;
+    public JButton buttonTagUnset;
     public JSeparator separatorPreview;
     public JLabel labelTag;
     public JLabel labelSettings;

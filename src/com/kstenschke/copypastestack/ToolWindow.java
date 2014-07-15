@@ -24,6 +24,7 @@ import com.intellij.ui.content.Content;
 import com.kstenschke.copypastestack.Listeners.*;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
+import com.kstenschke.copypastestack.Popups.PopupTagUnset;
 import com.kstenschke.copypastestack.resources.Icons;
 import com.kstenschke.copypastestack.resources.StaticTexts;
 import com.kstenschke.copypastestack.resources.StaticValues;
@@ -41,7 +42,8 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
-import java.io.IOException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 public class ToolWindow extends SimpleToolWindowPanel {
@@ -59,8 +61,11 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form    = new ToolWindowForm();
 
         initIcons();
-         int amountItems = initItemsList();
+        initSplitPane();
+
+        int amountItems = initItemsList();
         initStatusLabel(amountItems);
+
         initToolbar();
         initWrap();
         initPreview();
@@ -74,20 +79,35 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void initIcons() {
-        this.form.labelPreview.setIcon( Icons.ICON_EYE );
         this.form.labelTag.setIcon( Icons.ICON_TAG );
         this.form.labelSettings.setIcon( Icons.ICON_SETTINGS );
         this.form.buttonRefresh.setIcon( Icons.ICON_REFRESH );
-        this.form.buttonTagWhite.setIcon( Icons.ICON_TAG_DELETE );
+        this.form.buttonTagUnset.setIcon(Icons.ICON_TAG_DELETE);
         this.form.buttonCopy.setIcon( Icons.ICON_COPY );
         this.form.buttonPaste.setIcon( Icons.ICON_PASTE );
         this.form.buttonDelete.setIcon( Icons.ICON_DELETE );
         this.form.buttonInfo.setIcon( Icons.ICON_QUESTIONMARK );
     }
+
+    private void initSplitPane() {
+        Integer dividerLocation = Preferences.getSplitPaneDividerLocation();
+        if( dividerLocation != null ) {
+            this.form.splitpaneToolContent.setDividerLocation( dividerLocation );
+        }
+
+        this.form.splitpaneToolContent.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                Integer location = form.splitpaneToolContent.getDividerLocation();
+                Preferences.saveSplitPaneDividerLocation(location);
+            }
+        });
+    }
+
     /**
      * @return  JList
      */
-    public JList getJlistItems() {
+    public JList getItemsList() {
         return this.form.clipItemsList;
     }
 
@@ -146,7 +166,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 copySelectedItems();
             }
         } );
-//        this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this) );
         this.form.buttonCopy.addMouseListener(new MouseListenerBase(StaticTexts.INFO_RECOPY));
 
         this.initTagOptions();
@@ -337,21 +356,23 @@ public class ToolWindow extends SimpleToolWindowPanel {
             }
         }
 
-        initStatusLabel( itemsUnique == null ? 0 : itemsUnique.length );
+        initStatusLabel(itemsUnique == null ? 0 : itemsUnique.length);
     }
 
     /**
      * @param   items
      */
     private void updateItemsList(Object[] items) {
-        this.form.clipItemsList.setListData( UtilsArray.tidy(items, true, true) );
+        items = UtilsArray.tidy(items, true, true);
+
+        this.form.clipItemsList.setListData( items );
     }
 
     /**
      * @param   amountItems
      */
     public void initStatusLabel(int amountItems) {
-        this.form.labelStatus.setText( String.valueOf(amountItems) + " " + StaticTexts.LABEL_ITEMS);
+        this.form.labelStatus.setText(String.valueOf(amountItems) + " " + StaticTexts.LABEL_ITEMS);
     }
 
     /**
@@ -362,7 +383,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac)
         );
         String[] items = Preferences.getItems();
-        this.updateItemsList( items );
+        this.updateItemsList(items);
+        if( Preferences.getIsActiveKeepSorting() ) {
+            this.sortClipboardListAlphabetical();
+        }
 
             // Add keyListener
         this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this));
@@ -375,42 +399,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void initPreview() {
-        Boolean isActivePreview = Preferences.getIsActivePreview();
-        this.form.checkboxPreview.setSelected( isActivePreview );
-        this.form.checkboxPreview.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkboxPreview.isSelected();
-                setPreviewComponentsVisible(isActive);
-                if( isActive ) {
-                    setPreviewText(getSelectedItemText());
-                }
-
-                 form.splitpaneToolContent.setResizeWeight(  0.0 );
-                 form.splitpaneToolContent.resetToPreferredSizes();
-
-                Preferences.saveIsActivePreview(isActive);
-            }
-        });
-
-        setPreviewComponentsVisible(isActivePreview);
         this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
 
             // Add popup listener
         this.form.textPanePreview.addMouseListener(new PopupPreview(this).getPopupListener() );
-
-    }
-
-    public void setPreviewComponentsVisible(Boolean isActive) {
-        form.panelPreview.setVisible( isActive );
-        //form.separatorPreview.setVisible( !isActive );
-    }
-
-    /**
-     * @return  Boolean
-     */
-    public Boolean isActivePreview() {
-        return this.form.checkboxPreview.isSelected();
     }
 
     /**
@@ -516,12 +508,15 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.buttonTagYellow.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_YELLOW));
         this.form.buttonTagGreen.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_GREEN));
         this.form.buttonTagRed.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_RED));
-        this.form.buttonTagWhite.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_REMOVE));
 
-        this.form.buttonTagWhite.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_NONE));
         this.form.buttonTagYellow.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_YELLOW));
         this.form.buttonTagRed.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_RED));
         this.form.buttonTagGreen.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_GREEN));
+
+        this.form.buttonTagUnset.addMouseListener(new MouseListenerBase(StaticTexts.INFO_TAG_REMOVE));
+        this.form.buttonTagUnset.addMouseListener(new PopupTagUnset(this).getPopupListener());
+        this.form.buttonTagUnset.addActionListener(new ActionListenerTag(this, StaticValues.ID_COLOR_NONE));
+
     }
 
     /**

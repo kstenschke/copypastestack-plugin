@@ -31,11 +31,9 @@ public class ListSelectionListenerItemsList implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        if( this.toolWindow.isActivePreview() ) {
-            String itemText = this.toolWindow.getSelectedItemText();
-            this.toolWindow.setPreviewText(itemText);
-            this.toolWindow.getForm().textPanePreview.setCaretPosition(0);
-        }
+        String itemText = this.toolWindow.getSelectedItemText();
+        this.toolWindow.setPreviewText(itemText);
+        this.toolWindow.getForm().textPanePreview.setCaretPosition(0);
     }
 
 }

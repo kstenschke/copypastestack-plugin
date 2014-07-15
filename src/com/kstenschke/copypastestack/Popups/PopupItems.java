@@ -24,7 +24,7 @@ public class PopupItems extends PopupBase {
     public PopupItems(final ToolWindow toolWindow) {
         final Class classToolWindow   = getToolWindowClassInstance(toolWindow);
 
-        this.jListItems = toolWindow.getJlistItems();
+        this.jListItems = toolWindow.getItemsList();
 
         this.popup = new JPopupMenu();
 

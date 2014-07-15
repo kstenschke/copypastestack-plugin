@@ -44,6 +44,8 @@ public class Preferences {
     @NonNls
     private static final String PROPERTY_WRAP_DELIMITER = "PluginCopyPasteStack.WrapDelimiter";
     @NonNls
+    private static final String PROPERTY_SPLITPANE_DIVIDER_LOCATION = "PluginCopyPasteStack.SplitPaneDividerLocation";
+    @NonNls
     private static final String PROPERTY_TAG = "PluginCopyPasteStack.HashTag";
 
     /**
@@ -212,6 +214,17 @@ public class Preferences {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_WRAP_DELIMITER);
 
         return value == null ? "" : value;
+    }
+
+
+    public static Integer getSplitPaneDividerLocation() {
+        String value = PropertiesComponent.getInstance().getValue(PROPERTY_SPLITPANE_DIVIDER_LOCATION);
+
+        return value == null ? null : Integer.valueOf( value );
+    }
+
+    public static void saveSplitPaneDividerLocation(int location) {
+        PropertiesComponent.getInstance().setValue( PROPERTY_SPLITPANE_DIVIDER_LOCATION, String.valueOf(location));
     }
 
     public static void saveHashTag(String hashCode, int idColor) {
