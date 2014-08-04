@@ -18,6 +18,10 @@ but possible to be kept persistently open and with some additional features:
 * When pasting items back into the editor, they can be wrapped with a prefix and postfix string, and a delimiter when pasting multiple items at once.
 
 
+h2 Changgelog
+https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile
+
+
 h2. License
 
 Copyright 2014 Kay Stenschke

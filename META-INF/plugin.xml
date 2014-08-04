@@ -67,7 +67,8 @@
                 <li>Added shortcut: [CTRL]+c = copy item(s)</li>
             </ul>
         </li>
-    </ul>
+    </ul><br/>
+    <a href="https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile" target="_blank">...Read full changelog on github</a>
     ]]>
   </change-notes>
 

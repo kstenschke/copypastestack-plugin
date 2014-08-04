@@ -21,7 +21,6 @@ import com.intellij.ui.components.JBLabel;
 import com.kstenschke.copypastestack.Utils.UtilsClipboard;
 import com.kstenschke.copypastestack.resources.Icons;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;

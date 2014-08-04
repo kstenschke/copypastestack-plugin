@@ -19,7 +19,6 @@ import com.kstenschke.copypastestack.ToolWindow;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 
 public class ListSelectionListenerItemsList implements ListSelectionListener {
 
