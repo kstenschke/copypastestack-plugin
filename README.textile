@@ -19,7 +19,8 @@ but possible to be kept persistently open and with some additional features:
 
 
 h2. Changgelog
-https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile
+
+Read full changelog at: https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile
 
 
 h2. License
