@@ -1,0 +1,35 @@
+* 1.0.10
+    ** Reduced inline changelog to previous five items, added separate full changelog
+* 1.0.9
+    ** Usability: Made preview panel always shown and resizable.
+    ** Usability: Added context menu to untag button
+    ** Usability: Added "Paste" and "Select all" options to preview context menu
+    ** Bugfix: Activated alphabetical sort was not applied initially
+    ** UI: Tag icons were 1px too small
+* 1.0.8
+    ** Added: Retina Icons
+    ** Added: Link to plugin info / rating page
+    ** Bugfix: Refresh didn't update items count
+* 1.0.7 Bugfix: Fixed possible null pointer exception when wiping all items
+* 1.0.6
+    ** Added: Historic clipboard items which are not available in the regular copy history are marked with a lighter icon
+    ** Added shortcut: [Del] or [Backspace] = remove item(s)
+    ** Added shortcut: [CTRL]+c = copy item(s)
+* 1.0.5
+    ** Added: Color tagging (yellow / green / red) of copy-items
+    ** Added: "Select all" option to items popup menu
+* 1.0.4
+    ** Added: Context menu to preview pane
+    ** Improved UI and general stability
+* 1.0.3 Added: Editable preview pane
+* 1.0.2 Changed UI: Moved inline settings to bottom of tool window
+* 1.0.1
+    ** Added: Option to keep items sorted alphabetically
+    ** Added: Option to auto-paste copy-items from tool window upon select
+    ** Added: Option to re-copy items to clipboard
+    ** Added: Wrap parts can interpolate escaped whitespace sequences now
+    ** Added: Status label: items count
+    ** Added: Item context menu
+    ** Improved: UI
+    ** Bugfix: Wrap-after string was wrap-before
+* 1.0.0 Initial release

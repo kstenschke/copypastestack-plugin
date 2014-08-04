@@ -39,9 +39,13 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.0.10<ul>
+                <li>Reduced inline changelog to previous five items, added separate full changelog</li>
+            </ul>
+        </li>
         <li>1.0.9<ul>
                 <li>Usability: Made preview panel always shown and resizable.</li>
                 <li>Usability: Added context menu to untag button</li>
@@ -63,30 +67,6 @@
                 <li>Added shortcut: [CTRL]+c = copy item(s)</li>
             </ul>
         </li>
-        <li>1.0.5<ul>
-                <li>Added: Color tagging (yellow / green / red) of copy-items</li>
-                <li>Added: "Select all" option to items popup menu</li>
-            </ul>
-        </li>
-        <li>1.0.4<ul>
-                <li>Added: Context menu to preview pane</li>
-                <li>Improved UI and general stability</li>
-            </ul>
-        </li>
-        <li>1.0.3 Added: Editable preview pane</li>
-        <li>1.0.2 Changed UI: Moved inline settings to bottom of tool window</li>
-        <li>1.0.1<ul>
-                <li>Added: Option to keep items sorted alphabetically</li>
-                <li>Added: Option to auto-paste copy-items from tool window upon select</li>
-                <li>Added: Option to re-copy items to clipboard</li>
-                <li>Added: Wrap parts can interpolate escaped whitespace sequences now</li>
-                <li>Added: Status label: items count</li>
-                <li>Added: Item context menu</li>
-                <li>Improved: UI</li>
-                <li>Bugfix: Wrap-after string was wrap-before</li>
-            </ul>
-        </li>
-        <li>1.0.0 Initial release</li>
     </ul>
     ]]>
   </change-notes>
