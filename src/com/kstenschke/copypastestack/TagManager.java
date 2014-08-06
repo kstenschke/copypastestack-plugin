@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class TagManager {
 
-    public static void tagAll(ToolWindowForm form, int idColor) {
+    public static void untagAll(ToolWindowForm form) {
         ListModel listModel  = form.clipItemsList.getModel();
         int amountItems      = listModel.getSize();
 

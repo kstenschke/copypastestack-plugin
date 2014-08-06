@@ -30,8 +30,6 @@ import java.awt.event.MouseEvent;
 
 public class PopupTagUnset extends PopupBase {
 
-    private ToolWindow toolWindow;
-
     final private JPopupMenu popup;
 
     JMenuItem menuItemUnsetAllTags;
@@ -40,8 +38,6 @@ public class PopupTagUnset extends PopupBase {
      * Constructor
      */
     public PopupTagUnset(final ToolWindow toolWindow) {
-        this.toolWindow = toolWindow;
-
         this.popup = new JPopupMenu();
 
             // Copy selection
@@ -49,7 +45,7 @@ public class PopupTagUnset extends PopupBase {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ToolWindowForm form = toolWindow.getForm();
-                TagManager.tagAll(form, StaticValues.ID_COLOR_NONE);
+                TagManager.untagAll(form);
             }
         }, Icons.ICON_TAG_DELETE);
         this.popup.add(menuItemUnsetAllTags);

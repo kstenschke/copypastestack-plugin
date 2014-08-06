@@ -67,13 +67,6 @@ public class Preferences {
     /**
      * @param   isActive
      */
-    public static void saveIsActivePreview(Boolean isActive) {
-        PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_PREVIEW, isActive ? "1":"0" );
-    }
-
-    /**
-     * @param   isActive
-     */
     public static void saveIsActiveWrapExtended(Boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_WRAP_EXTENDED, isActive ? "1":"0" );
     }
@@ -140,15 +133,6 @@ public class Preferences {
      */
     public static Boolean getIsActiveWrap() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_WRAP);
-
-        return value != null && value.equals("1");
-    }
-
-    /**
-     * @return Boolean
-     */
-    public static Boolean getIsActivePreview() {
-        String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_PREVIEW);
 
         return value != null && value.equals("1");
     }

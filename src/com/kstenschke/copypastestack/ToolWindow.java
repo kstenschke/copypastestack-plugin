@@ -49,7 +49,7 @@ import java.util.Arrays;
 public class ToolWindow extends SimpleToolWindowPanel {
 
     private final ToolWindowForm form;
-    private Boolean isMac;
+    private final Boolean isMac;
 
     /**
      * Constructor - initialize the tool window content

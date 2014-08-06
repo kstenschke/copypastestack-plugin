@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public class Icons {
 
-    public static Icon ICON_LOGO13          = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/logo13.png");
     public static Icon ICON_BLANK           = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/blank16.png");
 
     public static Icon ICON_COPY            = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/copy.png");
@@ -24,7 +23,6 @@ public class Icons {
 
     public static Icon ICON_REFRESH         = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/refresh.png");
     public static Icon ICON_SETTINGS        = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/settings.png");
-    public static Icon ICON_WRAP            = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/wrap.png");
     public static Icon ICON_QUESTIONMARK    = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/questionmark.png");
 
 }

@@ -55,24 +55,23 @@ class PopupBase {
         return item;
     }
 
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background) {
-        return getJMenuItem(label, actionListener, classToolWindow, pathImage, foreground, background, null);
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background) {
+        return getJMenuItem(label, actionListener, pathImage, foreground, background, null);
     }
 
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke accelleratorKeyStroke) {
-        return getJMenuItem(label, actionListener, classToolWindow, pathImage, foreground, background, accelleratorKeyStroke, StaticValues.NULL_CHAR);
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke accelleratorKeyStroke) {
+        return getJMenuItem(label, actionListener, pathImage, foreground, background, accelleratorKeyStroke, StaticValues.NULL_CHAR);
     }
 
     /**
      * @param   label
      * @param   actionListener
-     * @param   classToolWindow
      * @param   pathImage
      * @return  JMenuItem
      */
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke acceleratorKeyStroke, char mnemoric) {
+    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke acceleratorKeyStroke, char mnemoric) {
         JMenuItem item = getJMenuItem(label, actionListener, mnemoric);
-        setJMenuItemIcon(item, classToolWindow, pathImage);
+        setJMenuItemIcon(item, pathImage);
 
         if( foreground != null && background != null ) {
             item.setBackground(background);
@@ -122,7 +121,7 @@ class PopupBase {
          */
     JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage) {
 
-        return getJMenuItem(label, actionListener, classToolWindow, pathImage, null, null);
+        return getJMenuItem(label, actionListener, pathImage, null, null);
     }
 
     JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon) {
@@ -132,10 +131,9 @@ class PopupBase {
 
     /**
      * @param   jMenuItem
-     * @param   classToolWindow
      * @param   pathImage
      */
-    void setJMenuItemIcon(JMenuItem jMenuItem, Class classToolWindow, @Nullable String pathImage) {
+    void setJMenuItemIcon(JMenuItem jMenuItem, @Nullable String pathImage) {
         Icon icon;
 
         if( pathImage == null ) {
