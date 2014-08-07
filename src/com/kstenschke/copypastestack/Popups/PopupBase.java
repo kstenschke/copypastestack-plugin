@@ -112,20 +112,7 @@ class PopupBase {
         return getJMenuItem(label, actionListener, icon, foreground, background, null, ' ');
     }
 
-        /**
-         * @param   label
-         * @param   actionListener
-         * @param   classToolWindow
-         * @param   pathImage
-         * @return  JMenuItem
-         */
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, Class classToolWindow, @Nullable String pathImage) {
-
-        return getJMenuItem(label, actionListener, pathImage, null, null);
-    }
-
     JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon) {
-
         return getJMenuItem(label, actionListener, icon, null, null);
     }
 

@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class ListSelectionListenerItemsList implements ListSelectionListener {
 
-    ToolWindow toolWindow;
+    final ToolWindow toolWindow;
 
     public ListSelectionListenerItemsList(ToolWindow toolWindow) {
         this.toolWindow = toolWindow;

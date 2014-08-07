@@ -22,11 +22,8 @@ public class PopupItems extends PopupBase {
      * Constructor
      */
     public PopupItems(final ToolWindow toolWindow) {
-        final Class classToolWindow   = getToolWindowClassInstance(toolWindow);
-
         this.jListItems = toolWindow.getItemsList();
-
-        this.popup = new JPopupMenu();
+        this.popup      = new JPopupMenu();
 
             // Paste
         JMenuItem menuItemPaste = getJMenuItem(StaticTexts.POPUP_ITEMS_PASTE, new ActionListener() {
@@ -103,7 +100,7 @@ public class PopupItems extends PopupBase {
                     list.setSelectionInterval(0, end);
                 }
             }
-        }, classToolWindow, null);
+        }, null);
         this.popup.add(menuItemSelectAll);
     }
 

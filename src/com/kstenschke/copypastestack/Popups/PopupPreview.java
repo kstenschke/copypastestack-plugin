@@ -28,12 +28,10 @@ import java.awt.event.MouseEvent;
 
 public class PopupPreview extends PopupBase {
 
-    private ToolWindow toolWindow;
-
+    private final ToolWindow toolWindow;
     final private JPopupMenu popup;
-
-    JMenuItem menuItemCopySelection;
-    JMenuItem menuItemPaste;
+    final JMenuItem menuItemCopySelection;
+    final JMenuItem menuItemPaste;
 
     /**
      * Constructor

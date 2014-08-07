@@ -9,9 +9,14 @@ import java.awt.event.ActionListener;
 
 public class ActionListenerTag implements ActionListener {
 
-    private ToolWindow toolWindow;
-    private int idColor;
+    private final ToolWindow toolWindow;
+    private final int idColor;
 
+    /**
+     * Constructor
+     * @param   toolWindow
+     * @param   idColor
+     */
     public ActionListenerTag(ToolWindow toolWindow, int idColor) {
         this.toolWindow = toolWindow;
         this.idColor    = idColor;

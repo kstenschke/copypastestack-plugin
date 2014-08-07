@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class MouseListenerItemsList extends MouseListenerBase {
 
-    private ToolWindow toolWindow;
+    private final ToolWindow toolWindow;
 
     public MouseListenerItemsList(@Nullable String description, ToolWindow toolWindow) {
         super(description);

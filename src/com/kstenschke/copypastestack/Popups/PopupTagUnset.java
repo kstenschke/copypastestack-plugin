@@ -19,7 +19,6 @@ import com.kstenschke.copypastestack.TagManager;
 import com.kstenschke.copypastestack.ToolWindow;
 import com.kstenschke.copypastestack.resources.Icons;
 import com.kstenschke.copypastestack.resources.StaticTexts;
-import com.kstenschke.copypastestack.resources.StaticValues;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
 
 import javax.swing.*;
@@ -32,7 +31,7 @@ public class PopupTagUnset extends PopupBase {
 
     final private JPopupMenu popup;
 
-    JMenuItem menuItemUnsetAllTags;
+    final JMenuItem menuItemUnsetAllTags;
 
     /**
      * Constructor

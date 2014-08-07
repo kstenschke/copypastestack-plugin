@@ -23,8 +23,8 @@ import java.awt.event.KeyListener;
 
 public class KeyListenerItemsList implements KeyListener {
 
-    ToolWindow toolWindow;
-    Boolean isMac;
+    final ToolWindow toolWindow;
+    final Boolean isMac;
 
     public KeyListenerItemsList(ToolWindow toolWindow) {
         this.toolWindow = toolWindow;

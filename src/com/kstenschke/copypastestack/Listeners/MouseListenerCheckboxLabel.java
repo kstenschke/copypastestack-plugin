@@ -7,8 +7,14 @@ import java.awt.event.MouseEvent;
 
 public class MouseListenerCheckboxLabel extends MouseListenerBase {
 
-    private JCheckBox checkbox;
+    private final JCheckBox checkbox;
 
+    /**
+     * Constructor
+     *
+     * @param   description
+     * @param   checkbox
+     */
     public MouseListenerCheckboxLabel(@Nullable String description, JCheckBox checkbox) {
         super(description);
         this.checkbox = checkbox;
