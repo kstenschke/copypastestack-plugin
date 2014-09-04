@@ -16,6 +16,7 @@
 package com.kstenschke.copypastestack.Listeners;
 
 import com.kstenschke.copypastestack.ToolWindow;
+import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -23,16 +24,24 @@ import javax.swing.event.ListSelectionListener;
 public class ListSelectionListenerItemsList implements ListSelectionListener {
 
     final ToolWindow toolWindow;
+    final ToolWindowForm toolWindowForm;
 
     public ListSelectionListenerItemsList(ToolWindow toolWindow) {
         this.toolWindow = toolWindow;
+        toolWindowForm = toolWindow.getForm();
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
         String itemText = this.toolWindow.getSelectedItemText();
         this.toolWindow.setPreviewText(itemText);
-        this.toolWindow.getForm().textPanePreview.setCaretPosition(0);
+
+        this.toolWindowForm.textPanePreview.setCaretPosition(0);
+
+        if( this.toolWindowForm.panelPreviewImage.isVisible() ) {
+            this.toolWindowForm.panelPreviewImage.setVisible(false);
+            this.toolWindowForm.scrollPanePreview.setVisible(true);
+        }
     }
 
 }

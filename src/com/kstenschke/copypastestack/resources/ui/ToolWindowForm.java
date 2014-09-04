@@ -15,6 +15,8 @@
  */
 package com.kstenschke.copypastestack.resources.ui;
 
+import org.intellij.images.ui.ImageComponent;
+
 import javax.swing.*;
 
 public class ToolWindowForm {
@@ -63,7 +65,12 @@ public class ToolWindowForm {
     public JScrollPane jscrollpaneItemsList;
     public JPanel panelAroundWrap;
     public JSplitPane splitpaneToolContent;
+    public JList jListPreview;
+    public JScrollPane scrollPanePreview;
     public JToolBar toolbarWrap;
+    public JLabel labelPreviewImage;
+    public JPanel panelPreviewImage;
+    public JCheckBox a50CheckBox;
 
     public JPanel getMainPanel() {
         return mainPanel;

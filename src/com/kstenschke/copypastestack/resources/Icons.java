@@ -21,8 +21,8 @@ public class Icons {
     public static Icon ICON_TAG_RED         = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/tag-red.png");
     public static Icon ICON_TAG_DELETE      = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/tag-delete.png");
 
+    public static Icon ICON_EYE             = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/eye.png");
     public static Icon ICON_REFRESH         = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/refresh.png");
     public static Icon ICON_SETTINGS        = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/settings.png");
     public static Icon ICON_QUESTIONMARK    = IconLoader.getIcon("/com/kstenschke/copypastestack/resources/icons/questionmark.png");
-
 }

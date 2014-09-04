@@ -32,7 +32,8 @@ import java.awt.*;
  */
 public class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellRenderer<String> {
 
-    private final Border selectedBorder;
+    private final Border borderViewerItem;
+    private final Border borderSelected;
     private final Border borderWhite;
     private final Border borderYellow;
     private final Border borderGreen;
@@ -49,7 +50,10 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
 
     private Icon iconDefault;
     private Icon iconHistoric;
+    private Icon iconViewCurrent;
+
     private final boolean isMac;
+    private final boolean isViewerMode;
 
     public final static int idColorNone   = 0;
     public final static int idColorYellow = 1;
@@ -65,9 +69,12 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
      *
      * @param   list
      * @param   isDark
+     * @param   isMac
+     * @param   isViewerMode    false = regular (copy/paste stack items)
      */
-    public ListCellRendererCopyPasteStack(JList<String> list, boolean isDark, boolean isMac) {
-        this.isMac  = isMac;
+    public ListCellRendererCopyPasteStack(JList<String> list, boolean isDark, boolean isMac, boolean isViewerMode) {
+        this.isMac          = isMac;
+        this.isViewerMode   = isViewerMode;
 
         this.setFont(list.getFont());
         this.setLayout(new BorderLayout());
@@ -85,19 +92,21 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
         this.colorBackground = list.getBackground();
         this.colorForeground = list.getForeground();
 
-        this.borderWhite    = BorderFactory.createLineBorder(this.colorBackground);
-        this.borderYellow   = BorderFactory.createLineBorder(this.colorYellow);
-        this.borderGreen    = BorderFactory.createLineBorder(this.colorGreen);
-        this.borderRed      = BorderFactory.createLineBorder(this.colorRed);
-        this.nonFocusBorder = BorderFactory.createLineBorder(isDark ? colorDarkBgNoFocus : this.colorSelectionBackground);
-        this.selectedBorder = BorderFactory.createLineBorder(this.colorSelectionBackground.darker());
+        this.borderViewerItem   = BorderFactory.createEtchedBorder();
+        this.borderWhite        = BorderFactory.createLineBorder(this.colorBackground);
+        this.borderYellow       = BorderFactory.createLineBorder(this.colorYellow);
+        this.borderGreen        = BorderFactory.createLineBorder(this.colorGreen);
+        this.borderRed          = BorderFactory.createLineBorder(this.colorRed);
+        this.nonFocusBorder     = BorderFactory.createLineBorder(isDark ? colorDarkBgNoFocus : this.colorSelectionBackground);
+        this.borderSelected     = BorderFactory.createLineBorder(this.colorSelectionBackground.darker());
 
         initIcons();
     }
 
     public void initIcons() {
-        this.iconDefault    = Icons.ICON_ITEM;
-        this.iconHistoric   = Icons.ICON_ITEM_HISTORIC;
+        this.iconDefault        = Icons.ICON_ITEM;
+        this.iconViewCurrent    = Icons.ICON_EYE;
+        this.iconHistoric       = Icons.ICON_ITEM_HISTORIC;
     }
 
     /**
@@ -111,25 +120,30 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         java.lang.String itemText = value != null ? value.toString() : "";
 
-        columnText.setIcon( UtilsClipboard.isInClipboard(itemText) ? this.iconDefault : this.iconHistoric);
+        if( this.isViewerMode ) {
+                // Item for current contents preview tool
+            columnText.setIcon(this.iconViewCurrent);
+        } else {
+                // Regular copy/paste string items
+            columnText.setIcon(UtilsClipboard.isInClipboard(itemText) ? this.iconDefault : this.iconHistoric);
+        }
+
         columnText.setText(itemText);
 
-        boolean hasFocus    = list.hasFocus();
-
-        int hashCode = itemText.hashCode();
+        boolean hasFocus= list.hasFocus();
+        int hashCode    = itemText.hashCode();
 
         if (isSelected) {
                 // Item is selected
             setBackground( hasFocus ? this.colorSelectionBackground : colorSelectionBackgroundNoFocus );
             setForeground( this.colorSelectionForeground );
-            setBorder(cellHasFocus ? selectedBorder : nonFocusBorder);
+            setBorder(cellHasFocus ? borderSelected : nonFocusBorder);
 
             if( this.isMac ) {
                 this.columnText.setForeground( hasFocus ? JBColor.WHITE : JBColor.BLACK );
             }
         } else {
                 // Item is not selected
-
             int idColorTagged       = Preferences.getIdColorByHashTag(hashCode);
             Color colorBackground   = getColorByIndex(idColorTagged);
             Border border           = getBorderByIndex(idColorTagged);

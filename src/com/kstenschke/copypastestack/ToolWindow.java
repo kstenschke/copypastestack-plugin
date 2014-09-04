@@ -48,7 +48,7 @@ import java.util.Arrays;
 
 public class ToolWindow extends SimpleToolWindowPanel {
 
-    private final ToolWindowForm form;
+    public final ToolWindowForm form;
     private final boolean isMac;
 
     /**
@@ -63,12 +63,14 @@ public class ToolWindow extends SimpleToolWindowPanel {
         initIcons();
         initSplitPane();
 
+        initCurrentClipboardViewer();
+
         int amountItems = initItemsList();
         initStatusLabel(amountItems);
 
-        initToolbar();
-        initWrap();
-        initPreview();
+        initMainToolbar();
+        initWrapOptions();
+        initItemsPreview();
 
             // Add form into toolWindow
         add(form.getMainPanel(), BorderLayout.CENTER);
@@ -111,7 +113,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         return this.form.clipItemsList;
     }
 
-    private void initToolbar() {
+    private void initMainToolbar() {
         this.form.buttonRefresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -297,16 +299,20 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         if( amountItems > 0 ) {
             String[] items   = new String[amountItems];
+
+                // Refill items from listModel into sortable array
             int index = 0;
-            for (int i = 0; i < amountItems; i++) {
+            for (int i = 1; i < amountItems; i++) {
                 String item = listModel.getElementAt(i);
                 if( item != null && ! item.trim().isEmpty() ) {
                     items[index] = item;
                     index++;
                 }
             }
+                // Sort string items alphabetically
             if( items.length > 1 ) {
-                Arrays.sort(items, String.CASE_INSENSITIVE_ORDER);
+                    // // Skip item 0 (viewer of current contents) to keep it topmost
+                Arrays.sort(items, 1, items.length - 1, String.CASE_INSENSITIVE_ORDER);
             }
 
             this.updateItemsList(items);
@@ -315,18 +321,24 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
     /**
      * Refresh listed items from distinct merged sum of:
+     * 0. option to preview the current clipboard contents
      * 1. previous clipboard items still in prefs
      * 2. current clipboard items
      */
     private void refreshClipboardList() {
         Transferable[] copiedItems = CopyPasteManager.getInstance().getAllContents();
+        int amountItems            = UtilsClipboard.getAmountStringItemsInTransferables(copiedItems);
+        String[] itemsUnique       = null;
+        boolean hasClipboardContent= UtilsClipboard.hasContent();
 
-        int amountItems     = UtilsClipboard.getAmountStringItemsInTransferables(copiedItems);
-        String[] itemsUnique= null;
+        String[] copyItemsList   = new String[amountItems + 1];
 
-        if( amountItems > 0 ) {
-            String[] copyItemsList   = new String[amountItems];
-            int index           = 0;
+            // Add item for previewing current text or image content of clipboard
+        copyItemsList[0] = StaticTexts.ITEM_TEXT_VIEW_CURRENT;
+
+        if( amountItems > 0 || hasClipboardContent ) {
+                // Add copied string items, historic and current
+            int index           = 1;
             for( Transferable currentItem : copiedItems) {
                 if( currentItem.isDataFlavorSupported( DataFlavor.stringFlavor ) )  {
                     try {
@@ -341,10 +353,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 }
             }
 
+                // Tidy items: distinct items, none empty
             String[] copyItemsPref = Preferences.getItems();
-
-            Object[] allItems   = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
-            itemsUnique         = UtilsArray.tidy(allItems, true, true);
+            Object[] allItems      = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
+            itemsUnique            = UtilsArray.tidy(allItems, true, true);
             if( itemsUnique.length > 0 ) {
                 this.updateItemsList(itemsUnique);
 
@@ -372,7 +384,19 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @param   amountItems
      */
     public void initStatusLabel(int amountItems) {
-        this.form.labelStatus.setText(String.valueOf(amountItems) + " " + StaticTexts.LABEL_ITEMS);
+        this.form.labelStatus.setText(String.valueOf(amountItems - 1) + " " + StaticTexts.LABEL_ITEMS);
+    }
+
+    /**
+     * Init current clipboard content viewer
+     */
+    private void initCurrentClipboardViewer(){
+        this.form.jListPreview.setCellRenderer(
+                new ListCellRendererCopyPasteStack(this.form.jListPreview, false, this.isMac, true)
+        );
+
+        String[] items    = { StaticTexts.ITEM_TEXT_VIEW_CURRENT };
+        this.form.jListPreview.setListData( items );
     }
 
     /**
@@ -380,7 +404,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      */
     private int initItemsList() {
         this.form.clipItemsList.setCellRenderer(
-                new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac)
+                new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac, false)
         );
         String[] items = Preferences.getItems();
         this.updateItemsList(items);
@@ -398,7 +422,21 @@ public class ToolWindow extends SimpleToolWindowPanel {
         return items.length;
     }
 
-    private void initPreview() {
+    public boolean isPreviewImage50Percent() {
+        return this.form.a50CheckBox.isSelected();
+    }
+
+    private void initItemsPreview() {
+        this.form.labelPreviewImage.setText("");
+        this.form.panelPreviewImage.setVisible(false);
+        this.form.scrollPanePreview.setVisible(true);
+
+            // Install listener to update shown preview from current clipboard
+        FocusListenerViewClipboard focusListenerViewClipboard = new FocusListenerViewClipboard(this);
+        this.form.jListPreview.addFocusListener( focusListenerViewClipboard );
+        this.form.a50CheckBox.addChangeListener(new ChangeListenerResizePreview(focusListenerViewClipboard));
+
+            // Install items listener to update shown preview from stacked items
         this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
 
             // Add popup listener
@@ -412,7 +450,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.textPanePreview.setText(itemText);
     }
 
-    private void initWrap() {
+    private void initWrapOptions() {
         boolean isActiveWrap = Preferences.getIsActiveWrap();
         this.form.checkBoxWrap.setSelected( isActiveWrap );
         this.form.checkBoxWrap.addActionListener(new ActionListener() {

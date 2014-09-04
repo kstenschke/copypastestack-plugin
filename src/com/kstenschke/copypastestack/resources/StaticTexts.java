@@ -75,12 +75,14 @@ public class StaticTexts {
 
     // ========================================================================================================== Errors
     @NonNls
-    public static final String ERROR_RETRIEVING_FILE = "Error retrieving file";
+    public static final String ERROR_RETRIEVING_FILE = "Error retrieving File";
 
     // ============================================================================================= Undo history labels
     @NonNls
     public static final String LABEL_ITEMS = "Items";
     @NonNls
-    public static final String LABEL_CMD_PROC_INSERT = "Paste clipboard items";
+    public static final String LABEL_CMD_PROC_INSERT = "Paste Clipboard Items";
 
+    @NonNls
+    public static final String ITEM_TEXT_VIEW_CURRENT = "View Current Clipboard";
 }

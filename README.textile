@@ -11,6 +11,7 @@ Adds a tool window of copy history items, similar to the standard copy history b
 but possible to be kept persistently open and with some additional features:
 
 * Copy/paste stack provides a list of copied string items, from the current and recent sessions. Copy/paste stack caches its content, allowing you to keep copied items for as long as needed (instead of limiting their availability to the current editing session).
+* The current textual or image contents of the clipboard can be previewed
 * The full text of selected items can optionally be previewed in an editable text pane.
 * One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click.
 * Items are automatically trimmed from surrounding whitespace.

@@ -38,6 +38,22 @@ public class UtilsClipboard {
     }
 
     /**
+     * @return  Does the clipboard contain anything (being string or image) currently?
+     */
+    public static boolean hasContent() {
+        Transferable[] transferables = CopyPasteManager.getInstance().getAllContents();
+        for( Transferable currentItem : transferables) {
+            if(    currentItem.isDataFlavorSupported( DataFlavor.stringFlavor )
+                || currentItem.isDataFlavorSupported( DataFlavor.imageFlavor )
+            )  {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @param text
      * @return boolean  Is given string in clipboard currently?
      */
