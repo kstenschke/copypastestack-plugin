@@ -136,7 +136,7 @@ public class PopupItems extends PopupBase {
          */
         private void maybeShowPopup(MouseEvent e) {
             if (e.isPopupTrigger() ) {
-                Boolean isAnySelected  = getIndexSelected() > 0;
+                boolean isAnySelected  = getIndexSelected() > 0;
                 if( isAnySelected ) {
                     popup.show(e.getComponent(), e.getX(), e.getY());
                 }

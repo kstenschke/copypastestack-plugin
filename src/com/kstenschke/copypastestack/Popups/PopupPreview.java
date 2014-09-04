@@ -123,7 +123,7 @@ public class PopupPreview extends PopupBase {
         private void maybeShowPopup(MouseEvent e) {
             if (e.isPopupTrigger() ) {
 
-                Boolean hasSelection = previewHasSelection();
+                boolean hasSelection = previewHasSelection();
                 menuItemCopySelection.setEnabled(hasSelection);
                 menuItemPaste.setEnabled( !UtilsEnvironment.isClipboardEmpty() );
                 popup.show(e.getComponent(), e.getX(), e.getY());
@@ -131,7 +131,7 @@ public class PopupPreview extends PopupBase {
         }
     }
 
-    private Boolean previewHasSelection() {
+    private boolean previewHasSelection() {
         JTextPane textPanePreview = toolWindow.getForm().textPanePreview;
         Integer selStart    = textPanePreview.getSelectionStart();
         Integer selEnd    = textPanePreview.getSelectionEnd();

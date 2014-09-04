@@ -60,35 +60,35 @@ public class Preferences {
     /**
      * @param   isActive
      */
-    public static void saveIsActiveWrap(Boolean isActive) {
+    public static void saveIsActiveWrap(boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_WRAP, isActive ? "1":"0" );
     }
 
     /**
      * @param   isActive
      */
-    public static void saveIsActiveWrapExtended(Boolean isActive) {
+    public static void saveIsActiveWrapExtended(boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_WRAP_EXTENDED, isActive ? "1":"0" );
     }
 
     /**
      * @param   isActive
      */
-    public static void saveIsActiveFocusOnPaste(Boolean isActive) {
+    public static void saveIsActiveFocusOnPaste(boolean isActive) {
         PropertiesComponent.getInstance().setValue(PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE, isActive ? "1":"0" );
     }
 
     /**
      * @param   isActive
      */
-    public static void saveIsActiveKeepSorting(Boolean isActive) {
+    public static void saveIsActiveKeepSorting(boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_KEEP_SORTING, isActive ? "1":"0" );
     }
 
     /**
      * @param   isActive
      */
-    public static void saveIsActiveImmediatePaste(Boolean isActive) {
+    public static void saveIsActiveImmediatePaste(boolean isActive) {
         PropertiesComponent.getInstance().setValue( PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE, isActive ? "1":"0" );
     }
 
@@ -129,45 +129,45 @@ public class Preferences {
     }
 
     /**
-     * @return Boolean
+     * @return boolean
      */
-    public static Boolean getIsActiveWrap() {
+    public static boolean getIsActiveWrap() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_WRAP);
 
         return value != null && value.equals("1");
     }
 
     /**
-     * @return Boolean
+     * @return boolean
      */
-    public static Boolean getIsActiveKeepSorting() {
+    public static boolean getIsActiveKeepSorting() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_KEEP_SORTING);
 
         return value != null && value.equals("1");
     }
 
     /**
-     * @return Boolean
+     * @return boolean
      */
-    public static Boolean getIsActiveWrapExtended() {
+    public static boolean getIsActiveWrapExtended() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_WRAP_EXTENDED);
 
         return value != null && value.equals("1");
     }
 
     /**
-     * @return Boolean
+     * @return boolean
      */
-    public static Boolean getIsActiveFocusOnPaste() {
+    public static boolean getIsActiveFocusOnPaste() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE);
 
         return value != null && value.equals("1");
     }
 
     /**
-     * @return Boolean
+     * @return boolean
      */
-    public static Boolean getIsActiveImmediatePaste() {
+    public static boolean getIsActiveImmediatePaste() {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE);
 
         return value != null && value.equals("1");

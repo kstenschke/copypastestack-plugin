@@ -86,7 +86,7 @@ public class UtilsEnvironment {
      * @param   editor
      * @param   text
      */
-    public static void insertInEditor(final Project project, final Editor editor, final String text, Boolean focusEditor) {
+    public static void insertInEditor(final Project project, final Editor editor, final String text, boolean focusEditor) {
         if( editor != null && text != null && ! text.isEmpty() ) {
             CaretModel caretModel       = editor.getCaretModel();
             final Integer currentOffset = caretModel.getOffset();
@@ -127,7 +127,7 @@ public class UtilsEnvironment {
      * @param   text
      * @param   focusEditor
      */
-    public static void insertInEditor(String text, Boolean focusEditor) {
+    public static void insertInEditor(String text, boolean focusEditor) {
         Project project= getOpenProject();
         Editor editor  = getEditor(project);
 
@@ -142,11 +142,10 @@ public class UtilsEnvironment {
     }
 
     /**
-     * @return  Boolean
+     * @return  boolean
      */
     public static boolean isMac() {
         return getOS().contains("mac");
-
     }
 
     public static String getClipboardContent() {

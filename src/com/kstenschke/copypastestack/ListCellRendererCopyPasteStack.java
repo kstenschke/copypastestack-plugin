@@ -49,7 +49,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
 
     private Icon iconDefault;
     private Icon iconHistoric;
-    private final Boolean isMac;
+    private final boolean isMac;
 
     public final static int idColorNone   = 0;
     public final static int idColorYellow = 1;
@@ -66,7 +66,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
      * @param   list
      * @param   isDark
      */
-    public ListCellRendererCopyPasteStack(JList<String> list, Boolean isDark, Boolean isMac) {
+    public ListCellRendererCopyPasteStack(JList<String> list, boolean isDark, boolean isMac) {
         this.isMac  = isMac;
 
         this.setFont(list.getFont());
@@ -114,7 +114,7 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
         columnText.setIcon( UtilsClipboard.isInClipboard(itemText) ? this.iconDefault : this.iconHistoric);
         columnText.setText(itemText);
 
-        Boolean hasFocus    = list.hasFocus();
+        boolean hasFocus    = list.hasFocus();
 
         int hashCode = itemText.hashCode();
 

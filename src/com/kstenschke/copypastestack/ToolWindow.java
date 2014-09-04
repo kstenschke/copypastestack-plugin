@@ -49,7 +49,7 @@ import java.util.Arrays;
 public class ToolWindow extends SimpleToolWindowPanel {
 
     private final ToolWindowForm form;
-    private final Boolean isMac;
+    private final boolean isMac;
 
     /**
      * Constructor - initialize the tool window content
@@ -182,7 +182,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     public void removeSelectedItems() {
-        Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         String[] items       = hasSelection ? getUnselectedItems() : new String[0];
 
         this.updateItemsList(items);
@@ -222,9 +222,9 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * Paste all / selected items into editor
      */
     public void pasteItems() {
-        Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         int amountSelected   = ! hasSelection ? 0 : this.form.clipItemsList.getSelectedValuesList().size();
-        Boolean focusEditor = this.form.checkboxFocusOnPaste.isSelected();
+        boolean focusEditor = this.form.checkboxFocusOnPaste.isSelected();
 
         String wrapBefore   = "";
         String wrapAfter    = "";
@@ -275,7 +275,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * Copy selected items back into clipboard
      */
     public void copySelectedItems() {
-        Boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
         if( hasSelection ) {
             ListModel<String> listModel                     = this.form.clipItemsList.getModel();
             javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
@@ -413,12 +413,12 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void initWrap() {
-        Boolean isActiveWrap = Preferences.getIsActiveWrap();
+        boolean isActiveWrap = Preferences.getIsActiveWrap();
         this.form.checkBoxWrap.setSelected( isActiveWrap );
         this.form.checkBoxWrap.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkBoxWrap.isSelected();
+                boolean isActive = form.checkBoxWrap.isSelected();
                 form.panelWrap.setVisible( isActive );
                 if( isActive ) {
                     form.textFieldWrapBefore.requestFocusInWindow();
@@ -458,23 +458,23 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.checkboxImmediatePaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_IMMEDIATE_PASTE));
         this.form.labelOptionImmediateInsert.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_IMMEDIATE_PASTE, this.form.checkboxImmediatePaste));
 
-        Boolean isActiveImmediatePaste = Preferences.getIsActiveImmediatePaste();
+        boolean isActiveImmediatePaste = Preferences.getIsActiveImmediatePaste();
         form.checkboxImmediatePaste.setSelected(isActiveImmediatePaste);
         this.form.checkboxImmediatePaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkboxImmediatePaste.isSelected();
+                boolean isActive = form.checkboxImmediatePaste.isSelected();
                 Preferences.saveIsActiveImmediatePaste(isActive);
             }
         });
 
-        Boolean isActiveFocusOnPaste = Preferences.getIsActiveFocusOnPaste();
+        boolean isActiveFocusOnPaste = Preferences.getIsActiveFocusOnPaste();
         this.form.checkboxFocusOnPaste.setSelected(isActiveFocusOnPaste);
 
         this.form.checkboxFocusOnPaste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Boolean isActive = form.checkboxFocusOnPaste.isSelected();
+                boolean isActive = form.checkboxFocusOnPaste.isSelected();
                 Preferences.saveIsActiveFocusOnPaste( isActive );
             }
         });
@@ -520,9 +520,9 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     /**
-     * @return  Boolean
+     * @return  boolean
      */
-    public Boolean isSelectedImmediatePaste() {
+    public boolean isSelectedImmediatePaste() {
         return this.form.checkboxImmediatePaste.isSelected();
     }
 

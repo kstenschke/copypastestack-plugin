@@ -49,7 +49,7 @@ public class UtilsArray {
      * @param   trim
      * @return  String[]        Array of unique items, w/o any empty item
      */
-    public static String[] tidy(Object[] arr, Boolean removeEmpty, Boolean trim) {
+    public static String[] tidy(Object[] arr, boolean removeEmpty, boolean trim) {
         String[] distinct   = new String[ getAmountUniqueItems(arr) ];
         int index           = 0;
 

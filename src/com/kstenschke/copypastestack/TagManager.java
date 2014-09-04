@@ -20,7 +20,7 @@ public class TagManager {
         ListModel listModel                 = form.clipItemsList.getModel();
         ListSelectionModel selectionModel   = form.clipItemsList.getSelectionModel();
 
-        Boolean hasSelection = ! form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! form.clipItemsList.isSelectionEmpty();
         int amountItems      = listModel.getSize();
         int amountSelected   = ! hasSelection ? 0 : form.clipItemsList.getSelectedValuesList().size();
 
