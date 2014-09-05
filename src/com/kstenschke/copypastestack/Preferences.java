@@ -220,13 +220,13 @@ public class Preferences {
     /**
      * @return String
      */
-    public static Integer getIdColorByHashTag(String hashCode) {
+    public static int getIdColorByHashTag(String hashCode) {
         String value = PropertiesComponent.getInstance().getValue(PROPERTY_TAG + hashCode);
 
         return value == null ? 0 : Integer.valueOf( value );
     }
 
-    public static Integer getIdColorByHashTag(int hashCode) {
+    public static int getIdColorByHashTag(int hashCode) {
         return getIdColorByHashTag( String.valueOf(hashCode) );
     }
 

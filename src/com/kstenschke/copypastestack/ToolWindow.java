@@ -189,7 +189,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
         String[] items       = hasSelection ? getUnselectedItems() : new String[0];
 
-        this.updateItemsList(items);
+        this.setClipboardListData(items);
         Preferences.saveCopyItems(items);
 
         if( !hasSelection ) {
@@ -295,30 +295,82 @@ public class ToolWindow extends SimpleToolWindowPanel {
         }
     }
 
-    private void sortClipboardListAlphabetical() {
+    /**
+     * Bubble all color-tagged items to the top of the list (groups: yellow, green, reed, untagged)
+     */
+    private void sortClipboardListByTags(boolean sortAlphabetically) {
         ListModel<String> listModel = this.form.listClipItems.getModel();
         int amountItems = listModel.getSize();
 
         if( amountItems > 0 ) {
-            String[] items   = new String[amountItems];
+            String[] itemsYellow    = new String[amountItems+1];
+            int indexYellow         = 0;
 
-                // Refill items from listModel into sortable array
-            int index = 0;
-            for (int i = 1; i < amountItems; i++) {
+            String[] itemsGreen     = new String[amountItems+1];
+            int indexGreen          = 0;
+
+            String[] itemsRed       = new String[amountItems+1];
+            int indexRed            = 0;
+
+            String[] itemsUntagged  = new String[amountItems+1];
+            int indexUntagged       = 0;
+
+                // Refill items from listModel into sortable arrays
+            for (int i = 0; i < amountItems; i++) {
                 String item = listModel.getElementAt(i);
                 if( item != null && ! item.trim().isEmpty() ) {
-                    items[index] = item;
-                    index++;
+
+                    switch( TagManager.getIdColorByValue(item) ) {
+                        case StaticValues.ID_COLOR_YELLOW:
+                            itemsYellow[indexYellow] = item;
+                            indexYellow++;
+                            break;
+
+                        case StaticValues.ID_COLOR_GREEN:
+                            itemsGreen[indexGreen] = item;
+                            indexGreen++;
+                            break;
+
+                        case StaticValues.ID_COLOR_RED:
+                            itemsRed[indexRed] = item;
+                            indexRed++;
+                            break;
+
+                        case StaticValues.ID_COLOR_NONE:
+                            itemsUntagged[indexUntagged] = item;
+                            indexUntagged++;
+                            break;
+                    }
                 }
             }
+
+                // Reduce arrays to size of actual content
+            itemsYellow     = Arrays.copyOfRange(itemsYellow, 0, indexYellow);
+            itemsRed        = Arrays.copyOfRange(itemsRed, 0, indexRed);
+            itemsGreen      = Arrays.copyOfRange(itemsGreen, 0, indexGreen);
+            itemsUntagged   = Arrays.copyOfRange(itemsUntagged, 0, indexUntagged);
+
                 // Sort string items alphabetically
-            if( items.length > 1 ) {
-                    // // Skip item 0 (viewer of current contents) to keep it topmost
-                Arrays.sort(items, 1, items.length - 1, String.CASE_INSENSITIVE_ORDER);
+            if( sortAlphabetically ) {
+                if (itemsYellow.length > 1)   Arrays.sort(itemsYellow, String.CASE_INSENSITIVE_ORDER);
+                if (itemsGreen.length > 1)    Arrays.sort(itemsGreen, String.CASE_INSENSITIVE_ORDER);
+                if (itemsRed.length > 1)      Arrays.sort(itemsRed, String.CASE_INSENSITIVE_ORDER);
+                if (itemsUntagged.length > 1) Arrays.sort(itemsUntagged, String.CASE_INSENSITIVE_ORDER);
             }
 
-            this.updateItemsList(items);
+                // Update list from sorted items
+            this.setClipboardListData(
+                ArrayUtils.addAll(
+                    ArrayUtils.addAll(
+                        ArrayUtils.addAll(itemsYellow, itemsGreen), itemsRed
+                    ),  itemsUntagged
+                )
+            );
         }
+    }
+
+    private void sortClipboardListAlphabetical() {
+        this.sortClipboardListByTags(true);
     }
 
     /**
@@ -333,14 +385,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
         String[] itemsUnique       = null;
         boolean hasClipboardContent= UtilsClipboard.hasContent();
 
-        String[] copyItemsList   = new String[amountItems + 1];
-
-            // Add item for previewing current text or image content of clipboard
-        copyItemsList[0] = StaticTexts.ITEM_TEXT_VIEW_CURRENT;
-
+        String[] copyItemsList   = new String[amountItems];
         if( amountItems > 0 || hasClipboardContent ) {
                 // Add copied string items, historic and current
-            int index           = 1;
+            int index           = 0;
             for( Transferable currentItem : copiedItems) {
                 if( currentItem.isDataFlavorSupported( DataFlavor.stringFlavor ) )  {
                     try {
@@ -358,13 +406,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 // Tidy items: distinct items, none empty
             String[] copyItemsPref = Preferences.getItems();
             Object[] allItems      = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
-            itemsUnique            = UtilsArray.tidy(allItems, true, true);
+            itemsUnique            = UtilsArray.tidy(allItems);
             if( itemsUnique.length > 0 ) {
-                this.updateItemsList(itemsUnique);
-
-                if( this.form.checkboxKeepSorted.isSelected() ) {
-                    this.sortClipboardListAlphabetical();
-                }
+                this.setClipboardListData(itemsUnique);
+                this.sortClipboardListByTags(this.form.checkboxKeepSorted.isSelected());
 
                 Preferences.saveCopyItems(itemsUnique);
             }
@@ -376,10 +421,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
     /**
      * @param   items
      */
-    private void updateItemsList(Object[] items) {
-        items = UtilsArray.tidy(items, true, true);
-
-        this.form.listClipItems.setListData( items );
+    private void setClipboardListData(Object[] items) {
+        this.form.listClipItems.setListData( UtilsArray.tidy(items) );
     }
 
     /**
@@ -409,7 +452,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 new ListCellRendererCopyPasteStack(this.form.listClipItems, false, this.isMac, false)
         );
         String[] items = Preferences.getItems();
-        this.updateItemsList(items);
+        this.setClipboardListData(items);
         if( Preferences.getIsActiveKeepSorting() ) {
             this.sortClipboardListAlphabetical();
         }

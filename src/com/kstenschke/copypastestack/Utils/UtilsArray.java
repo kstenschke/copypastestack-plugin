@@ -45,11 +45,9 @@ public class UtilsArray {
 
     /**
      * @param   arr
-     * @param   removeEmpty
-     * @param   trim
      * @return  String[]        Array of unique items, w/o any empty item
      */
-    public static String[] tidy(Object[] arr, boolean removeEmpty, boolean trim) {
+    public static String[] tidy(Object[] arr) {
         String[] distinct   = new String[ getAmountUniqueItems(arr) ];
         int index           = 0;
 
@@ -65,13 +63,12 @@ public class UtilsArray {
 
             String item = arr[i] != null ? arr[i].toString() : "";
 
-            if( item != null && !item.isEmpty() && trim ) {
+            if( item != null && !item.isEmpty() ) {
                 item    = item.trim();
-            }
-
-            if(isDistinct && item != null && (! removeEmpty || !item.isEmpty() ) ) {
-                distinct[index] = item;
-                index++;
+                if( isDistinct ) {
+                    distinct[index] = item;
+                    index++;
+                }
             }
         }
 

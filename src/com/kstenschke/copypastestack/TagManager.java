@@ -36,4 +36,10 @@ public class TagManager {
         }
     }
 
+    public static int getIdColorByValue(String value) {
+        String hashCode = String.valueOf(value.hashCode());
+
+        return Preferences.getIdColorByHashTag(hashCode);
+    }
+
 }
