@@ -1,4 +1,6 @@
-* 1.0.10
+* 1.1.0
+    ** Added viewer for current clipboard contents (text and image)
+    ** Added grouping of copy items by color tags (click refresh to update color sorting)
     ** Reduced inline changelog to previous five items, added separate full changelog
 * 1.0.9
     ** Usability: Made preview panel always shown and resizable.
