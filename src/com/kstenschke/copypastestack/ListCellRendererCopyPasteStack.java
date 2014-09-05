@@ -32,7 +32,6 @@ import java.awt.*;
  */
 public class ListCellRendererCopyPasteStack<String> extends JPanel implements ListCellRenderer<String> {
 
-    private final Border borderViewerItem;
     private final Border borderSelected;
     private final Border borderWhite;
     private final Border borderYellow;
@@ -60,9 +59,9 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
     public final static int idColorGreen  = 2;
     public final static int idColorRed    = 3;
 
-    private Color colorYellow   = new Color(255, 238, 169);
-    private Color colorGreen    = new Color(202, 233, 190);
-    private Color colorRed      = new Color(238, 207, 207);
+    private final Color colorYellow   = new Color(255, 238, 169);
+    private final Color colorGreen    = new Color(202, 233, 190);
+    private final Color colorRed      = new Color(238, 207, 207);
 
     /**
      * Constructor
@@ -92,7 +91,6 @@ public class ListCellRendererCopyPasteStack<String> extends JPanel implements Li
         this.colorBackground = list.getBackground();
         this.colorForeground = list.getForeground();
 
-        this.borderViewerItem   = BorderFactory.createEtchedBorder();
         this.borderWhite        = BorderFactory.createLineBorder(this.colorBackground);
         this.borderYellow       = BorderFactory.createLineBorder(this.colorYellow);
         this.borderGreen        = BorderFactory.createLineBorder(this.colorGreen);

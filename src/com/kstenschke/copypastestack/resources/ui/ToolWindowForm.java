@@ -15,68 +15,68 @@
  */
 package com.kstenschke.copypastestack.resources.ui;
 
-import org.intellij.images.ui.ImageComponent;
-
 import javax.swing.*;
 
 public class ToolWindowForm {
 
-    public JToolBar toolBar;
-
-    private JPanel mainPanel;
-    public JPanel panelWrap;
-
-    public JList clipItemsList;
-
-    public JButton buttonSortAlphabetical;
-    public JButton buttonRefresh;
-    public JButton buttonDelete;
-    public JButton buttonPaste;
     public JButton buttonCopy;
+    public JButton buttonDelete;
+    public JButton buttonInfo;
+    public JButton buttonPaste;
+    public JButton buttonRefresh;
+    public JButton buttonSortAlphabetical;
+    public JButton buttonTagGreen;
+    public JButton buttonTagRed;
+    public JButton buttonTagUnset;
+    public JButton buttonTagYellow;
 
-    public JTextField textFieldWrapAfter;
-    public JTextField textFieldWrapBefore;
-    public JTextField textFieldWrapDelimiter;
-
+    public JCheckBox checkBoxScale50Percent;
     public JCheckBox checkboxFocusOnPaste;
-    public JCheckBox checkboxImmediateCopy;
     public JCheckBox checkboxImmediatePaste;
     public JCheckBox checkboxKeepSorted;
     public JCheckBox checkBoxWrap;
     public JCheckBox checkboxWrapExtended;
 
-    public JLabel labelStatus;
     public JLabel labelAfter;
-    public JLabel labelOptionImmediateInsert;
-    public JLabel labelOptionFocusOnPaste;
-
-    public JTextPane textPanePreview;
-    public JPanel panelPreview;
-
-    public JButton buttonTagYellow;
-    public JButton buttonTagGreen;
-    public JButton buttonTagRed;
-    public JButton buttonTagUnset;
-    public JSeparator separatorPreview;
-    public JLabel labelTag;
-    public JLabel labelSettings;
-    public JButton buttonInfo;
-    public JPanel panelAroundPreview;
-    public JScrollPane jscrollpaneItemsList;
-    public JPanel panelAroundWrap;
-    public JSplitPane splitpaneToolContent;
-    public JList jListPreview;
-    public JScrollPane scrollPanePreview;
-    public JToolBar toolbarWrap;
-    public JLabel labelPreviewImage;
-    public JPanel panelPreviewImage;
-    public JCheckBox a50CheckBox;
-    public JLabel labelWrapOptions;
     public JLabel labelImage;
     public JLabel labelImageSize;
+    public JLabel labelOptionFocusOnPaste;
+    public JLabel labelOptionImmediateInsert;
+    public JLabel labelPreviewImage;
+    public JLabel labelSettings;
+    public JLabel labelStatus;
+    public JLabel labelTag;
+    public JLabel labelWrapOptions;
 
-    public JPanel getMainPanel() {
-        return mainPanel;
+    public JList listClipItems;
+    public JList listPreview;
+
+    public JPanel panelMain;
+    public JPanel panelAroundPreview;
+    public JPanel panelAroundWrap;
+    public JPanel panelPreview;
+    public JPanel panelPreviewImage;
+    public JPanel panelWrap;
+
+    public JScrollPane scrollPaneItemsList;
+    public JScrollPane scrollPanePreview;
+
+    public JSeparator separatorPreview;
+
+    public JSplitPane splitpaneToolContent;
+
+    public JTextField textFieldWrapAfter;
+    public JTextField textFieldWrapBefore;
+    public JTextField textFieldWrapDelimiter;
+
+    public JTextPane textPanePreview;
+
+    public JToolBar toolBarMain;
+    public JToolBar toolbarWrapOptions;
+
+
+    public JPanel getPanelMain() {
+        return panelMain;
     }
 
     private void createUIComponents() {

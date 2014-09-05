@@ -94,7 +94,7 @@ public class PopupItems extends PopupBase {
         JMenuItem menuItemSelectAll = getJMenuItem(StaticTexts.POPUP_SELECT_ALL, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JList list = toolWindow.getForm().clipItemsList;
+                JList list = toolWindow.getForm().listClipItems;
                 int end = list.getModel().getSize() - 1;
                 if (end >= 0) {
                     list.setSelectionInterval(0, end);

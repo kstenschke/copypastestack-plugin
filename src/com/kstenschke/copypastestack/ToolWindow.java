@@ -73,7 +73,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         initItemsPreview();
 
             // Add form into toolWindow
-        add(form.getMainPanel(), BorderLayout.CENTER);
+        add(form.getPanelMain(), BorderLayout.CENTER);
     }
 
     public ToolWindowForm getForm() {
@@ -112,7 +112,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  JList
      */
     public JList getItemsList() {
-        return this.form.clipItemsList;
+        return this.form.listClipItems;
     }
 
     private void initMainToolbar() {
@@ -180,13 +180,13 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  String
      */
     public String getSelectedItemText() {
-        Object selectedValue = this.form.clipItemsList.getSelectedValue();
+        Object selectedValue = this.form.listClipItems.getSelectedValue();
 
         return selectedValue != null ? selectedValue.toString() : "";
     }
 
     public void removeSelectedItems() {
-        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
         String[] items       = hasSelection ? getUnselectedItems() : new String[0];
 
         this.updateItemsList(items);
@@ -201,9 +201,9 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  String[]
      */
     private String[] getUnselectedItems() {
-        ListModel<String> listModel                     = this.form.clipItemsList.getModel();
-        javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
-        int[] selectedIndices                           = this.form.clipItemsList.getSelectedIndices();
+        ListModel<String> listModel                     = this.form.listClipItems.getModel();
+        javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
+        int[] selectedIndices                           = this.form.listClipItems.getSelectedIndices();
 
         int amountItems             = listModel.getSize();
         String[] unselectedItems    = new String[ amountItems - selectedIndices.length ];
@@ -226,8 +226,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * Paste all / selected items into editor
      */
     public void pasteItems() {
-        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
-        int amountSelected   = ! hasSelection ? 0 : this.form.clipItemsList.getSelectedValuesList().size();
+        boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
+        int amountSelected   = ! hasSelection ? 0 : this.form.listClipItems.getSelectedValuesList().size();
         boolean focusEditor = this.form.checkboxFocusOnPaste.isSelected();
 
         String wrapBefore   = "";
@@ -248,8 +248,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         if( !hasSelection || amountSelected > 1 ) {
                 // Insert multiple items
-            ListModel<String> listModel                     = this.form.clipItemsList.getModel();
-            javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
+            ListModel<String> listModel                     = this.form.listClipItems.getModel();
+            javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
             int amountInserted  = 0;
@@ -264,7 +264,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
             }
         } else {
                 // Insert selected item
-            Object itemValue= this.form.clipItemsList.getSelectedValue();
+            Object itemValue= this.form.listClipItems.getSelectedValue();
             if( itemValue != null ) {
                 String itemText = itemValue.toString();
                 if( this.form.checkBoxWrap.isSelected() ) {
@@ -279,10 +279,10 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * Copy selected items back into clipboard
      */
     public void copySelectedItems() {
-        boolean hasSelection = ! this.form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
         if( hasSelection ) {
-            ListModel<String> listModel                     = this.form.clipItemsList.getModel();
-            javax.swing.ListSelectionModel selectionModel   = this.form.clipItemsList.getSelectionModel();
+            ListModel<String> listModel                     = this.form.listClipItems.getModel();
+            javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
 
@@ -296,7 +296,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     }
 
     private void sortClipboardListAlphabetical() {
-        ListModel<String> listModel = this.form.clipItemsList.getModel();
+        ListModel<String> listModel = this.form.listClipItems.getModel();
         int amountItems = listModel.getSize();
 
         if( amountItems > 0 ) {
@@ -379,7 +379,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     private void updateItemsList(Object[] items) {
         items = UtilsArray.tidy(items, true, true);
 
-        this.form.clipItemsList.setListData( items );
+        this.form.listClipItems.setListData( items );
     }
 
     /**
@@ -393,20 +393,20 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * Init current clipboard content viewer
      */
     private void initCurrentClipboardViewer(){
-        this.form.jListPreview.setCellRenderer(
-                new ListCellRendererCopyPasteStack(this.form.jListPreview, false, this.isMac, true)
+        this.form.listPreview.setCellRenderer(
+                new ListCellRendererCopyPasteStack(this.form.listPreview, false, this.isMac, true)
         );
 
         String[] items    = { StaticTexts.ITEM_TEXT_VIEW_CURRENT };
-        this.form.jListPreview.setListData( items );
+        this.form.listPreview.setListData( items );
     }
 
     /**
      * @return  Amount of items
      */
     private int initItemsList() {
-        this.form.clipItemsList.setCellRenderer(
-                new ListCellRendererCopyPasteStack(this.form.clipItemsList, false, this.isMac, false)
+        this.form.listClipItems.setCellRenderer(
+                new ListCellRendererCopyPasteStack(this.form.listClipItems, false, this.isMac, false)
         );
         String[] items = Preferences.getItems();
         this.updateItemsList(items);
@@ -415,17 +415,17 @@ public class ToolWindow extends SimpleToolWindowPanel {
         }
 
             // Add keyListener
-        this.form.clipItemsList.addKeyListener( new KeyListenerItemsList(this));
-        this.form.clipItemsList.addMouseListener(new MouseListenerItemsList(StaticTexts.INFO_LIST, this));
+        this.form.listClipItems.addKeyListener( new KeyListenerItemsList(this));
+        this.form.listClipItems.addMouseListener(new MouseListenerItemsList(StaticTexts.INFO_LIST, this));
 
             // add popup listener
-        this.form.clipItemsList.addMouseListener(new PopupItems(this).getPopupListener() );
+        this.form.listClipItems.addMouseListener(new PopupItems(this).getPopupListener() );
 
         return items.length;
     }
 
     public boolean isPreviewImage50Percent() {
-        return this.form.a50CheckBox.isSelected();
+        return this.form.checkBoxScale50Percent.isSelected();
     }
 
     private void initItemsPreview() {
@@ -435,11 +435,11 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             // Install listener to update shown preview from current clipboard
         FocusListenerViewClipboard focusListenerViewClipboard = new FocusListenerViewClipboard(this);
-        this.form.jListPreview.addFocusListener( focusListenerViewClipboard );
-        this.form.a50CheckBox.addChangeListener(new ChangeListenerResizePreview(focusListenerViewClipboard));
+        this.form.listPreview.addFocusListener( focusListenerViewClipboard );
+        this.form.checkBoxScale50Percent.addChangeListener(new ChangeListenerResizePreview(focusListenerViewClipboard));
 
             // Install items listener to update shown preview from stacked items
-        this.form.clipItemsList.addListSelectionListener(new ListSelectionListenerItemsList(this));
+        this.form.listClipItems.addListSelectionListener(new ListSelectionListenerItemsList(this));
 
             // Add popup listener
         this.form.textPanePreview.addMouseListener(new PopupPreview(this).getPopupListener() );

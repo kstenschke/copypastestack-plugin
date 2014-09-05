@@ -82,7 +82,7 @@ public class FocusListenerViewClipboard implements FocusListener {
             clipImage   = (BufferedImage) clipboard.getData(DataFlavor.imageFlavor);
             displayImageInViewer(clipImage);
         } else {
-            this.macViewClipboardImage(clipboardContents);
+            this.macPreviewClipboardImage();
         }
     }
 
@@ -98,14 +98,14 @@ public class FocusListenerViewClipboard implements FocusListener {
             toolWindow.form.labelPreviewImage.setIcon(icon);
 
             toolWindow.form.panelPreviewImage.setVisible(true);
-            toolWindow.form.jListPreview.setSelectedIndex(0);
+            toolWindow.form.listPreview.setSelectedIndex(0);
             toolWindow.form.scrollPanePreview.setVisible(false);
         }
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        this.toolWindow.form.jListPreview.clearSelection();
+        this.toolWindow.form.listPreview.clearSelection();
     }
 
     /**
@@ -134,11 +134,8 @@ public class FocusListenerViewClipboard implements FocusListener {
      * 2. find copy/paste stack exported image in home folder and load into Java Image
      * 3. delete exported temporary image file
      * 4. display the image :)
-     *
-     * @param   transferable
-     * @return
      */
-    void macViewClipboardImage(Transferable transferable) {
+    void macPreviewClipboardImage() {
         new Thread() {  // thread 1
             public void run() {
                 try {

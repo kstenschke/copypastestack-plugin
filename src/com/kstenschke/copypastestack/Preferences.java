@@ -28,8 +28,6 @@ public class Preferences {
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_WRAP = "PluginCopyPasteStack.IsActiveWrap";
     @NonNls
-    private static final String PROPERTY_IS_ACTIVE_PREVIEW = "PluginCopyPasteStack.IsActivePreview";
-    @NonNls
     private static final String PROPERTY_IS_ACTIVE_FOCUS_ON_PASTE = "PluginCopyPasteStack.IsActiveFocusEditor";
     @NonNls
     private static final String PROPERTY_IS_ACTIVE_IMMEDIATE_PASTE = "PluginCopyPasteStack.IsActiveImmediatePaste";

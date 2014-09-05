@@ -7,7 +7,7 @@ import javax.swing.*;
 public class TagManager {
 
     public static void untagAll(ToolWindowForm form) {
-        ListModel listModel  = form.clipItemsList.getModel();
+        ListModel listModel  = form.listClipItems.getModel();
         int amountItems      = listModel.getSize();
 
         for(int i=0; i< amountItems; i++) {
@@ -17,12 +17,12 @@ public class TagManager {
     }
 
     public static void tagSelected(ToolWindowForm form, int idColor) {
-        ListModel listModel                 = form.clipItemsList.getModel();
-        ListSelectionModel selectionModel   = form.clipItemsList.getSelectionModel();
+        ListModel listModel                 = form.listClipItems.getModel();
+        ListSelectionModel selectionModel   = form.listClipItems.getSelectionModel();
 
-        boolean hasSelection = ! form.clipItemsList.isSelectionEmpty();
+        boolean hasSelection = ! form.listClipItems.isSelectionEmpty();
         int amountItems      = listModel.getSize();
-        int amountSelected   = ! hasSelection ? 0 : form.clipItemsList.getSelectedValuesList().size();
+        int amountSelected   = ! hasSelection ? 0 : form.listClipItems.getSelectedValuesList().size();
 
         for(int i=0; i< amountItems; i++) {
             if( amountSelected == 0 || selectionModel.isSelectedIndex(i) ) {

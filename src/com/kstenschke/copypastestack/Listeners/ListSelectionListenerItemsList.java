@@ -39,7 +39,7 @@ public class ListSelectionListenerItemsList implements ListSelectionListener {
         this.toolWindowForm.textPanePreview.setCaretPosition(0);
 
         if( this.toolWindowForm.panelPreviewImage.isVisible() ) {
-            this.toolWindowForm.jListPreview.clearSelection();
+            this.toolWindowForm.listPreview.clearSelection();
             this.toolWindowForm.panelPreviewImage.setVisible(false);
             this.toolWindowForm.scrollPanePreview.setVisible(true);
         }

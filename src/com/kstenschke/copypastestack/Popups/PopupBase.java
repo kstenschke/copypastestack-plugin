@@ -55,37 +55,6 @@ class PopupBase {
         return item;
     }
 
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background) {
-        return getJMenuItem(label, actionListener, pathImage, foreground, background, null);
-    }
-
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke accelleratorKeyStroke) {
-        return getJMenuItem(label, actionListener, pathImage, foreground, background, accelleratorKeyStroke, StaticValues.NULL_CHAR);
-    }
-
-    /**
-     * @param   label
-     * @param   actionListener
-     * @param   pathImage
-     * @return  JMenuItem
-     */
-    JMenuItem getJMenuItem(String label, ActionListener actionListener, @Nullable String pathImage, @Nullable Color foreground, @Nullable Color background, KeyStroke acceleratorKeyStroke, char mnemoric) {
-        JMenuItem item = getJMenuItem(label, actionListener, mnemoric);
-        setJMenuItemIcon(item, pathImage);
-
-        if( foreground != null && background != null ) {
-            item.setBackground(background);
-            item.setForeground(foreground);
-
-        }
-
-        if( acceleratorKeyStroke != null ) {
-            item.setAccelerator(acceleratorKeyStroke);
-        }
-
-        return item;
-    }
-
     /**
      * @param   label
      * @param   actionListener
@@ -114,22 +83,6 @@ class PopupBase {
 
     JMenuItem getJMenuItem(String label, ActionListener actionListener, Icon icon) {
         return getJMenuItem(label, actionListener, icon, null, null);
-    }
-
-    /**
-     * @param   jMenuItem
-     * @param   pathImage
-     */
-    void setJMenuItemIcon(JMenuItem jMenuItem, @Nullable String pathImage) {
-        Icon icon;
-
-        if( pathImage == null ) {
-            icon = Icons.ICON_BLANK;
-        } else {
-            icon = IconLoader.getIcon( pathImage );
-        }
-
-        jMenuItem.setIcon(icon);
     }
 
     /**
