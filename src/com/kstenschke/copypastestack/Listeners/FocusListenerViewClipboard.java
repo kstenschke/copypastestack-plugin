@@ -91,11 +91,14 @@ public class FocusListenerViewClipboard implements FocusListener {
             if( toolWindow.isPreviewImage50Percent() ) {
                 image = resizeImage(image, 0.5);
             }
+            toolWindow.form.labelImageSize.setText(image.getWidth(null)+"x"+image.getHeight(null)+"px");
+
             ImageIcon icon = new ImageIcon(image);
             toolWindow.form.panelPreviewImage.setMaximumSize(toolWindow.form.scrollPanePreview.getSize());
             toolWindow.form.labelPreviewImage.setIcon(icon);
 
             toolWindow.form.panelPreviewImage.setVisible(true);
+            toolWindow.form.jListPreview.setSelectedIndex(0);
             toolWindow.form.scrollPanePreview.setVisible(false);
         }
     }
@@ -128,11 +131,11 @@ public class FocusListenerViewClipboard implements FocusListener {
      * Workaround to get image out of the clipboard on Mac OS (instead of depending on Quicktime for Java)
      *
      * 1. use apple script to detect type and save clipboard image temporarily to home folder
-     * 2. find newest copy/paste stack exported image in home folder and load into Java Image
-     * 3. delete exported temporary image
-     * 4. return image :)
+     * 2. find copy/paste stack exported image in home folder and load into Java Image
+     * 3. delete exported temporary image file
+     * 4. display the image :)
      *
-     * @param transferable
+     * @param   transferable
      * @return
      */
     void macViewClipboardImage(Transferable transferable) {

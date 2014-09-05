@@ -71,6 +71,9 @@ public class ToolWindowForm {
     public JLabel labelPreviewImage;
     public JPanel panelPreviewImage;
     public JCheckBox a50CheckBox;
+    public JLabel labelWrapOptions;
+    public JLabel labelImage;
+    public JLabel labelImageSize;
 
     public JPanel getMainPanel() {
         return mainPanel;

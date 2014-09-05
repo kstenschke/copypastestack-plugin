@@ -82,6 +82,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
     private void initIcons() {
         this.form.labelTag.setIcon( Icons.ICON_TAG );
+        this.form.labelWrapOptions.setIcon( Icons.ICON_WRAP );
+        this.form.labelImage.setIcon( Icons.ICON_IMAGE );
         this.form.labelSettings.setIcon( Icons.ICON_SETTINGS );
         this.form.buttonRefresh.setIcon( Icons.ICON_REFRESH );
         this.form.buttonTagUnset.setIcon(Icons.ICON_TAG_DELETE);
