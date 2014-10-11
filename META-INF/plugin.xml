@@ -42,9 +42,10 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.1.1 Added refresh button for current clipboard viewer</li>
         <li>1.1.0<ul>
                 <li>Added viewer for current clipboard contents (text and image)</li>
                 <li>Added grouping of copy items by color tags (click refresh to update color sorting)</li>
@@ -66,12 +67,6 @@
             </ul>
         </li>
         <li>1.0.7 Bugfix: Fixed possible null pointer exception when wiping all items</li>
-        <li>1.0.6<ul>
-                <li>Added: Historic clipboard items which are not available in the regular copy history are marked with a lighter icon</li>
-                <li>Added shortcut: [Del] or [Backspace] = remove item(s)</li>
-                <li>Added shortcut: [CTRL]+c = copy item(s)</li>
-            </ul>
-        </li>
     </ul><br/>
     <a href="https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile" target="_blank">...Read full changelog on github</a>
     ]]>

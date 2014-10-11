@@ -28,6 +28,6 @@ public class ChangeListenerResizePreview implements ChangeListener{
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        this.focusListenerViewClipboard.showClipboardPreview();
+        this.focusListenerViewClipboard.updateClipboardPreview();
     }
 }

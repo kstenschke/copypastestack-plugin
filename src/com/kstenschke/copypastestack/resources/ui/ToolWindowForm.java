@@ -72,6 +72,8 @@ public class ToolWindowForm {
     public JTextPane textPanePreview;
 
     public JToolBar toolBarMain;
+    public JPanel panelPreviewMenu;
+    public JButton buttonRefreshPreview;
     public JToolBar toolbarWrapOptions;
 
 

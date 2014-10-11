@@ -19,6 +19,12 @@ The plugin adds a tool window of copy history items, similar to the standard cop
 * The plugin also includes a viewer for the current textual or image clipboard contents
 
 
+h2. Credits
+
+The icons used in this plugin are either derived from the icons used in the intellij IDEs,
+or colorized variations of icons from the "font awesome iconset":http://fortawesome.github.io/Font-Awesome/
+
+
 h2. Changelog
 
 Read full changelog at: https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile

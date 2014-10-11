@@ -42,10 +42,10 @@ public class FocusListenerViewClipboard implements FocusListener {
 
     @Override
     public void focusGained(FocusEvent e) {
-        showClipboardPreview();
+        updateClipboardPreview();
     }
 
-    public void showClipboardPreview() {
+    public void updateClipboardPreview() {
         Clipboard clipboard             = Toolkit.getDefaultToolkit().getSystemClipboard();
         Transferable clipboardContents  = clipboard.getContents(null);
 

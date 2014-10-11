@@ -122,7 +122,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 refreshClipboardList();
             }
         });
-        this.form.buttonRefresh.addMouseListener( new MouseListenerBase(StaticTexts.INFO_REFRESH));
+        this.form.buttonRefresh.addMouseListener(new MouseListenerBase(StaticTexts.INFO_REFRESH));
 
         this.form.buttonSortAlphabetical.addActionListener(new ActionListener() {
             @Override
@@ -319,7 +319,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
             for (int i = 0; i < amountItems; i++) {
                 String item = listModel.getElementAt(i);
                 if( item != null && ! item.trim().isEmpty() ) {
-
                     switch( TagManager.getIdColorByValue(item) ) {
                         case StaticValues.ID_COLOR_YELLOW:
                             itemsYellow[indexYellow] = item;
@@ -477,9 +476,20 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.scrollPanePreview.setVisible(true);
 
             // Install listener to update shown preview from current clipboard
-        FocusListenerViewClipboard focusListenerViewClipboard = new FocusListenerViewClipboard(this);
+        final FocusListenerViewClipboard focusListenerViewClipboard = new FocusListenerViewClipboard(this);
         this.form.listPreview.addFocusListener( focusListenerViewClipboard );
         this.form.checkBoxScale50Percent.addChangeListener(new ChangeListenerResizePreview(focusListenerViewClipboard));
+
+        this.form.buttonRefreshPreview.addMouseListener( new MouseListenerBase(StaticTexts.INFO_REFRESH_PREVIEW));
+        final JList listPreview = this.form.listPreview;
+        this.form.buttonRefreshPreview.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                focusListenerViewClipboard.updateClipboardPreview();
+                listPreview.requestFocusInWindow();
+                listPreview.setSelectedIndex(0);
+            }
+        });
 
             // Install items listener to update shown preview from stacked items
         this.form.listClipItems.addListSelectionListener(new ListSelectionListenerItemsList(this));

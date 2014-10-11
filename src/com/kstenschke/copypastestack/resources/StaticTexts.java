@@ -33,6 +33,8 @@ public class StaticTexts {
     @NonNls
     public static final String INFO_REFRESH = "Refresh items, sort by color tags";
     @NonNls
+    public static final String INFO_REFRESH_PREVIEW = "Refresh preview";
+    @NonNls
     public static final String INFO_SORT = "Sort items by color and alphabetical";
     @NonNls
     public static final String INFO_DELETE = "Remove selected Items from list / None selected: remove cached items";
