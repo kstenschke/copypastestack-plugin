@@ -12,9 +12,9 @@ The plugin adds a tool window of copy history items, similar to the standard cop
 
 * Copy/paste stack provides a list of copied string items, from the current and recent sessions. Copy/paste stack caches its content, allowing you to keep copied items for as long as needed (instead of limiting their availability to the current editing session).
 * The full text of selected items can optionally be previewed in an editable text pane.
-* One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click.
+* One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click, and can be copied back to the clipboard
 * Items are automatically trimmed from surrounding whitespace.
-* The list of copied items can be sorted alphabetically
+* The list of copied items can be sorted chronologically or alphabetically, and grouped using color tags
 * When pasting items back into the editor, they can be wrapped with a prefix and postfix string, and a delimiter when pasting multiple items at once.
 * The plugin also includes a viewer for the current textual or image clipboard contents
 

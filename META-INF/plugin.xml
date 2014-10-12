@@ -23,17 +23,16 @@
       The plugin adds a tool window of copy history items, similar to the standard copy history built-in,
       but possible to be kept persistently open and with some additional features:<br />
       <ul>
-        <li>Copy/paste stack provides an unlimited long list of of copied string items,
-            from the current and recent sessions.
+        <li>Copy/paste stack provides an unlimited long list of of copied string items, from the current and recent sessions.
             Copy/paste stack caches its content, allowing you to keep copied items for as long as needed
             (instead of limiting their availability to the current editing session).
         </li>
-        <li>The full text of selected copied items can optionally be previewed in an editable text pane.</li>
-        <li>One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click.</li>
+        <li>The full text of selected copied items can be previewed in an editable text pane.</li>
+        <li>One or multiple selected items can be inserted into the editor via [ENTER] key, [SPACE] or double click,
+            and can be copied back to the clipboard
+        </li>
         <li>Items are automatically trimmed from surrounding whitespace.</li>
-        <li>The list of copied items can be sorted chronologically and alphabetically</li>
-        <li>Previously copied items can be re-copied to the regular clipboard again</li>
-        <li>Items in the copy stack can be color tagged with a yellow, green or red background</li>
+        <li>The list of copied items can be sorted chronologically or alphabetically, and grouped using color tags</li>
         <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
             and a delimiter when pasting multiple items at once.
         </li>
