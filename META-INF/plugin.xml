@@ -41,11 +41,14 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.1.2</version>
+    <version>1.1.1</version>
     <change-notes><![CDATA[
     <ul>
-        <li>1.1.2 Bugfix: Inserting items did not replace but insert after a given selection</li>
-        <li>1.1.1 Added refresh button for current clipboard viewer</li>
+        <li>1.1.1><ul>
+            <li>Bugfix: Inserting items did not replace but insert after a given selection</li>
+            <li>Added refresh button for current clipboard viewer</li>
+            </ul>
+        </li>
         <li>1.1.0<ul>
                 <li>Added viewer for current clipboard contents (text and image)</li>
                 <li>Added grouping of copy items by color tags (click refresh to update color sorting)</li>

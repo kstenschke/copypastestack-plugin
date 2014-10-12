@@ -1,5 +1,6 @@
-* 1.1.2 Bugfix: Inserting items did not replace but append to given selection
-* 1.1.1 Added refresh button for current clipboard viewer
+* 1.1.1
+    ** Added refresh button for current clipboard viewer
+    ** Bugfix: Inserting items did not replace but insert after a given selection
 * 1.1.0
     ** Added viewer for current clipboard contents (text and image)
     ** Added grouping of copy items by color tags (click refresh to update color sorting)
