@@ -21,6 +21,7 @@ import com.intellij.openapi.command.UndoConfirmationPolicy;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
@@ -90,6 +91,7 @@ public class UtilsEnvironment {
         if( editor != null && text != null && ! text.isEmpty() ) {
             CaretModel caretModel       = editor.getCaretModel();
             final Integer currentOffset = caretModel.getOffset();
+            final SelectionModel selectionModel = editor.getSelectionModel();
 
             CommandProcessor.getInstance().executeCommand(project, new Runnable() {
                 public void run() {
@@ -98,8 +100,15 @@ public class UtilsEnvironment {
                             Integer textLen   = text.length();
                             Document document = editor.getDocument();
 
-                            document.insertString(currentOffset, text );
-                            editor.getCaretModel().moveToOffset(currentOffset + textLen);
+                            if( selectionModel.hasSelection() ) {
+                                int selectionStart = selectionModel.getSelectionStart();
+                                document.replaceString(selectionStart, selectionModel.getSelectionEnd(), text);
+                                selectionModel.removeSelection();
+                                editor.getCaretModel().moveToOffset(selectionStart + textLen);
+                            } else {
+                                document.insertString(currentOffset, text );
+                                editor.getCaretModel().moveToOffset(currentOffset + textLen);
+                            }
 
                             VirtualFile file = FileDocumentManager.getInstance().getFile( document );
                             if( file != null) {

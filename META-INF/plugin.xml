@@ -41,9 +41,10 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.1.2 Bugfix: Inserting items did not replace but insert after a given selection</li>
         <li>1.1.1 Added refresh button for current clipboard viewer</li>
         <li>1.1.0<ul>
                 <li>Added viewer for current clipboard contents (text and image)</li>
@@ -65,7 +66,6 @@
                 <li>Bugfix: Refresh didn't update items count</li>
             </ul>
         </li>
-        <li>1.0.7 Bugfix: Fixed possible null pointer exception when wiping all items</li>
     </ul><br/>
     <a href="https://github.com/kstenschke/copypastestack-plugin/blob/master/CHANGELOG.textile" target="_blank">...Read full changelog on github</a>
     ]]>
