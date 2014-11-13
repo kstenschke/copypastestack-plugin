@@ -1,3 +1,5 @@
+* 1.1.2
+    ** Improved compatibility: color tagging clip items did not work with Java VMs < 1.7
 * 1.1.1
     ** Added refresh button for current clipboard viewer
     ** Bugfix: Inserting items did not replace but insert after a given selection
