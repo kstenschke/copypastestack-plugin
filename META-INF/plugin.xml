@@ -36,14 +36,25 @@
         <li>When pasting items back into the editor, they can be wrapped with a prefix and postfix string,
             and a delimiter when pasting multiple items at once.
         </li>
-        <li>The plugin also includes a viewer for the current textual or image clipboard contents</li>
+        <li>The plugiArma Five Fonts
+Ronda Seven Fonts
+Easta Seven Fonts
+Westa Seven Fonts
+Tempesta Seven Fonts
+Tempesta Five Fonts
+
+see: http://p.yusukekamiyamane.com/fonts/n also includes a viewer for the current textual or image clipboard contents</li>
       </ul>
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.1.2<ul>
+            <li>Improved compatibility: color tagging clip items did not work with Java VMs < 1.7</li>
+            </ul>
+        </li>
         <li>1.1.1><ul>
             <li>Bugfix: Inserting items did not replace but insert after a given selection</li>
             <li>Added refresh button for current clipboard viewer</li>

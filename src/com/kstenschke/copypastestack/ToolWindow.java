@@ -227,7 +227,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      */
     public void pasteItems() {
         boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
-        int amountSelected   = ! hasSelection ? 0 : this.form.listClipItems.getSelectedValuesList().size();
+        int amountSelected   = ! hasSelection ? 0 : this.form.listClipItems.getSelectedIndices().length;
         boolean focusEditor = this.form.checkboxFocusOnPaste.isSelected();
 
         String wrapBefore   = "";

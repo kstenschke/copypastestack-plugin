@@ -37,7 +37,7 @@ public class TagManager {
 
         boolean hasSelection = ! form.listClipItems.isSelectionEmpty();
         int amountItems      = listModel.getSize();
-        int amountSelected   = ! hasSelection ? 0 : form.listClipItems.getSelectedValuesList().size();
+        int amountSelected   = ! hasSelection ? 0 : form.listClipItems.getSelectedIndices().length;
 
         for(int i=0; i< amountItems; i++) {
             if( amountSelected == 0 || selectionModel.isSelectedIndex(i) ) {

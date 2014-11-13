@@ -15,7 +15,10 @@
  */
 package com.kstenschke.copypastestack.resources.ui;
 
+import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
+
 import javax.swing.*;
+import java.util.List;
 
 public class ToolWindowForm {
 
