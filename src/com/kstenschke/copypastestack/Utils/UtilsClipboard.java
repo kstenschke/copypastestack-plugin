@@ -69,7 +69,7 @@ public class UtilsClipboard {
             for( Transferable currentItem : copiedItems) {
                 if( currentItem.isDataFlavorSupported( DataFlavor.stringFlavor ) )  {
                     try {
-                        java.lang.String itemStr  = currentItem.getTransferData( DataFlavor.stringFlavor ).toString();
+                        String itemStr  = currentItem.getTransferData( DataFlavor.stringFlavor ).toString();
                         if( itemStr.equals(text) ) {
                             return true;
                         }

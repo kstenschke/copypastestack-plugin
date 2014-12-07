@@ -187,14 +187,14 @@ public class UtilsEnvironment {
 
     /**
      * @param   url
-     * @throws  IOException
-     * @throws  URISyntaxException
+     * @throws  java.io.IOException
+     * @throws  java.net.URISyntaxException
      */
     public static void openUrl(String url) throws IOException, URISyntaxException {
-        if(java.awt.Desktop.isDesktopSupported() ) {
-            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+        if(Desktop.isDesktopSupported() ) {
+            Desktop desktop = Desktop.getDesktop();
 
-            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE) ) {
+            if(desktop.isSupported(Desktop.Action.BROWSE) ) {
                 java.net.URI uri = new java.net.URI(url);
                 desktop.browse(uri);
             }

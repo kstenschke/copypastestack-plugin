@@ -21,25 +21,28 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
+import com.intellij.util.ui.TextTransferable;
 import com.kstenschke.copypastestack.Listeners.*;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
 import com.kstenschke.copypastestack.Popups.PopupTagUnset;
+import com.kstenschke.copypastestack.Utils.*;
 import com.kstenschke.copypastestack.resources.Icons;
 import com.kstenschke.copypastestack.resources.StaticTexts;
 import com.kstenschke.copypastestack.resources.StaticValues;
-import com.kstenschke.copypastestack.Utils.UtilsArray;
-import com.kstenschke.copypastestack.Utils.UtilsClipboard;
-import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
-import com.kstenschke.copypastestack.Utils.UtilsString;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
 import org.apache.commons.lang.ArrayUtils;
+import org.jetbrains.annotations.Nullable;
+import sun.awt.datatransfer.ClipboardTransferable;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.Document;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -50,6 +53,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
     public final ToolWindowForm form;
     private final boolean isMac;
+
+    public UndoManager undoManager;
 
     /**
      * Constructor - initialize the tool window content
@@ -71,6 +76,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         initMainToolbar();
         initWrapOptions();
         initItemsPreview();
+        initInlineEditor();
 
             // Add form into toolWindow
         add(form.getPanelMain(), BorderLayout.CENTER);
@@ -151,7 +157,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.form.buttonDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeSelectedItems();
+                removeItemsFromStack(e);
             }
         });
         this.form.buttonDelete.addMouseListener(new MouseListenerBase(StaticTexts.INFO_DELETE));
@@ -185,11 +191,16 @@ public class ToolWindow extends SimpleToolWindowPanel {
         return selectedValue != null ? selectedValue.toString() : "";
     }
 
-    public void removeSelectedItems() {
-        boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
-        String[] items       = hasSelection ? getUnselectedItems() : new String[0];
+    /**
+     * @param e Event
+     */
+    public void removeItemsFromStack(@Nullable ActionEvent e) {
+        boolean isAnySpecialKeyPressed;
 
-        this.setClipboardListData(items);
+        boolean hasSelection = !this.form.listClipItems.isSelectionEmpty();
+        String[] items = hasSelection ? getUnselectedItems() : new String[0];
+
+        this.setClipboardListData(items,UtilsActionEvent.isAnySpecialKeyPressed(e));
         Preferences.saveCopyItems(items);
 
         if( !hasSelection ) {
@@ -202,7 +213,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      */
     private String[] getUnselectedItems() {
         ListModel<String> listModel                     = this.form.listClipItems.getModel();
-        javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
+        ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
         int[] selectedIndices                           = this.form.listClipItems.getSelectedIndices();
 
         int amountItems             = listModel.getSize();
@@ -249,7 +260,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         if( !hasSelection || amountSelected > 1 ) {
                 // Insert multiple items
             ListModel<String> listModel                     = this.form.listClipItems.getModel();
-            javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
+            ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
             int amountInserted  = 0;
@@ -282,7 +293,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
         boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
         if( hasSelection ) {
             ListModel<String> listModel                     = this.form.listClipItems.getModel();
-            javax.swing.ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
+            ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
 
@@ -363,7 +374,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                     ArrayUtils.addAll(
                         ArrayUtils.addAll(itemsYellow, itemsGreen), itemsRed
                     ),  itemsUntagged
-                )
+                ), false
             );
         }
     }
@@ -407,7 +418,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
             Object[] allItems      = (copyItemsPref.length > 0) ? ArrayUtils.addAll(copyItemsList, copyItemsPref) : copyItemsList;
             itemsUnique            = UtilsArray.tidy(allItems);
             if( itemsUnique.length > 0 ) {
-                this.setClipboardListData(itemsUnique);
+                this.setClipboardListData(itemsUnique, false);
                 this.sortClipboardListByTags(this.form.checkboxKeepSorted.isSelected());
 
                 Preferences.saveCopyItems(itemsUnique);
@@ -419,9 +430,17 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
     /**
      * @param   items
+     * @param   overrideIDEclipItems    false (Default): remove items from shown list and restore them on refresh / true: (if SHIFT or CTRL or ALT pressed) remove them permanently from IDE
      */
-    private void setClipboardListData(Object[] items) {
-        this.form.listClipItems.setListData( UtilsArray.tidy(items) );
+    private void setClipboardListData(Object[] items, boolean overrideIDEclipItems) {
+        items = UtilsArray.tidy(items);
+
+        this.form.listClipItems.setListData(items);
+
+        if( overrideIDEclipItems ) {
+            //CopyPasteManager.getInstance().setContents(  );
+            //@todo implement override clipboard history (not only currently displayed items)
+        }
     }
 
     /**
@@ -451,7 +470,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 new ListCellRendererCopyPasteStack(this.form.listClipItems, false, this.isMac, false)
         );
         String[] items = Preferences.getItems();
-        this.setClipboardListData(items);
+        this.setClipboardListData(items, false);
         if( Preferences.getIsActiveKeepSorting() ) {
             this.sortClipboardListAlphabetical();
         }
@@ -496,6 +515,21 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
             // Add popup listener
         this.form.textPanePreview.addMouseListener(new PopupPreview(this).getPopupListener() );
+    }
+
+    /**
+     * Add undoManager to clip pane
+     */
+    private void initInlineEditor() {
+        Document document = this.form.textPanePreview.getDocument();
+        if( this.undoManager != null) {
+            document.removeUndoableEditListener(this.undoManager);
+        }
+
+        this.undoManager = new UndoManager();
+        document.addUndoableEditListener( this.undoManager );
+
+        this.form.textPanePreview.addKeyListener( new KeyListenerTextPanePreview(this) );
     }
 
     /**

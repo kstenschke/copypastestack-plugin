@@ -53,6 +53,8 @@ see: http://p.yusukekamiyamane.com/fonts/n also includes a viewer for the curren
     <ul>
         <li>1.1.2<ul>
             <li>Improved compatibility: color tagging clip items did not work with Java VMs < 1.7</li>
+            <li>Replaced inline textarea with jEditor</li>
+            <li>Added optional right-to-left detection, toggeling editor orientation</li>
             </ul>
         </li>
         <li>1.1.1><ul>

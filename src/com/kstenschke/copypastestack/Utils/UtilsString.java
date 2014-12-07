@@ -29,4 +29,19 @@ public class UtilsString {
         return str;
     }
 
+    /**
+     * @param   str
+     * @return  boolean     Does str contain any right-to-left language character?
+     */
+    public static boolean containsRTL(String str) {
+        char[] chars = str.toCharArray();
+        for(char c: chars){
+            if(c >= 0x600 && c <= 0x6ff){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

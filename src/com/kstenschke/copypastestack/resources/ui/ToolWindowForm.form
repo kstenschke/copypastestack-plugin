@@ -170,6 +170,7 @@
             <constraints/>
             <properties>
               <icon value="com/kstenschke/copypastestack/resources/icons/paste-click.png"/>
+              <preferredSize width="16" height="16"/>
               <text value="     "/>
             </properties>
           </component>
@@ -344,7 +345,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="1f16d" class="javax.swing.JTextPane" binding="textPanePreview">
+                      <component id="a407a" class="javax.swing.JEditorPane" binding="textPanePreview">
                         <constraints/>
                         <properties>
                           <text value=""/>

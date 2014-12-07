@@ -58,6 +58,8 @@ public class StaticTexts {
     public static final String INFO_FOCUS_ON_PASTE = "Focus editor upon paste";
     @NonNls
     public static final String INFO_WRAP_EXTENDED = "Convert escaped whitespace sequences of wrap parts during paste";
+    @NonNls
+    public static final String INFO_DETECT_RIGHT_TO_LEFT = "Enable right-to-left detection / orientation";
 
     // ========================================================================================================== Errors
     @NonNls

@@ -47,7 +47,7 @@ public class KeyListenerItemsList implements KeyListener {
 
             case KeyEvent.VK_DELETE:
             case KeyEvent.VK_BACK_SPACE:
-                this.toolWindow.removeSelectedItems();
+                this.toolWindow.removeItemsFromStack(null);
                 break;
         }
     }

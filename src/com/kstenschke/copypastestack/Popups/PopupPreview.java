@@ -132,9 +132,9 @@ public class PopupPreview extends PopupBase {
     }
 
     private boolean previewHasSelection() {
-        JTextPane textPanePreview = toolWindow.getForm().textPanePreview;
-        Integer selStart    = textPanePreview.getSelectionStart();
-        Integer selEnd    = textPanePreview.getSelectionEnd();
+        JEditorPane editorPanePreview = toolWindow.getForm().textPanePreview;
+        Integer selStart    = editorPanePreview.getSelectionStart();
+        Integer selEnd    = editorPanePreview.getSelectionEnd();
 
         return ! selStart.equals( selEnd );
     }
