@@ -38,6 +38,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.Document;
 import javax.swing.undo.UndoManager;
+import javax.tools.Tool;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -526,7 +527,35 @@ public class ToolWindow extends SimpleToolWindowPanel {
         this.undoManager = new UndoManager();
         document.addUndoableEditListener( this.undoManager );
 
-        this.form.textPanePreview.addKeyListener( new KeyListenerTextPanePreview(this) );
+        final ToolWindow toolWindowFin = this;
+
+        InputMap inputMap = this.form.textPanePreview.getInputMap();
+
+        // CTRL + Z = undo
+        inputMap.put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
+                new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if( toolWindowFin.undoManager.canUndo() ) {
+                            toolWindowFin.undoManager.undo();
+                        }
+                    }
+                }
+        );
+
+        // CTRL + SHIFT + Z = redo
+        inputMap.put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.SHIFT_DOWN_MASK | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
+                new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if( toolWindowFin.undoManager.canRedo() ) {
+                            toolWindowFin.undoManager.redo();
+                        }
+                    }
+                }
+        );
     }
 
     /**
