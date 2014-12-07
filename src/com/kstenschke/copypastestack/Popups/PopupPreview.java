@@ -30,7 +30,7 @@ public class PopupPreview extends PopupBase {
 
     private final ToolWindow toolWindow;
     final private JPopupMenu popup;
-    final JMenuItem menuItemCopySelection;
+    private final JMenuItem menuItemCopySelection;
     final JMenuItem menuItemPaste;
 
     /**

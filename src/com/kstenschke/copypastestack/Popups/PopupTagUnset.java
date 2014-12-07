@@ -31,7 +31,7 @@ public class PopupTagUnset extends PopupBase {
 
     final private JPopupMenu popup;
 
-    final JMenuItem menuItemUnsetAllTags;
+    private final JMenuItem menuItemUnsetAllTags;
 
     /**
      * Constructor

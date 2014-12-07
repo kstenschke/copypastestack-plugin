@@ -23,8 +23,8 @@ import javax.swing.event.ListSelectionListener;
 
 public class ListSelectionListenerItemsList implements ListSelectionListener {
 
-    final ToolWindow toolWindow;
-    final ToolWindowForm toolWindowForm;
+    private final ToolWindow toolWindow;
+    private final ToolWindowForm toolWindowForm;
 
     public ListSelectionListenerItemsList(ToolWindow toolWindow) {
         this.toolWindow = toolWindow;

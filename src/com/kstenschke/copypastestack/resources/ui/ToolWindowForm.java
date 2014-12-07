@@ -17,11 +17,8 @@ package com.kstenschke.copypastestack.resources.ui;
 
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.EditorFactory;
-import com.kstenschke.copypastestack.Utils.UtilsEnvironment;
 
 import javax.swing.*;
-import java.util.List;
 
 public class ToolWindowForm {
 
@@ -69,7 +66,7 @@ public class ToolWindowForm {
 
     public JSeparator separatorPreview;
 
-    public JSplitPane splitpaneToolContent;
+    public JSplitPane splitPaneToolContent;
 
     public JTextField textFieldWrapAfter;
     public JTextField textFieldWrapBefore;
@@ -80,7 +77,6 @@ public class ToolWindowForm {
     public JToolBar toolBarMain;
     public JPanel panelPreviewMenu;
     public JButton buttonRefreshPreview;
-    public JCheckBox checkBoxRTL;
     public JToolBar toolbarWrapOptions;
 
     public Document document;
@@ -91,9 +87,6 @@ public class ToolWindowForm {
      */
     public ToolWindowForm() {
         this.document   = null;
-        //this.editor = EditorFactory.createEditor();
-        //this.editor.getComponent()
-        //this.textPanePreview
     }
 
     public JPanel getPanelMain() {

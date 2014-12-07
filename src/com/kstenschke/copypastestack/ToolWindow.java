@@ -21,7 +21,6 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
-import com.intellij.util.ui.TextTransferable;
 import com.kstenschke.copypastestack.Listeners.*;
 import com.kstenschke.copypastestack.Popups.PopupItems;
 import com.kstenschke.copypastestack.Popups.PopupPreview;
@@ -33,7 +32,6 @@ import com.kstenschke.copypastestack.resources.StaticValues;
 import com.kstenschke.copypastestack.resources.ui.ToolWindowForm;
 import org.apache.commons.lang.ArrayUtils;
 import org.jetbrains.annotations.Nullable;
-import sun.awt.datatransfer.ClipboardTransferable;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -42,7 +40,6 @@ import javax.swing.text.Document;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -102,13 +99,13 @@ public class ToolWindow extends SimpleToolWindowPanel {
     private void initSplitPane() {
         Integer dividerLocation = Preferences.getSplitPaneDividerLocation();
         if( dividerLocation != null ) {
-            this.form.splitpaneToolContent.setDividerLocation( dividerLocation );
+            this.form.splitPaneToolContent.setDividerLocation( dividerLocation );
         }
 
-        this.form.splitpaneToolContent.addPropertyChangeListener(new PropertyChangeListener() {
+        this.form.splitPaneToolContent.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                Integer location = form.splitpaneToolContent.getDividerLocation();
+                Integer location = form.splitPaneToolContent.getDividerLocation();
                 Preferences.saveSplitPaneDividerLocation(location);
             }
         });
