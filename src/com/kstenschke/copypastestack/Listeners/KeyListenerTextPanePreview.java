@@ -23,9 +23,9 @@ import java.awt.event.KeyListener;
 
 public class KeyListenerTextPanePreview implements KeyListener {
 
-    private boolean isMac;
+    final private boolean isMac;
     private boolean isMetaDown;
-    private ToolWindow toolWindow;
+    final private ToolWindow toolWindow;
 
     /**
      * Constructor

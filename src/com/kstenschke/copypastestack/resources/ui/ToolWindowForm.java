@@ -79,14 +79,13 @@ public class ToolWindowForm {
     public JButton buttonRefreshPreview;
     public JToolBar toolbarWrapOptions;
 
-    private final Document document;
     public Editor editor;
 
     /**
      * Constructor
      */
     public ToolWindowForm() {
-        this.document   = null;
+
     }
 
     public JPanel getPanelMain() {

@@ -31,8 +31,6 @@ public class PopupTagUnset extends PopupBase {
 
     final private JPopupMenu popup;
 
-    private final JMenuItem menuItemUnsetAllTags;
-
     /**
      * Constructor
      */
@@ -40,14 +38,15 @@ public class PopupTagUnset extends PopupBase {
         this.popup = new JPopupMenu();
 
             // Copy selection
-        menuItemUnsetAllTags = getJMenuItem(StaticTexts.POPUP_UNTAG_UNTAG_ALL, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ToolWindowForm form = toolWindow.getForm();
-                TagManager.untagAll(form);
-            }
-        }, Icons.ICON_TAG_DELETE);
-        this.popup.add(menuItemUnsetAllTags);
+        this.popup.add(
+                getJMenuItem(StaticTexts.POPUP_UNTAG_UNTAG_ALL, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ToolWindowForm form = toolWindow.getForm();
+                        TagManager.untagAll(form);
+                    }
+                }, Icons.ICON_TAG_DELETE)
+        );
     }
 
     /**
