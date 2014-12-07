@@ -54,7 +54,7 @@ public class ToolWindowForm {
     public JList listClipItems;
     public JList listPreview;
 
-    public JPanel panelMain;
+    private JPanel panelMain;
     public JPanel panelAroundPreview;
     public JPanel panelAroundWrap;
     public JPanel panelPreview;
@@ -79,7 +79,7 @@ public class ToolWindowForm {
     public JButton buttonRefreshPreview;
     public JToolBar toolbarWrapOptions;
 
-    public Document document;
+    private final Document document;
     public Editor editor;
 
     /**

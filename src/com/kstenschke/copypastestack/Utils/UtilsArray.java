@@ -22,7 +22,7 @@ public class UtilsArray {
      * @param   arr
      * @return  int
      */
-    public static int getAmountUniqueItems(Object[] arr){
+    private static int getAmountUniqueItems(Object[] arr){
         int amount = 0;
         for(int i=0; i<arr.length; i++){
             if( arr[i] != null ) {

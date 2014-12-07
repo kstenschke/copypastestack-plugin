@@ -20,8 +20,13 @@ import javax.swing.event.ChangeListener;
 
 public class ChangeListenerResizePreview implements ChangeListener{
 
-    private FocusListenerViewClipboard focusListenerViewClipboard;
+    private final FocusListenerViewClipboard focusListenerViewClipboard;
 
+    /**
+     * Constructor
+     *
+     * @param focusListenerViewClipboard
+     */
     public ChangeListenerResizePreview(FocusListenerViewClipboard focusListenerViewClipboard) {
         this.focusListenerViewClipboard = focusListenerViewClipboard;
     }
