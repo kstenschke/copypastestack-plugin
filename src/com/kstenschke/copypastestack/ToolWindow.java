@@ -38,7 +38,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.Document;
 import javax.swing.undo.UndoManager;
-import javax.tools.Tool;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -52,7 +51,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     public final ToolWindowForm form;
     private final boolean isMac;
 
-    public UndoManager undoManager;
+    private UndoManager undoManager;
 
     /**
      * Constructor - initialize the tool window content
@@ -210,12 +209,12 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @return  String[]
      */
     private String[] getUnselectedItems() {
-        ListModel<String> listModel                     = this.form.listClipItems.getModel();
+        ListModel<String> listModel         = this.form.listClipItems.getModel();
         ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
-        int[] selectedIndices                           = this.form.listClipItems.getSelectedIndices();
+        int[] selectedIndices               = this.form.listClipItems.getSelectedIndices();
 
-        int amountItems             = listModel.getSize();
-        String[] unselectedItems    = new String[ amountItems - selectedIndices.length ];
+        int amountItems         = listModel.getSize();
+        String[] unselectedItems= new String[ amountItems - selectedIndices.length ];
 
         int index = 0;
         for(int i=0; i< amountItems; i++ ) {
@@ -257,7 +256,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         if( !hasSelection || amountSelected > 1 ) {
                 // Insert multiple items
-            ListModel<String> listModel                     = this.form.listClipItems.getModel();
+            ListModel<String> listModel         = this.form.listClipItems.getModel();
             ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
@@ -290,7 +289,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
     public void copySelectedItems() {
         boolean hasSelection = ! this.form.listClipItems.isSelectionEmpty();
         if( hasSelection ) {
-            ListModel<String> listModel                     = this.form.listClipItems.getModel();
+            ListModel<String> listModel         = this.form.listClipItems.getModel();
             ListSelectionModel selectionModel   = this.form.listClipItems.getSelectionModel();
 
             int amountItems     = listModel.getSize();
@@ -434,11 +433,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
         items = UtilsArray.tidy(items);
 
         this.form.listClipItems.setListData(items);
-
-        if( overrideIDEclipItems ) {
-            //CopyPasteManager.getInstance().setContents(  );
-            //@todo implement override clipboard history (not only currently displayed items)
-        }
     }
 
     /**
@@ -531,7 +525,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         InputMap inputMap = this.form.textPanePreview.getInputMap();
 
-        // CTRL + Z = undo
+        // CTRL + Z = undo (⌘ + Z on Mac OS)
         inputMap.put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
                 new AbstractAction() {
@@ -544,7 +538,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
                 }
         );
 
-        // CTRL + SHIFT + Z = redo
+        // CTRL + SHIFT + Z = redo (⌘ + SHIFT + Z on Mac OS)
         inputMap.put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.SHIFT_DOWN_MASK | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()),
                 new AbstractAction() {
@@ -581,7 +575,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
         });
 
         this.form.panelWrap.setVisible( isActiveWrap );
-
         this.form.textFieldWrapBefore.setText(Preferences.getWrapBefore());
 
         FocusListener focusListenerWrapComponents = new FocusListener() {
@@ -599,10 +592,8 @@ public class ToolWindow extends SimpleToolWindowPanel {
         };
 
         this.form.textFieldWrapBefore.addFocusListener( focusListenerWrapComponents );
-
         this.form.textFieldWrapAfter.setText(Preferences.getWrapAfter());
         this.form.textFieldWrapAfter.addFocusListener(focusListenerWrapComponents);
-
         this.form.textFieldWrapDelimiter.setText(Preferences.getWrapDelimiter());
         this.form.textFieldWrapDelimiter.addFocusListener(focusListenerWrapComponents);
     }
@@ -634,7 +625,6 @@ public class ToolWindow extends SimpleToolWindowPanel {
 
         this.form.checkboxFocusOnPaste.addMouseListener(new MouseListenerBase(StaticTexts.INFO_FOCUS_ON_PASTE));
         this.form.labelOptionFocusOnPaste.addMouseListener( new MouseListenerCheckboxLabel(StaticTexts.INFO_FOCUS_ON_PASTE, this.form.checkboxFocusOnPaste));
-
         this.form.checkboxWrapExtended.setSelected(Preferences.getIsActiveWrapExtended());
         this.form.checkboxWrapExtended.addMouseListener( new MouseListenerBase(StaticTexts.INFO_WRAP_EXTENDED));
         this.form.checkboxWrapExtended.addActionListener(new ActionListener() {
@@ -683,7 +673,7 @@ public class ToolWindow extends SimpleToolWindowPanel {
      * @param   project     Idea Project
      * @return  Instance of AhnToolWindow
      */
-    public static ToolWindow getInstance(Project project) {
+    private static ToolWindow getInstance(Project project) {
         com.intellij.openapi.wm.ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("Copy/Paste Stack");
 
         if( toolWindow != null ) {

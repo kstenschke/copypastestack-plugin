@@ -54,8 +54,8 @@ public class UtilsClipboard {
     }
 
     /**
-     * @param text
-     * @return boolean  Is given string in clipboard currently?
+     * @param   text
+     * @return  boolean  Is given string in clipboard currently?
      */
     public static boolean isInClipboard(String text) {
         if( text == null || text.isEmpty() ) {

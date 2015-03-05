@@ -15,7 +15,6 @@
  */
 package com.kstenschke.copypastestack.Utils;
 
-
 public class UtilsArray {
 
     /**

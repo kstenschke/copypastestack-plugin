@@ -34,7 +34,7 @@ import java.io.*;
 
 public class FocusListenerViewClipboard implements FocusListener {
 
-    final ToolWindow toolWindow;
+    private final ToolWindow toolWindow;
 
     public FocusListenerViewClipboard(ToolWindow toolWindow) {
         this.toolWindow = toolWindow;

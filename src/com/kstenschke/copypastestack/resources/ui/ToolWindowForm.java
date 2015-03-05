@@ -15,7 +15,6 @@
  */
 package com.kstenschke.copypastestack.resources.ui;
 
-import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 
 import javax.swing.*;
@@ -97,4 +96,3 @@ public class ToolWindowForm {
     }
 
 }
-
