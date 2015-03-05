@@ -1,5 +1,5 @@
 <!--
-~ Copyright 2014 Kay Stenschke
+~ Copyright 2014-2015 Kay Stenschke
 ~
 ~ Licensed under the Apache License, Version 2.0 (the "License");
 ~ you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 <idea-plugin version="2">
   <id>com.kstenschke.copypastestack</id>
   <name>Copy/Paste Stack</name>
-  <vendor email="info@stenschke.com" url="">Kay Stenschke</vendor>
+    <vendor url="http://www.coexec.com/" email="kay@coexec.com">Kay Stenschke</vendor>
 
   <description><![CDATA[
       Copy/paste stack is an advanced copy history manager including a clipboard viewer.<br />
@@ -41,9 +41,10 @@
        <br/>Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     ]]></description>
 
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <change-notes><![CDATA[
     <ul>
+        <li>1.1.5 Corrected Meta-Info</li>
         <li>1.1.4 Made UI more intuitive: changed order of copy and paste buttons in menu</li>
         <li>1.1.3 Added undo/redo capability to clip preview editor</li>
         <li>1.1.2<ul>
@@ -80,15 +81,12 @@
   <extensions defaultExtensionNs="com.intellij" />
 
   <application-components />
-
   <project-components />
-
   <actions />
+  <extensions defaultExtensionNs="com.intellij">
+      <toolWindow id="Copy/Paste" anchor="right" factoryClass="com.kstenschke.copypastestack.ToolWindowFactory">
+      </toolWindow>
+  </extensions>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Copy/Paste" anchor="right" factoryClass="com.kstenschke.copypastestack.ToolWindowFactory">
-        </toolWindow>
-    </extensions>
-
-    <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.lang</depends>
 </idea-plugin>
